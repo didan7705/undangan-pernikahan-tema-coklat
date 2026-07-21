@@ -810,7 +810,7 @@
 </head>
 <body>
 
-    <audio id="bg-music" src="ed-sheeran-perfect.mp3" loop preload="auto"></audio>
+    <audio id="bg-music" src="ed-sheeran-perfect.mp3" loop preload="none"></audio>
     
     <!-- BUTTON MUSIC FLOATING -->
     <button class="music-control" id="music-btn" aria-label="Pengaturan Musik" onclick="toggleMusic()">
@@ -861,7 +861,7 @@
 
     <!-- COVER SECTION -->
     <section id="cover" class="cover-khusus">
-        <img src="foto-cover.png" alt="Foto Cover Mempelai" class="foto-konten-cover">
+        <img src="foto-cover.png" alt="Foto Cover Mempelai" class="foto-konten-cover" loading="eager">
         <div class="container-cover">
             <div class="box-krem-tulisan">
                 <span style="font-family: 'Playfair Display', serif; font-style: italic; color: #8c6d33; font-size: 0.85rem; margin-bottom: 2px;">Kepada Yth. Bapak/Ibu/Saudara/i</span>
@@ -874,20 +874,20 @@
     
     <!-- SECTION 1: PEMBUKA & MEMPELAI PRIA -->
     <section id="pembuka1">
-        <img src="kalimatpembuka1.png" alt="Ayat Suci" id="item-ayat" class="anim-item from-top">
-        <img src="itempembuka12.png" alt="Pembatas Hiasan" id="item-pembatas" class="anim-item zoom-in">
-        <div id="item-salam" class="anim-item from-bottom"><img src="kalimatpembuka12.png" alt="Salam Pembuka"></div>
-        <div id="item-foto-pria" class="anim-item from-left"><img src="pengantinpria.png" alt="Mempelai Pria"></div>
-        <img src="itempembuka1_1.png" alt="Dan" id="item-ampersand" class="anim-item zoom-out">
+        <img src="kalimatpembuka1.png" alt="Ayat Suci" id="item-ayat" class="anim-item from-top" loading="lazy">
+        <img src="itempembuka12.png" alt="Pembatas Hiasan" id="item-pembatas" class="anim-item zoom-in" loading="lazy">
+        <div id="item-salam" class="anim-item from-bottom"><img src="kalimatpembuka12.png" alt="Salam Pembuka" loading="lazy"></div>
+        <div id="item-foto-pria" class="anim-item from-left"><img src="pengantinpria.png" alt="Mempelai Pria" loading="lazy"></div>
+        <img src="itempembuka1_1.png" alt="Dan" id="item-ampersand" class="anim-item zoom-out" loading="lazy">
     </section>
     
     <!-- SECTION 2: MEMPELAI WANITA + POLAROID -->
     <section id="pembuka2">
-        <div id="item-foto-wanita" class="anim-item from-right"><img src="pengantinwanita.png" alt="Mempelai Wanita"></div>
+        <div id="item-foto-wanita" class="anim-item from-right"><img src="pengantinwanita.png" alt="Mempelai Wanita" loading="lazy"></div>
         <div class="tumpukan-polaroid anim-item rotate-in" id="polaroidContainer">
-            <div class="kartu-polaroid polaroid-3" style="z-index: 3;"><img src="gambar-pembuka1.png" alt="Momen Indah 1"></div>
-            <div class="kartu-polaroid polaroid-1" style="z-index: 2;"><img src="gambar-pembuka2.png" alt="Momen Indah 2"></div>
-            <div class="kartu-polaroid polaroid-2" style="z-index: 1;"><img src="gambar-pembuka3.png" alt="Momen Indah 3"></div>
+            <div class="kartu-polaroid polaroid-3" style="z-index: 3;"><img src="gambar-pembuka1.png" alt="Momen Indah 1" loading="lazy"></div>
+            <div class="kartu-polaroid polaroid-1" style="z-index: 2;"><img src="gambar-pembuka2.png" alt="Momen Indah 2" loading="lazy"></div>
+            <div class="kartu-polaroid polaroid-2" style="z-index: 1;"><img src="gambar-pembuka3.png" alt="Momen Indah 3" loading="lazy"></div>
         </div>
     </section>
     
@@ -895,13 +895,13 @@
     <section id="galeri">
         <div class="container-galeri-transparan anim-item zoom-in">
             <div class="galeri-susunan-indie">
-                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri1.png" alt="Dokumentasi 1"></div>
-                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri2.png" alt="Dokumentasi 2"></div>
-                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri3.png" alt="Dokumentasi 3"></div>
-                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri4.png" alt="Dokumentasi 4"></div>
+                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri1.png" alt="Dokumentasi 1" loading="lazy"></div>
+                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri2.png" alt="Dokumentasi 2" loading="lazy"></div>
+                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri3.png" alt="Dokumentasi 3" loading="lazy"></div>
+                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri4.png" alt="Dokumentasi 4" loading="lazy"></div>
             </div>
             <div class="wrapper-video-premium anim-item zoom-out" onclick="bukaLightbox('video', this)">
-                <video id="videoMomen" autoplay muted playsinline loop><source src="video-galeri.mp4" type="video/mp4"></video>
+                <video id="videoMomen" autoplay muted playsinline loop preload="metadata"><source src="video-galeri.mp4" type="video/mp4"></video>
             </div>
         </div>
     </section>
@@ -909,9 +909,9 @@
     <!-- COUNTDOWN -->
     <section id="countdown">
         <div class="relatif-penuh">
-            <img src="item-kalender.png" alt="Save The Date" class="el-save-date anim-item from-top">
-            <img src="kalender.png" alt="Kalender Pernikahan" class="el-kalender-inti anim-item zoom-in">
-            <img src="item-kalender2.png" alt="Hiasan Bunga" class="el-bunga-kalender anim-item from-bottom">
+            <img src="item-kalender.png" alt="Save The Date" class="el-save-date anim-item from-top" loading="lazy">
+            <img src="kalender.png" alt="Kalender Pernikahan" class="el-kalender-inti anim-item zoom-in" loading="lazy">
+            <img src="item-kalender2.png" alt="Hiasan Bunga" class="el-bunga-kalender anim-item from-bottom" loading="lazy">
         </div>
         <div class="wrapper-countdown-premium anim-item from-bottom">
             <div class="hitung-mudur-box">
@@ -921,23 +921,23 @@
                 <div class="waktu-blok"><div class="angka-waktu" id="detik">00</div><div class="label-waktu">Detik</div></div>
             </div>
             <!-- TAUTAN DISESUAIKAN KE 1 JULI 2026 -->
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Mahesa+%26+Erika&dates=20260701T030000Z/20260701T060000Z" target="_blank" class="tombol-simpan-mewah">SIMPAN TANGGAL</a>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Mahesa+%26+Erika&dates=20260701T030000Z/20260701T060000Z" target="_blank" rel="noopener" class="tombol-simpan-mewah">SIMPAN TANGGAL</a>
         </div>
     </section>
 
     <!-- ACARA & LOKASI -->
     <section id="acara">
         <div class="relatif-penuh">
-            <img src="item-lokasi1.png" alt="Teks Akad Nikah" class="el-akad anim-item from-top">
-            <img src="item-lokasi2.png" alt="Ornamen Bulan" class="el-bulan anim-item from-top">
-            <img src="item-lokasi3.png" alt="Tanggal Utama" class="el-tgl-angka anim-item zoom-in">
-            <img src="item-lokasi4.png" alt="Informasi Waktu" class="el-jam-info anim-item from-bottom">
-            <img src="item-lokasi5.png" alt="Kutipan Bagian 1" class="el-quote1 anim-item from-left">
-            <img src="item-lokasi6.png" alt="Kutipan Bagian 2" class="el-quote2 anim-item from-right">
+            <img src="item-lokasi1.png" alt="Teks Akad Nikah" class="el-akad anim-item from-top" loading="lazy">
+            <img src="item-lokasi2.png" alt="Ornamen Bulan" class="el-bulan anim-item from-top" loading="lazy">
+            <img src="item-lokasi3.png" alt="Tanggal Utama" class="el-tgl-angka anim-item zoom-in" loading="lazy">
+            <img src="item-lokasi4.png" alt="Informasi Waktu" class="el-jam-info anim-item from-bottom" loading="lazy">
+            <img src="item-lokasi5.png" alt="Kutipan Bagian 1" class="el-quote1 anim-item from-left" loading="lazy">
+            <img src="item-lokasi6.png" alt="Kutipan Bagian 2" class="el-quote2 anim-item from-right" loading="lazy">
         </div>
         <div class="wrapper-lokasi-premium anim-item from-bottom">
             <!-- TAUTAN DISESUAIKAN KE GOOGLE MAPS -->
-            <a href="https://maps.app.goo.gl/LhfPXMd9dT2vqVXNA" target="_blank" class="tombol-lokasi-mewah">PETUNJUK LOKASI</a>
+            <a href="https://maps.app.goo.gl/LhfPXMd9dT2vqVXNA" target="_blank" rel="noopener" class="tombol-lokasi-mewah">PETUNJUK LOKASI</a>
         </div>
     </section>
 
@@ -1008,7 +1008,7 @@
                 <!-- BCA -->
                 <div class="kartu-rekening-mewah">
                     <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="Bank BCA" class="logo-bank-mewah">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="Bank BCA" class="logo-bank-mewah" loading="lazy">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-bca">1234 5678 90</div>
@@ -1019,7 +1019,7 @@
                 <!-- MANDIRI -->
                 <div class="kartu-rekening-mewah">
                     <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Bank Mandiri" class="logo-bank-mewah">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Bank Mandiri" class="logo-bank-mewah" loading="lazy">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-mandiri">9876 5432 10123</div>
@@ -1030,7 +1030,7 @@
                 <!-- BRI -->
                 <div class="kartu-rekening-mewah">
                     <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="logo-bank-mewah">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="logo-bank-mewah" loading="lazy">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-bri">0011 2233 4455 667</div>
@@ -1043,7 +1043,7 @@
 
     <!-- SECTION PENUTUP -->
     <section id="penutup">
-        <img src="item-penutup.png" alt="Ornaments Penutup" class="ornamen-penutup-tunggal anim-item zoom-in">
+        <img src="item-penutup.png" alt="Ornaments Penutup" class="ornamen-penutup-tunggal anim-item zoom-in" loading="lazy">
     </section>
 
     <!-- VIRTUAL KEYBOARD DENGAN STYLING ULTRA RESPONSIF -->
@@ -1108,12 +1108,12 @@
 
     <!-- BOTTOM NAV -->
     <nav id="navigation-bar" class="bottom-nav">
-        <div onclick="pindahKeSection('pembuka1')" class="nav-item"><img src="navigasi1.png" alt="Mempelai"><div class="nav-label">Mempelai</div></div>
-        <div onclick="pindahKeSection('galeri')" class="nav-item"><img src="navigasi2.png" alt="Galeri"><div class="nav-label">Galeri</div></div>
-        <div onclick="pindahKeSection('countdown')" class="nav-item"><img src="navigasi3.png" alt="Tanggal"><div class="nav-label">Tanggal</div></div>
-        <div onclick="pindahKeSection('acara')" class="nav-item"><img src="navigasi4.png" alt="Lokasi"><div class="nav-label">Lokasi</div></div>
-        <div onclick="pindahKeSection('rsvp')" class="nav-item"><img src="navigasi5.png" alt="Kehadiran"><div class="nav-label">Kehadiran</div></div>
-        <div onclick="pindahKeSection('gift')" class="nav-item"><img src="navigasi6.png" alt="Gift"><div class="nav-label">Gift</div></div>
+        <div onclick="pindahKeSection('pembuka1')" class="nav-item"><img src="navigasi1.png" alt="Mempelai" loading="lazy"><div class="nav-label">Mempelai</div></div>
+        <div onclick="pindahKeSection('galeri')" class="nav-item"><img src="navigasi2.png" alt="Galeri" loading="lazy"><div class="nav-label">Galeri</div></div>
+        <div onclick="pindahKeSection('countdown')" class="nav-item"><img src="navigasi3.png" alt="Tanggal" loading="lazy"><div class="nav-label">Tanggal</div></div>
+        <div onclick="pindahKeSection('acara')" class="nav-item"><img src="navigasi4.png" alt="Lokasi" loading="lazy"><div class="nav-label">Lokasi</div></div>
+        <div onclick="pindahKeSection('rsvp')" class="nav-item"><img src="navigasi5.png" alt="Kehadiran" loading="lazy"><div class="nav-label">Kehadiran</div></div>
+        <div onclick="pindahKeSection('gift')" class="nav-item"><img src="navigasi6.png" alt="Gift" loading="lazy"><div class="nav-label">Gift</div></div>
     </nav>
 
     <!-- SCRIPT TERTATA DAN CEPAT -->
@@ -1175,12 +1175,7 @@
             if (!inputVal || !renderSpan || !placeholder) return;
 
             renderSpan.textContent = inputVal.value;
-
-            if (inputVal.value.length > 0) {
-                placeholder.style.display = 'none';
-            } else {
-                placeholder.style.display = 'inline';
-            }
+            placeholder.style.display = inputVal.value.length > 0 ? 'none' : 'inline';
         }
 
         document.querySelectorAll('.wrapper-input-ketik').forEach(wrapper => {
@@ -1199,13 +1194,12 @@
                 kbContainer.classList.remove('caps');
 
                 setTimeout(() => activeWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
-            });
+            }, { passive: true });
         });
 
         function toggleShift() { 
             isShiftActive = !isShiftActive; 
-            if(isShiftActive) kbContainer.classList.add('caps');
-            else kbContainer.classList.remove('caps');
+            kbContainer.classList.toggle('caps', isShiftActive);
         }
 
         function tekanKey(nilai) {
@@ -1222,7 +1216,6 @@
                 else tutupKeyboard();
             } else {
                 inputHidden.value += isShiftActive ? nilai.toUpperCase() : nilai.toLowerCase();
-                
                 if (isShiftActive) {
                     isShiftActive = false;
                     kbContainer.classList.remove('caps');
@@ -1243,7 +1236,7 @@
 
         document.addEventListener('click', (e) => {
             if (!kbContainer.contains(e.target) && !e.target.closest('.wrapper-input-ketik')) tutupKeyboard();
-        });
+        }, { passive: true });
 
         function pindahKeSection(idTarget) {
             tutupKeyboard();
@@ -1274,7 +1267,7 @@
             else { music.pause(); updateMusicIcon(false); }
         }
 
-        /* BUKA UNDANGAN & REPEATABLE ANIMATION */
+        /* BUKA UNDANGAN & OPTIMIZED ANIMATION OBSERVER */
         function bukaUndangan() {
             document.getElementById('cover').classList.add('fade-out');
             navBar.classList.add('aktif');
@@ -1282,17 +1275,15 @@
             playAudio();
             
             setTimeout(() => {
-                const itemObserver = new IntersectionObserver((entries) => {
+                const itemObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('item-muncul');
-                        } else {
-                            entry.target.classList.remove('item-muncul');
                         }
                     });
                 }, { 
-                    threshold: 0.15,
-                    rootMargin: "0px 0px -40px 0px"
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -20px 0px"
                 });
 
                 document.querySelectorAll('.anim-item').forEach(item => itemObserver.observe(item));
@@ -1301,13 +1292,18 @@
 
         /* COUNTDOWN LOGIC (1 JULI 2026) */
         const tanggalTarget = new Date("July 1, 2026 10:00:00").getTime();
+        const elHari = document.getElementById("hari");
+        const elJam = document.getElementById("jam");
+        const elMenit = document.getElementById("menit");
+        const elDetik = document.getElementById("detik");
+
         setInterval(() => {
             const selisih = tanggalTarget - Date.now();
             if (selisih <= 0) return;
-            document.getElementById("hari").innerText = String(Math.floor(selisih / 86400000)).padStart(2, '0');
-            document.getElementById("jam").innerText = String(Math.floor((selisih % 86400000) / 3600000)).padStart(2, '0');
-            document.getElementById("menit").innerText = String(Math.floor((selisih % 3600000) / 60000)).padStart(2, '0');
-            document.getElementById("detik").innerText = String(Math.floor((selisih % 60000) / 1000)).padStart(2, '0');
+            elHari.innerText = String(Math.floor(selisih / 86400000)).padStart(2, '0');
+            elJam.innerText = String(Math.floor((selisih % 86400000) / 3600000)).padStart(2, '0');
+            elMenit.innerText = String(Math.floor((selisih % 3600000) / 60000)).padStart(2, '0');
+            elDetik.innerText = String(Math.floor((selisih % 60000) / 1000)).padStart(2, '0');
         }, 1000);
 
         /* LIGHTBOX SYSTEM */
@@ -1340,12 +1336,11 @@
                     top.classList.remove('slip-away'); 
                     setTimeout(() => isAnim = false, 100); 
                 }, 350);
-            });
+            }, { passive: true });
         }
 
-        /* GOOGLE SHEETS RSVP ENGINE */
+        /* GOOGLE SHEETS RSVP ENGINE OPTIMIZED */
         function renderDaftarUcapan() {
-            listUcapanKontainer.innerHTML = "";
             totalUcapanElem.innerText = `${dataUcapanLokal.length} Ucapan`;
 
             if (dataUcapanLokal.length === 0) {
@@ -1353,10 +1348,12 @@
                 return;
             }
 
-            dataUcapanLokal.slice().reverse().forEach((item) => {
+            let htmlArr = [];
+            for (let i = dataUcapanLokal.length - 1; i >= 0; i--) {
+                const item = dataUcapanLokal[i];
                 const statusClass = item.status === "Hadir" ? "hadir" : "tidak-hadir";
                 const displayStatus = item.status === "Hadir" ? "Hadir" : "Berhalangan";
-                const kartuHTML = `
+                htmlArr.push(`
                     <div class="item-kartu-ucapan">
                         <div class="baris-nama-ucapan">
                             <span class="nama-pengirim">${escapeHTML(item.nama)}</span>
@@ -1364,9 +1361,9 @@
                         </div>
                         <div class="teks-pesan-ucapan">${escapeHTML(item.ucapan)}</div>
                     </div>
-                `;
-                listUcapanKontainer.insertAdjacentHTML('beforeend', kartuHTML);
-            });
+                `);
+            }
+            listUcapanKontainer.innerHTML = htmlArr.join('');
         }
 
         function ambilDataUcapan() {
@@ -1435,7 +1432,7 @@
         });
 
         ambilDataUcapan();
-        setInterval(ambilDataUcapan, 15000);
+        setInterval(ambilDataUcapan, 20000);
     </script>
 </body>
 </html>
