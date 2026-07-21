@@ -7,6 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- LINK PRELOAD UNTUK ASET KRUSIAL AGAR DIMUAT DENGAN PRIORITAS TINGGI -->
+    <link rel="preload" as="image" href="bg-pembuka1.png">
+    <link rel="preload" as="image" href="bg-pembuka2.png">
+    <link rel="preload" as="image" href="cover.png">
+    <link rel="preload" as="image" href="foto-cover.png">
+
     <style>
         /* RESET & BASE STYLES */
         * { 
@@ -31,6 +38,58 @@
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
         } 
+
+        /* PRELOADER SCREEN MEWAH */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100svh;
+            background: #fcfaf2;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #preloader.selesai {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            width: 42px;
+            height: 42px;
+            border: 3px solid rgba(184, 142, 76, 0.2);
+            border-top: 3px solid #b88e4c;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            color: #705321;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .loader-progress {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            color: #8c6d33;
+            margin-top: 6px;
+        }
         
         /* OPTIMASI SEKSI & BACKGROUND */
         section { 
@@ -810,7 +869,14 @@
 </head>
 <body>
 
-    <audio id="bg-music" src="ed-sheeran-perfect.mp3" loop preload="none"></audio>
+    <!-- PRELOADER EKSKLUSIF SIMULTAN -->
+    <div id="preloader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Mahesa & Erika</div>
+        <div class="loader-progress" id="loader-progress">Memuat elemen... 0%</div>
+    </div>
+
+    <audio id="bg-music" src="ed-sheeran-perfect.mp3" loop preload="auto"></audio>
     
     <!-- BUTTON MUSIC FLOATING -->
     <button class="music-control" id="music-btn" aria-label="Pengaturan Musik" onclick="toggleMusic()">
@@ -874,20 +940,20 @@
     
     <!-- SECTION 1: PEMBUKA & MEMPELAI PRIA -->
     <section id="pembuka1">
-        <img src="kalimatpembuka1.png" alt="Ayat Suci" id="item-ayat" class="anim-item from-top" loading="lazy">
-        <img src="itempembuka12.png" alt="Pembatas Hiasan" id="item-pembatas" class="anim-item zoom-in" loading="lazy">
-        <div id="item-salam" class="anim-item from-bottom"><img src="kalimatpembuka12.png" alt="Salam Pembuka" loading="lazy"></div>
-        <div id="item-foto-pria" class="anim-item from-left"><img src="pengantinpria.png" alt="Mempelai Pria" loading="lazy"></div>
-        <img src="itempembuka1_1.png" alt="Dan" id="item-ampersand" class="anim-item zoom-out" loading="lazy">
+        <img src="kalimatpembuka1.png" alt="Ayat Suci" id="item-ayat" class="anim-item from-top">
+        <img src="itempembuka12.png" alt="Pembatas Hiasan" id="item-pembatas" class="anim-item zoom-in">
+        <div id="item-salam" class="anim-item from-bottom"><img src="kalimatpembuka12.png" alt="Salam Pembuka"></div>
+        <div id="item-foto-pria" class="anim-item from-left"><img src="pengantinpria.png" alt="Mempelai Pria"></div>
+        <img src="itempembuka1_1.png" alt="Dan" id="item-ampersand" class="anim-item zoom-out">
     </section>
     
     <!-- SECTION 2: MEMPELAI WANITA + POLAROID -->
     <section id="pembuka2">
-        <div id="item-foto-wanita" class="anim-item from-right"><img src="pengantinwanita.png" alt="Mempelai Wanita" loading="lazy"></div>
+        <div id="item-foto-wanita" class="anim-item from-right"><img src="pengantinwanita.png" alt="Mempelai Wanita"></div>
         <div class="tumpukan-polaroid anim-item rotate-in" id="polaroidContainer">
-            <div class="kartu-polaroid polaroid-3" style="z-index: 3;"><img src="gambar-pembuka1.png" alt="Momen Indah 1" loading="lazy"></div>
-            <div class="kartu-polaroid polaroid-1" style="z-index: 2;"><img src="gambar-pembuka2.png" alt="Momen Indah 2" loading="lazy"></div>
-            <div class="kartu-polaroid polaroid-2" style="z-index: 1;"><img src="gambar-pembuka3.png" alt="Momen Indah 3" loading="lazy"></div>
+            <div class="kartu-polaroid polaroid-3" style="z-index: 3;"><img src="gambar-pembuka1.png" alt="Momen Indah 1"></div>
+            <div class="kartu-polaroid polaroid-1" style="z-index: 2;"><img src="gambar-pembuka2.png" alt="Momen Indah 2"></div>
+            <div class="kartu-polaroid polaroid-2" style="z-index: 1;"><img src="gambar-pembuka3.png" alt="Momen Indah 3"></div>
         </div>
     </section>
     
@@ -895,13 +961,13 @@
     <section id="galeri">
         <div class="container-galeri-transparan anim-item zoom-in">
             <div class="galeri-susunan-indie">
-                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri1.png" alt="Dokumentasi 1" loading="lazy"></div>
-                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri2.png" alt="Dokumentasi 2" loading="lazy"></div>
-                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri3.png" alt="Dokumentasi 3" loading="lazy"></div>
-                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri4.png" alt="Dokumentasi 4" loading="lazy"></div>
+                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri1.png" alt="Dokumentasi 1"></div>
+                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri2.png" alt="Dokumentasi 2"></div>
+                <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri3.png" alt="Dokumentasi 3"></div>
+                <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri4.png" alt="Dokumentasi 4"></div>
             </div>
             <div class="wrapper-video-premium anim-item zoom-out" onclick="bukaLightbox('video', this)">
-                <video id="videoMomen" autoplay muted playsinline loop preload="metadata"><source src="video-galeri.mp4" type="video/mp4"></video>
+                <video id="videoMomen" autoplay muted playsinline loop preload="auto"><source src="video-galeri.mp4" type="video/mp4"></video>
             </div>
         </div>
     </section>
@@ -909,9 +975,9 @@
     <!-- COUNTDOWN -->
     <section id="countdown">
         <div class="relatif-penuh">
-            <img src="item-kalender.png" alt="Save The Date" class="el-save-date anim-item from-top" loading="lazy">
-            <img src="kalender.png" alt="Kalender Pernikahan" class="el-kalender-inti anim-item zoom-in" loading="lazy">
-            <img src="item-kalender2.png" alt="Hiasan Bunga" class="el-bunga-kalender anim-item from-bottom" loading="lazy">
+            <img src="item-kalender.png" alt="Save The Date" class="el-save-date anim-item from-top">
+            <img src="kalender.png" alt="Kalender Pernikahan" class="el-kalender-inti anim-item zoom-in">
+            <img src="item-kalender2.png" alt="Hiasan Bunga" class="el-bunga-kalender anim-item from-bottom">
         </div>
         <div class="wrapper-countdown-premium anim-item from-bottom">
             <div class="hitung-mudur-box">
@@ -920,7 +986,6 @@
                 <div class="waktu-blok"><div class="angka-waktu" id="menit">00</div><div class="label-waktu">Menit</div></div><div class="pemisah-titik">:</div>
                 <div class="waktu-blok"><div class="angka-waktu" id="detik">00</div><div class="label-waktu">Detik</div></div>
             </div>
-            <!-- TAUTAN DISESUAIKAN KE 1 JULI 2026 -->
             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Mahesa+%26+Erika&dates=20260701T030000Z/20260701T060000Z" target="_blank" rel="noopener" class="tombol-simpan-mewah">SIMPAN TANGGAL</a>
         </div>
     </section>
@@ -928,15 +993,14 @@
     <!-- ACARA & LOKASI -->
     <section id="acara">
         <div class="relatif-penuh">
-            <img src="item-lokasi1.png" alt="Teks Akad Nikah" class="el-akad anim-item from-top" loading="lazy">
-            <img src="item-lokasi2.png" alt="Ornamen Bulan" class="el-bulan anim-item from-top" loading="lazy">
-            <img src="item-lokasi3.png" alt="Tanggal Utama" class="el-tgl-angka anim-item zoom-in" loading="lazy">
-            <img src="item-lokasi4.png" alt="Informasi Waktu" class="el-jam-info anim-item from-bottom" loading="lazy">
-            <img src="item-lokasi5.png" alt="Kutipan Bagian 1" class="el-quote1 anim-item from-left" loading="lazy">
-            <img src="item-lokasi6.png" alt="Kutipan Bagian 2" class="el-quote2 anim-item from-right" loading="lazy">
+            <img src="item-lokasi1.png" alt="Teks Akad Nikah" class="el-akad anim-item from-top">
+            <img src="item-lokasi2.png" alt="Ornamen Bulan" class="el-bulan anim-item from-top">
+            <img src="item-lokasi3.png" alt="Tanggal Utama" class="el-tgl-angka anim-item zoom-in">
+            <img src="item-lokasi4.png" alt="Informasi Waktu" class="el-jam-info anim-item from-bottom">
+            <img src="item-lokasi5.png" alt="Kutipan Bagian 1" class="el-quote1 anim-item from-left">
+            <img src="item-lokasi6.png" alt="Kutipan Bagian 2" class="el-quote2 anim-item from-right">
         </div>
         <div class="wrapper-lokasi-premium anim-item from-bottom">
-            <!-- TAUTAN DISESUAIKAN KE GOOGLE MAPS -->
             <a href="https://maps.app.goo.gl/LhfPXMd9dT2vqVXNA" target="_blank" rel="noopener" class="tombol-lokasi-mewah">PETUNJUK LOKASI</a>
         </div>
     </section>
@@ -1008,7 +1072,7 @@
                 <!-- BCA -->
                 <div class="kartu-rekening-mewah">
                     <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="Bank BCA" class="logo-bank-mewah" loading="lazy">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="Bank BCA" class="logo-bank-mewah">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-bca">1234 5678 90</div>
@@ -1019,7 +1083,7 @@
                 <!-- MANDIRI -->
                 <div class="kartu-rekening-mewah">
                     <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Bank Mandiri" class="logo-bank-mewah" loading="lazy">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Bank Mandiri" class="logo-bank-mewah">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-mandiri">9876 5432 10123</div>
@@ -1030,7 +1094,7 @@
                 <!-- BRI -->
                 <div class="kartu-rekening-mewah">
                     <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="logo-bank-mewah" loading="lazy">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="logo-bank-mewah">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-bri">0011 2233 4455 667</div>
@@ -1043,7 +1107,7 @@
 
     <!-- SECTION PENUTUP -->
     <section id="penutup">
-        <img src="item-penutup.png" alt="Ornaments Penutup" class="ornamen-penutup-tunggal anim-item zoom-in" loading="lazy">
+        <img src="item-penutup.png" alt="Ornaments Penutup" class="ornamen-penutup-tunggal anim-item zoom-in">
     </section>
 
     <!-- VIRTUAL KEYBOARD DENGAN STYLING ULTRA RESPONSIF -->
@@ -1108,20 +1172,22 @@
 
     <!-- BOTTOM NAV -->
     <nav id="navigation-bar" class="bottom-nav">
-        <div onclick="pindahKeSection('pembuka1')" class="nav-item"><img src="navigasi1.png" alt="Mempelai" loading="lazy"><div class="nav-label">Mempelai</div></div>
-        <div onclick="pindahKeSection('galeri')" class="nav-item"><img src="navigasi2.png" alt="Galeri" loading="lazy"><div class="nav-label">Galeri</div></div>
-        <div onclick="pindahKeSection('countdown')" class="nav-item"><img src="navigasi3.png" alt="Tanggal" loading="lazy"><div class="nav-label">Tanggal</div></div>
-        <div onclick="pindahKeSection('acara')" class="nav-item"><img src="navigasi4.png" alt="Lokasi" loading="lazy"><div class="nav-label">Lokasi</div></div>
-        <div onclick="pindahKeSection('rsvp')" class="nav-item"><img src="navigasi5.png" alt="Kehadiran" loading="lazy"><div class="nav-label">Kehadiran</div></div>
-        <div onclick="pindahKeSection('gift')" class="nav-item"><img src="navigasi6.png" alt="Gift" loading="lazy"><div class="nav-label">Gift</div></div>
+        <div onclick="pindahKeSection('pembuka1')" class="nav-item"><img src="navigasi1.png" alt="Mempelai"><div class="nav-label">Mempelai</div></div>
+        <div onclick="pindahKeSection('galeri')" class="nav-item"><img src="navigasi2.png" alt="Galeri"><div class="nav-label">Galeri</div></div>
+        <div onclick="pindahKeSection('countdown')" class="nav-item"><img src="navigasi3.png" alt="Tanggal"><div class="nav-label">Tanggal</div></div>
+        <div onclick="pindahKeSection('acara')" class="nav-item"><img src="navigasi4.png" alt="Lokasi"><div class="nav-label">Lokasi</div></div>
+        <div onclick="pindahKeSection('rsvp')" class="nav-item"><img src="navigasi5.png" alt="Kehadiran"><div class="nav-label">Kehadiran</div></div>
+        <div onclick="pindahKeSection('gift')" class="nav-item"><img src="navigasi6.png" alt="Gift"><div class="nav-label">Gift</div></div>
     </nav>
 
-    <!-- SCRIPT TERTATA DAN CEPAT -->
+    <!-- SCRIPT PRELOAD SIMULTAN LENGKAP -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxJ3c2ISp0_ASoeOU8-MduW97XGWRUgLYWsfv9YkBKrpdqDmqWmJc8JqmVHeoaMjjVj/exec';
         let dataUcapanLokal = [];
 
         /* CACHING DOM */
+        const preloader = document.getElementById('preloader');
+        const loaderProgress = document.getElementById('loader-progress');
         const customModal = document.getElementById('customModal');
         const modalIcon = document.getElementById('modalIcon');
         const modalTitle = document.getElementById('modalTitle');
@@ -1136,6 +1202,67 @@
         const listUcapanKontainer = document.getElementById('listUcapanKontainer');
         const btnKirim = document.getElementById('btn-kirim-rsvp');
         const totalUcapanElem = document.getElementById('totalUcapan');
+
+        /* DAFTAR SEMUA ASET UNTUK PRELOAD SIMULTAN LENGKAP */
+        const daftarAsetGambar = [
+            'cover.png', 'foto-cover.png',
+            'bg-pembuka1.png', 'kalimatpembuka1.png', 'itempembuka12.png', 'kalimatpembuka12.png', 'pengantinpria.png', 'itempembuka1_1.png',
+            'bg-pembuka2.png', 'pengantinwanita.png', 'gambar-pembuka1.png', 'gambar-pembuka2.png', 'gambar-pembuka3.png',
+            'bg-galeri.png', 'gambar-galeri1.png', 'gambar-galeri2.png', 'gambar-galeri3.png', 'gambar-galeri4.png',
+            'countdown-kalender.png', 'item-kalender.png', 'kalender.png', 'item-kalender2.png',
+            'lokasi-jam.png', 'item-lokasi1.png', 'item-lokasi2.png', 'item-lokasi3.png', 'item-lokasi4.png', 'item-lokasi5.png', 'item-lokasi6.png',
+            'bg-kehadiran.png', 'bg-gift.png', 'bg-penutup.png', 'item-penutup.png',
+            'navigasi1.png', 'navigasi2.png', 'navigasi3.png', 'navigasi4.png', 'navigasi5.png', 'navigasi6.png'
+        ];
+
+        let asetSelesai = 0;
+        const totalAset = daftarAsetGambar.length + 2; // Gambar + Audio + Video
+
+        function updateProgress() {
+            asetSelesai++;
+            const persen = Math.min(Math.round((asetSelesai / totalAset) * 100), 100);
+            if(loaderProgress) loaderProgress.innerText = `Memuat elemen... ${persen}%`;
+            
+            if (asetSelesai >= totalAset) {
+                setTimeout(() => {
+                    preloader.classList.add('selesai');
+                }, 300);
+            }
+        }
+
+        /* 1. PRELOAD GAMBAR */
+        daftarAsetGambar.forEach(src => {
+            const img = new Image();
+            img.onload = updateProgress;
+            img.onerror = updateProgress;
+            img.src = src;
+        });
+
+        /* 2. PRELOAD AUDIO */
+        if (music) {
+            music.oncanplaythrough = updateProgress;
+            music.onerror = updateProgress;
+            music.load();
+        } else {
+            updateProgress();
+        }
+
+        /* 3. PRELOAD VIDEO GALERI */
+        const vidMomen = document.getElementById('videoMomen');
+        if (vidMomen) {
+            vidMomen.oncanplaythrough = updateProgress;
+            vidMomen.onerror = updateProgress;
+            vidMomen.load();
+        } else {
+            updateProgress();
+        }
+
+        /* TIMEOUT SAFEGUARD: JIKA KONEKSI LAMBAT PRELOADER BISA OTOMATIS TERBUKA MAKSIMAL 6 DETIK */
+        setTimeout(() => {
+            if (!preloader.classList.contains('selesai')) {
+                preloader.classList.add('selesai');
+            }
+        }, 6000);
 
         const escapeHTML = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -1290,7 +1417,7 @@
             }, 100);
         }
 
-        /* COUNTDOWN LOGIC (1 JULI 2026) */
+        /* COUNTDOWN LOGIC */
         const tanggalTarget = new Date("July 1, 2026 10:00:00").getTime();
         const elHari = document.getElementById("hari");
         const elJam = document.getElementById("jam");
