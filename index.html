@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     
-    <!-- LINK PRELOAD UNTUK ASET KRUSIAL AGAR DIMUAT DENGAN PRIORITAS TINGGI -->
+    <!-- LINK PRELOAD UNTUK ASET KRUSIAL -->
     <link rel="preload" as="image" href="bg-pembuka1.png">
     <link rel="preload" as="image" href="bg-pembuka2.png">
     <link rel="preload" as="image" href="cover.png">
@@ -39,7 +39,7 @@
             text-rendering: optimizeLegibility;
         } 
 
-        /* PRELOADER SCREEN MEWAH */
+        /* PRELOADER SCREEN */
         #preloader {
             position: fixed;
             top: 0;
@@ -86,7 +86,7 @@
 
         .loader-progress {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #8c6d33;
             margin-top: 6px;
         }
@@ -271,7 +271,7 @@
             display: block;
         }
 
-        /* INPUT & EFEK GARIS KETIK PRESISI TERBARU */
+        /* INPUT & EFEK GARIS KETIK */
         .wrapper-input-ketik { 
             position: relative; 
             width: 100%; 
@@ -317,7 +317,7 @@
             user-select: none;
         }
 
-        /* KURSOR BLINKING KUSTOM PERSISI NATURAL */
+        /* KURSOR BLINKING */
         .kursor-ketik-fake {
             display: none;
             width: 2px;
@@ -434,7 +434,7 @@
             white-space: nowrap;
         }
 
-        .badge-status { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 700; padding: 3px 8px; border-radius: 12px; letter-spacing: 0.5px; text-transform: uppercase; shrink: 0; }
+        .badge-status { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; padding: 3px 8px; border-radius: 12px; letter-spacing: 0.5px; text-transform: uppercase; flex-shrink: 0; }
         .badge-status.hadir { background: #eaf5eb; color: #235427; }
         .badge-status.tidak-hadir { background: #fbebeb; color: #823232; }
         
@@ -470,7 +470,7 @@
 
         .baris-bank-top { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .logo-bank-mewah { height: 20px; max-width: 80px; object-fit: contain; filter: contrast(105%); }
-        .label-no-rek { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 600; color: #827258; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 2px; }
+        .label-no-rek { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; color: #827258; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 2px; }
         .angka-rekening-mewah { font-family: 'Montserrat', sans-serif; font-size: clamp(0.95rem, 4vw, 1.1rem); font-weight: 700; color: #2a2215; letter-spacing: 1.2px; margin-bottom: 2px; word-break: break-all; }
         .nama-rekening-mewah { font-family: 'Playfair Display', serif; font-size: 0.82rem; font-weight: 600; font-style: italic; color: #8c6d33; margin-bottom: 12px; }
 
@@ -494,7 +494,7 @@
 
         .btn-salin-mewah:active { transform: scale(0.95); opacity: 0.9; }
 
-        /* VIRTUAL KEYBOARD MEWAH & RESPONSIF */
+        /* VIRTUAL KEYBOARD */
         .custom-keyboard {
             position: fixed; bottom: 0; left: 0; right: 0;
             background: linear-gradient(180deg, #f7f3e6 0%, #eae3d0 100%);
@@ -534,7 +534,6 @@
 
         .keyboard-row { display: flex; justify-content: center; gap: 3px; width: 100%; }
 
-        /* DESIGN TOMBOL KEYBOARD ULTRA PREMIUM */
         .key-btn {
             flex: 1; height: 44px; 
             background: #ffffff;
@@ -567,7 +566,6 @@
         }
         .key-btn.enter-key:active { background: #705321; }
 
-        /* KONTROL HURUF KAPITAL CSS */
         .custom-keyboard.caps .letter-key .char-lower { display: none; }
         .custom-keyboard.caps .letter-key .char-upper { display: inline; }
         .custom-keyboard:not(.caps) .letter-key .char-lower { display: inline; }
@@ -803,7 +801,7 @@
             position: fixed; bottom: 0; left: 0; right: 0; 
             background: rgba(253, 251, 242, 0.96); border-top: none !important; 
             padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px)) 0; 
-            display: flex; justify-content: space-around; z-index: 9999; opacity: 0; 
+            display: flex; justify-space-around: space-around; z-index: 9999; opacity: 0; 
             transform: translate3d(0, 100%, 0); transition: opacity 0.35s ease, transform 0.35s ease; 
             will-change: transform, opacity;
             box-shadow: 0 -8px 25px rgba(42, 34, 21, 0.06);
@@ -869,7 +867,7 @@
 </head>
 <body>
 
-    <!-- PRELOADER EKSKLUSIF SIMULTAN -->
+    <!-- PRELOADER -->
     <div id="preloader">
         <div class="loader-spinner"></div>
         <div class="loader-text">Mahesa & Erika</div>
@@ -888,7 +886,7 @@
         </svg>
     </button>
 
-    <!-- NOTIFIKASI PEMBUKA SYSTEM -->
+    <!-- NOTIFIKASI PEMBUKA -->
     <div class="notif-overlay" id="notifOverlay">
         <div class="notif-box">
             <div class="notif-header-bar">
@@ -916,7 +914,7 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX SYSTEM -->
+    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox-overlay" onclick="tutupLightbox()">
         <button class="lightbox-close" onclick="tutupLightbox()">×</button>
         <div class="lightbox-wrapper">
@@ -1019,7 +1017,7 @@
                     <span class="v-input-text-render" id="render-rsvp-nama"></span>
                     <span class="kursor-ketik-fake"></span>
                     <span class="v-input-placeholder" id="placeholder-rsvp-nama">Nama Lengkap Anda</span>
-                    <input type="hidden" id="rsvp-nama" value="">
+                    <input type="hidden" id="rsvp-nama" name="nama" value="">
                 </div>
 
                 <div style="text-align: left; width: 100%;">
@@ -1039,7 +1037,7 @@
                     <span class="v-input-text-render" id="render-rsvp-ucapan"></span>
                     <span class="kursor-ketik-fake"></span>
                     <span class="v-input-placeholder" id="placeholder-rsvp-ucapan">Tuliskan ucapan & doa restu...</span>
-                    <input type="hidden" id="rsvp-ucapan" value="">
+                    <input type="hidden" id="rsvp-ucapan" name="ucapan" value="">
                 </div>
 
                 <button type="submit" id="btn-kirim-rsvp">KIRIM KONFIRMASI</button>
@@ -1110,7 +1108,7 @@
         <img src="item-penutup.png" alt="Ornaments Penutup" class="ornamen-penutup-tunggal anim-item zoom-in">
     </section>
 
-    <!-- VIRTUAL KEYBOARD DENGAN STYLING ULTRA RESPONSIF -->
+    <!-- VIRTUAL KEYBOARD -->
     <div id="virtual-keyboard" class="custom-keyboard">
         <div class="key-header-done">
             <span class="key-header-title">Papan Ketik</span>
@@ -1180,7 +1178,7 @@
         <div onclick="pindahKeSection('gift')" class="nav-item"><img src="navigasi6.png" alt="Gift"><div class="nav-label">Gift</div></div>
     </nav>
 
-    <!-- SCRIPT PRELOAD SIMULTAN LENGKAP -->
+    <!-- SCRIPT UTAMA -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxJ3c2ISp0_ASoeOU8-MduW97XGWRUgLYWsfv9YkBKrpdqDmqWmJc8JqmVHeoaMjjVj/exec';
         let dataUcapanLokal = [];
@@ -1225,7 +1223,7 @@
             
             if (asetSelesai >= totalAset) {
                 setTimeout(() => {
-                    preloader.classList.add('selesai');
+                    if(preloader) preloader.classList.add('selesai');
                 }, 300);
             }
         }
@@ -1257,9 +1255,9 @@
             updateProgress();
         }
 
-        /* TIMEOUT SAFEGUARD: JIKA KONEKSI LAMBAT PRELOADER BISA OTOMATIS TERBUKA MAKSIMAL 6 DETIK */
+        /* TIMEOUT SAFEGUARD */
         setTimeout(() => {
-            if (!preloader.classList.contains('selesai')) {
+            if (preloader && !preloader.classList.contains('selesai')) {
                 preloader.classList.add('selesai');
             }
         }, 6000);
@@ -1289,7 +1287,7 @@
             }).catch(() => tampilkanModal('peringatan', 'Salin Rekening', 'Silakan salin nomor rekening secara manual.'));
         }
 
-        /* VIRTUAL KEYBOARD ENGINE DENGAN POSISI KURSOR ULTRA PRESISI */
+        /* VIRTUAL KEYBOARD ENGINE */
         let activeWrapper = null;
         let isShiftActive = false; 
 
@@ -1372,7 +1370,15 @@
         }
 
         /* MUSIC SYSTEM */
-        document.getElementById('nama-tamu').innerText = new URLSearchParams(window.location.search).get('to') || "Tamu Undangan";
+        const paramTamu = new URLSearchParams(window.location.search).get('to');
+        if (paramTamu) {
+            document.getElementById('nama-tamu').innerText = paramTamu;
+            const inputNama = document.getElementById('rsvp-nama');
+            if(inputNama) {
+                inputNama.value = paramTamu;
+                updateRenderValue(document.getElementById('wrap-rsvp-nama'));
+            }
+        }
 
         function updateMusicIcon(isPlaying) {
             iconUnmute.style.display = isPlaying ? "block" : "none";
@@ -1381,7 +1387,9 @@
         }
 
         function playAudio() {
-            music.play().then(() => updateMusicIcon(true)).catch(() => {});
+            if(music) {
+                music.play().then(() => updateMusicIcon(true)).catch(() => {});
+            }
         }
 
         function pemicuMusikAwal() { 
@@ -1390,11 +1398,12 @@
         }
 
         function toggleMusic() {
+            if (!music) return;
             if (music.paused) playAudio();
             else { music.pause(); updateMusicIcon(false); }
         }
 
-        /* BUKA UNDANGAN & OPTIMIZED ANIMATION OBSERVER */
+        /* BUKA UNDANGAN & ANIMATION OBSERVER */
         function bukaUndangan() {
             document.getElementById('cover').classList.add('fade-out');
             navBar.classList.add('aktif');
@@ -1427,10 +1436,10 @@
         setInterval(() => {
             const selisih = tanggalTarget - Date.now();
             if (selisih <= 0) return;
-            elHari.innerText = String(Math.floor(selisih / 86400000)).padStart(2, '0');
-            elJam.innerText = String(Math.floor((selisih % 86400000) / 3600000)).padStart(2, '0');
-            elMenit.innerText = String(Math.floor((selisih % 3600000) / 60000)).padStart(2, '0');
-            elDetik.innerText = String(Math.floor((selisih % 60000) / 1000)).padStart(2, '0');
+            if(elHari) elHari.innerText = String(Math.floor(selisih / 86400000)).padStart(2, '0');
+            if(elJam) elJam.innerText = String(Math.floor((selisih % 86400000) / 3600000)).padStart(2, '0');
+            if(elMenit) elMenit.innerText = String(Math.floor((selisih % 3600000) / 60000)).padStart(2, '0');
+            if(elDetik) elDetik.innerText = String(Math.floor((selisih % 60000) / 1000)).padStart(2, '0');
         }, 1000);
 
         /* LIGHTBOX SYSTEM */
@@ -1448,118 +1457,134 @@
             requestAnimationFrame(() => { lb.classList.add('aktif'); if(tipe === 'video') lbVid.play(); });
         }
 
-        /* POLAROID STACK */
+        /* POLAROID STACK INTERACTION */
         const polContainer = document.getElementById('polaroidContainer');
         let isAnim = false;
-        if(polContainer){
+        if(polContainer) {
             polContainer.addEventListener('click', () => {
-                if(isAnim) return; isAnim = true;
+                if(isAnim) return; 
+                isAnim = true;
+                
                 let pols = Array.from(polContainer.querySelectorAll('.kartu-polaroid'));
-                let top = pols.reduce((m, p) => parseInt(p.style.zIndex) > parseInt(m.style.zIndex) ? p : m, pols[0]);
-                top.classList.add('slip-away');
-                setTimeout(() => { 
-                    top.style.zIndex = 1; 
-                    pols.forEach(p => p !== top && (p.style.zIndex = parseInt(p.style.zIndex) + 1)); 
-                    top.classList.remove('slip-away'); 
-                    setTimeout(() => isAnim = false, 100); 
-                }, 350);
-            }, { passive: true });
+                let topCard = pols.reduce((max, p) => parseInt(p.style.zIndex || 0) > parseInt(max.style.zIndex || 0) ? p : max, pols[0]);
+                
+                topCard.classList.add('slip-away');
+                
+                setTimeout(() => {
+                    pols.forEach(p => {
+                        let curZ = parseInt(p.style.zIndex || 0);
+                        if (p === topCard) {
+                            p.style.zIndex = 1;
+                        } else {
+                            p.style.zIndex = curZ + 1;
+                        }
+                    });
+                    
+                    topCard.classList.remove('slip-away');
+                    isAnim = false;
+                }, 400);
+            });
         }
 
-        /* GOOGLE SHEETS RSVP ENGINE OPTIMIZED */
-        function renderDaftarUcapan() {
-            totalUcapanElem.innerText = `${dataUcapanLokal.length} Ucapan`;
-
-            if (dataUcapanLokal.length === 0) {
-                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan yang dikirimkan. Jadilah yang pertama memberikan doa restu.</div>';
+        /* FETCH & SUBMIT RSVP */
+        function renderDaftarUcapan(data) {
+            if (!listUcapanKontainer) return;
+            
+            if (!data || data.length === 0) {
+                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan doa restu.</div>';
+                if(totalUcapanElem) totalUcapanElem.innerText = '0 Ucapan';
                 return;
             }
 
-            let htmlArr = [];
-            for (let i = dataUcapanLokal.length - 1; i >= 0; i--) {
-                const item = dataUcapanLokal[i];
-                const statusClass = item.status === "Hadir" ? "hadir" : "tidak-hadir";
-                const displayStatus = item.status === "Hadir" ? "Hadir" : "Berhalangan";
-                htmlArr.push(`
+            if(totalUcapanElem) totalUcapanElem.innerText = `${data.length} Ucapan`;
+            
+            let html = '';
+            data.forEach(item => {
+                const statusHadir = item.status === 'Hadir';
+                const badgeClass = statusHadir ? 'hadir' : 'tidak-hadir';
+                const statusText = statusHadir ? 'Hadir' : 'Berhalangan';
+                
+                html += `
                     <div class="item-kartu-ucapan">
                         <div class="baris-nama-ucapan">
                             <span class="nama-pengirim">${escapeHTML(item.nama)}</span>
-                            <span class="badge-status ${statusClass}">${displayStatus}</span>
+                            <span class="badge-status ${badgeClass}">${statusText}</span>
                         </div>
                         <div class="teks-pesan-ucapan">${escapeHTML(item.ucapan)}</div>
                     </div>
-                `);
-            }
-            listUcapanKontainer.innerHTML = htmlArr.join('');
-        }
-
-        function ambilDataUcapan() {
-            fetch(scriptURL)
-                .then(response => response.json())
-                .then(data => {
-                    if (Array.isArray(data)) {
-                        dataUcapanLokal = data;
-                        renderDaftarUcapan();
-                    }
-                })
-                .catch(() => {});
-        }
-
-        rsvpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const namaInput = document.getElementById('rsvp-nama').value.trim();
-            const radioStatus = document.querySelector('input[name="rsvp-status-radio"]:checked');
-            const statusInput = radioStatus ? radioStatus.value : "";
-            const ucapanInput = document.getElementById('rsvp-ucapan').value.trim();
-
-            if(!namaInput || !statusInput || !ucapanInput) {
-                let pesanBelumLengkap = "Mohon melengkapi formulir berikut:\n";
-                if(!namaInput) pesanBelumLengkap += "• Nama Lengkap Anda\n";
-                if(!statusInput) pesanBelumLengkap += "• Status Kehadiran\n";
-                if(!ucapanInput) pesanBelumLengkap += "• Ucapan & Doa Restu";
-                
-                tampilkanModal('peringatan', 'Lengkapi Formulir', pesanBelumLengkap);
-                return;
-            }
-
-            btnKirim.disabled = true;
-            btnKirim.innerText = "MENGIRIMKAN...";
-
-            const payload = { nama: namaInput, status: statusInput, ucapan: ucapanInput };
-
-            fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload) })
-            .then(res => res.json())
-            .then(data => {
-                btnKirim.disabled = false;
-                btnKirim.innerText = "KIRIM KONFIRMASI";
-                if(data.result === "success") {
-                    dataUcapanLokal.push(payload);
-                    renderDaftarUcapan();
-                    rsvpForm.reset();
-                    
-                    document.getElementById('rsvp-nama').value = "";
-                    document.getElementById('rsvp-ucapan').value = "";
-                    updateRenderValue(document.getElementById('wrap-rsvp-nama'));
-                    updateRenderValue(document.getElementById('wrap-rsvp-ucapan'));
-
-                    document.querySelectorAll('input[name="rsvp-status-radio"]').forEach(radio => radio.checked = false);
-                    tutupKeyboard();
-
-                    tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi kehadiran dan doa restu Anda telah berhasil kami terima.');
-                    ambilDataUcapan();
-                } else {
-                    tampilkanModal('peringatan', 'Gagal Menyimpan', 'Mohon maaf, terjadi kendala saat menyimpan konfirmasi Anda.');
-                }
-            })
-            .catch(() => {
-                btnKirim.disabled = false;
-                btnKirim.innerText = "KIRIM KONFIRMASI";
-                tampilkanModal('peringatan', 'Koneksi Terganggu', 'Terjadi masalah koneksi internet saat mengirim konfirmasi.');
+                `;
             });
-        });
+            listUcapanKontainer.innerHTML = html;
+        }
 
-        ambilDataUcapan();
-        setInterval(ambilDataUcapan, 20000);
+        function muatUcapan() {
+            fetch(scriptURL)
+                .then(res => res.json())
+                .then(data => {
+                    dataUcapanLokal = data;
+                    renderDaftarUcapan(dataUcapanLokal);
+                })
+                .catch(() => {
+                    if (listUcapanKontainer) {
+                        listUcapanKontainer.innerHTML = '<div class="status-kosong">Gagal memuat ucapan doa restu.</div>';
+                    }
+                });
+        }
+
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', e => {
+                e.preventDefault();
+                tutupKeyboard();
+
+                const inputNama = document.getElementById('rsvp-nama').value.trim();
+                const inputUcapan = document.getElementById('rsvp-ucapan').value.trim();
+                const radioStatus = document.querySelector('input[name="rsvp-status-radio"]:checked');
+
+                if (!inputNama || !radioStatus || !inputUcapan) {
+                    tampilkanModal('peringatan', 'Form Belum Lengkap', 'Mohon lengkapi seluruh kolom nama, konfirmasi kehadiran, dan ucapan Anda.');
+                    return;
+                }
+
+                btnKirim.disabled = true;
+                btnKirim.innerText = 'MENGIRIM...';
+
+                const formData = new FormData();
+                formData.append('nama', inputNama);
+                formData.append('status', radioStatus.value);
+                formData.append('ucapan', inputUcapan);
+
+                fetch(scriptURL, { method: 'POST', body: formData })
+                    .then(res => res.json())
+                    .then(response => {
+                        btnKirim.disabled = false;
+                        btnKirim.innerText = 'KIRIM KONFIRMASI';
+
+                        if (response.result === 'success') {
+                            tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi kehadiran dan doa restu Anda telah berhasil tersimpan.');
+                            
+                            // Reset Form
+                            document.getElementById('rsvp-nama').value = '';
+                            document.getElementById('rsvp-ucapan').value = '';
+                            radioStatus.checked = false;
+                            updateRenderValue(document.getElementById('wrap-rsvp-nama'));
+                            updateRenderValue(document.getElementById('wrap-rsvp-ucapan'));
+
+                            // Refresh Ucapan
+                            muatUcapan();
+                        } else {
+                            tampilkanModal('peringatan', 'Gagal', 'Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
+                        }
+                    })
+                    .catch(() => {
+                        btnKirim.disabled = false;
+                        btnKirim.innerText = 'KIRIM KONFIRMASI';
+                        tampilkanModal('peringatan', 'Gangguan Koneksi', 'Gagal terhubung ke server. Periksa koneksi internet Anda.');
+                    });
+            });
+        }
+
+        // Muat ucapan saat halaman siap
+        document.addEventListener('DOMContentLoaded', muatUcapan);
     </script>
 </body>
 </html>
