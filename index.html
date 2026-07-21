@@ -804,7 +804,7 @@
             position: fixed; bottom: 0; left: 0; right: 0; 
             background: rgba(253, 251, 242, 0.96); border-top: none !important; 
             padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px)) 0; 
-            display: flex; justify-space-around: space-around; z-index: 9999; opacity: 0; 
+            display: flex; justify-content: space-around; z-index: 9999; opacity: 0; 
             transform: translate3d(0, 100%, 0); transition: opacity 0.35s ease, transform 0.35s ease; 
             will-change: transform, opacity;
             box-shadow: 0 -8px 25px rgba(42, 34, 21, 0.06);
@@ -910,7 +910,7 @@
     <!-- CUSTOM MODAL POPUP -->
     <div id="customModal" class="custom-modal-overlay" onclick="tutupModal()">
         <div class="custom-modal-card" onclick="event.stopPropagation()">
-            <div id="modalIcon" class="modal-icon-wrapper sukses">OK</div>
+            <div id="modalIcon" class="modal-icon-wrapper sukses">✓</div>
             <h3 id="modalTitle" class="modal-judul">Terima Kasih</h3>
             <p id="modalMessage" class="modal-pesan">Konfirmasi kehadiran dan doa restu Anda telah berhasil tersimpan.</p>
             <button class="modal-btn-action" onclick="tutupModal()">MENGERTI</button>
@@ -1016,7 +1016,7 @@
             </div>
             
             <form id="rsvp-form" class="form-rsvp-wrapper">
-                <div class="wrapper-input-ketik" id="wrap-rsvp-nama">
+                <div class="wrapper-input-ketik" id="wrap-rsvp-nama" onclick="bukaKeyboard('rsvp-nama')">
                     <span class="v-input-text-render" id="render-rsvp-nama"></span>
                     <span class="kursor-ketik-fake"></span>
                     <span class="v-input-placeholder" id="placeholder-rsvp-nama">Nama Lengkap Anda</span>
@@ -1036,7 +1036,7 @@
                     </div>
                 </div>
 
-                <div class="wrapper-input-ketik" id="wrap-rsvp-ucapan" style="min-height: 80px;">
+                <div class="wrapper-input-ketik" id="wrap-rsvp-ucapan" style="min-height: 80px;" onclick="bukaKeyboard('rsvp-ucapan')">
                     <span class="v-input-text-render" id="render-rsvp-ucapan"></span>
                     <span class="kursor-ketik-fake"></span>
                     <span class="v-input-placeholder" id="placeholder-rsvp-ucapan">Tuliskan ucapan & doa restu...</span>
@@ -1076,7 +1076,7 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="Bank BCA" class="logo-bank-mewah">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
-                    <div class="angka-rekening-mewah" id="rek-bca">1234 5678 90</div>
+                    <div class="angka-rekening-mewah" id="rek-bca">1234567890</div>
                     <div class="nama-rekening-mewah">a.n. Mahesa / Erika</div>
                     <button class="btn-salin-mewah" onclick="salinRekening('rek-bca', this)">Salin Nomor</button>
                 </div>
@@ -1087,7 +1087,7 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Bank Mandiri" class="logo-bank-mewah">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
-                    <div class="angka-rekening-mewah" id="rek-mandiri">9876 5432 10123</div>
+                    <div class="angka-rekening-mewah" id="rek-mandiri">9876543210123</div>
                     <div class="nama-rekening-mewah">a.n. Erika Permata</div>
                     <button class="btn-salin-mewah" onclick="salinRekening('rek-mandiri', this)">Salin Nomor</button>
                 </div>
@@ -1098,7 +1098,7 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="logo-bank-mewah">
                     </div>
                     <span class="label-no-rek">Nomor Rekening</span>
-                    <div class="angka-rekening-mewah" id="rek-bri">0011 2233 4455 667</div>
+                    <div class="angka-rekening-mewah" id="rek-bri">001122334455667</div>
                     <div class="nama-rekening-mewah">a.n. Mahesa Putra</div>
                     <button class="btn-salin-mewah" onclick="salinRekening('rek-bri', this)">Salin Nomor</button>
                 </div>
@@ -1185,6 +1185,8 @@
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxJ3c2ISp0_ASoeOU8-MduW97XGWRUgLYWsfv9YkBKrpdqDmqWmJc8JqmVHeoaMjjVj/exec';
         let dataUcapanLokal = [];
+        let inputTargetAktif = null;
+        let isShiftActive = false;
 
         /* CACHING DOM */
         const preloader = document.getElementById('preloader');
@@ -1222,7 +1224,6 @@
         let currentPercent = 0;
         let targetPercent = 0;
 
-        // Smooth counter animation untuk persentase loading
         function updateProgressCounter() {
             if (currentPercent < targetPercent) {
                 currentPercent++;
@@ -1271,7 +1272,6 @@
             hitungKemajuan();
         }
 
-        /* KUNCI SAMPAI 100% SERTA WINDOW.ONLOAD SELESAI */
         window.addEventListener('load', () => {
             windowLoaded = true;
             if (targetPercent >= 100 && currentPercent >= 100) {
@@ -1279,6 +1279,8 @@
                     if (preloader) preloader.classList.add('selesai');
                 }, 400);
             }
+            parseNamaTamu();
+            muatUcapan();
         });
 
         const escapeHTML = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -1286,324 +1288,326 @@
         function tampilkanModal(tipe, judul, pesan) {
             modalTitle.innerText = judul;
             modalMessage.innerText = pesan;
-            modalIcon.className = `modal-icon-wrapper ${tipe === 'sukses' ? 'sukses' : 'peringatan'}`;
-            modalIcon.innerText = tipe === 'sukses' ? 'OK' : '!';
+            if (tipe === 'sukses') {
+                modalIcon.className = "modal-icon-wrapper sukses";
+                modalIcon.innerText = "✓";
+            } else {
+                modalIcon.className = "modal-icon-wrapper peringatan";
+                modalIcon.innerText = "!";
+            }
             customModal.classList.add('aktif');
         }
 
-        function tutupModal() { customModal.classList.remove('aktif'); }
-
-        function salinRekening(idRek, btnElem) {
-            const teks = document.getElementById(idRek).innerText.replace(/\s+/g, '');
-            navigator.clipboard.writeText(teks).then(() => {
-                const teksAsli = btnElem.innerHTML;
-                btnElem.innerHTML = "TERSALIN";
-                btnElem.style.background = "#705321";
-                setTimeout(() => {
-                    btnElem.innerHTML = teksAsli;
-                    btnElem.style.background = "linear-gradient(135deg, #b88e4c 0%, #705321 100%)";
-                }, 2000);
-            }).catch(() => tampilkanModal('peringatan', 'Salin Rekening', 'Silakan salin nomor rekening secara manual.'));
+        function tutupModal() {
+            customModal.classList.remove('aktif');
         }
 
-        /* VIRTUAL KEYBOARD ENGINE */
-        let activeWrapper = null;
-        let isShiftActive = false; 
-
-        function updateRenderValue(wrapper) {
-            if (!wrapper) return;
-            const inputVal = wrapper.querySelector('input[type="hidden"]');
-            const renderSpan = wrapper.querySelector('.v-input-text-render');
-            const placeholder = wrapper.querySelector('.v-input-placeholder');
-
-            if (!inputVal || !renderSpan || !placeholder) return;
-
-            renderSpan.textContent = inputVal.value;
-            placeholder.style.display = inputVal.value.length > 0 ? 'none' : 'inline';
-        }
-
-        document.querySelectorAll('.wrapper-input-ketik').forEach(wrapper => {
-            wrapper.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                document.querySelectorAll('.wrapper-input-ketik').forEach(el => el.classList.remove('aktif-ketik'));
-                
-                activeWrapper = this;
-                activeWrapper.classList.add('aktif-ketik');
-
-                kbContainer.classList.add('buka');
-                if(navBar) navBar.style.display = 'none';
-                
-                isShiftActive = false;
-                kbContainer.classList.remove('caps');
-
-                setTimeout(() => activeWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
-            }, { passive: true });
-        });
-
-        function toggleShift() { 
-            isShiftActive = !isShiftActive; 
-            kbContainer.classList.toggle('caps', isShiftActive);
-        }
-
-        function tekanKey(nilai) {
-            if (!activeWrapper) return;
-            const inputHidden = activeWrapper.querySelector('input[type="hidden"]');
-            if (!inputHidden) return;
-
-            let stringSkrg = inputHidden.value;
-
-            if (nilai === 'BACKSPACE') {
-                inputHidden.value = stringSkrg.slice(0, -1);
-            } else if (nilai === 'ENTER') {
-                if (activeWrapper.id === 'wrap-rsvp-ucapan') inputHidden.value += '\n';
-                else tutupKeyboard();
+        /* MUSIC LOGIC */
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().catch(() => {});
+                musicBtn.classList.remove('muted');
+                iconUnmute.style.display = 'block';
+                iconMute.style.display = 'none';
             } else {
-                inputHidden.value += isShiftActive ? nilai.toUpperCase() : nilai.toLowerCase();
-                if (isShiftActive) {
-                    isShiftActive = false;
-                    kbContainer.classList.remove('caps');
-                }
+                music.pause();
+                musicBtn.classList.add('muted');
+                iconUnmute.style.display = 'none';
+                iconMute.style.display = 'block';
             }
+        }
 
-            updateRenderValue(activeWrapper);
+        function pemicuMusikAwal() {
+            document.getElementById('notifOverlay').classList.add('hide');
+            music.play().catch(() => {});
+            musicBtn.classList.remove('muted');
+            iconUnmute.style.display = 'block';
+            iconMute.style.display = 'none';
+        }
+
+        /* OPEN INVITATION COVER */
+        function bukaUndangan() {
+            document.getElementById('cover').classList.add('fade-out');
+            document.body.classList.add('undangan-terbuka');
+            navBar.classList.add('aktif');
+            inisialisasiScrollAnimation();
+        }
+
+        /* PARSE NAMA TAMU DARI URL */
+        function parseNamaTamu() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nama = urlParams.get('to');
+            if (nama) {
+                document.getElementById('nama-tamu').innerText = nama;
+            }
+        }
+
+        /* NAVIGATION CONTROL */
+        function pindahKeSection(id) {
+            tutupKeyboard();
+            const target = document.getElementById(id);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        /* SCROLL ANIMATION (INTERSECTION OBSERVER) */
+        function inisialisasiScrollAnimation() {
+            const items = document.querySelectorAll('.anim-item');
+            const observerOptions = { threshold: 0.12, rootMargin: "0px 0px -40px 0px" };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('item-muncul');
+                    }
+                });
+            }, observerOptions);
+
+            items.forEach(item => observer.observe(item));
+        }
+
+        /* POLAROID INTERACTION */
+        const polaroidContainer = document.getElementById('polaroidContainer');
+        if (polaroidContainer) {
+            polaroidContainer.addEventListener('click', function() {
+                const polaroids = this.querySelectorAll('.kartu-polaroid');
+                if (polaroids.length > 0) {
+                    const topPolaroid = polaroids[polaroids.length - 1];
+                    topPolaroid.classList.add('slip-away');
+                    setTimeout(() => {
+                        this.prepend(topPolaroid);
+                        topPolaroid.classList.remove('slip-away');
+                    }, 500);
+                }
+            });
+        }
+
+        /* LIGHTBOX BOX SYSTEM */
+        function bukaLightbox(tipe, elemen) {
+            const lightbox = document.getElementById('lightbox');
+            const imgTarget = document.getElementById('lightboxImg');
+            const videoTarget = document.getElementById('lightboxVideo');
+
+            if (tipe === 'image') {
+                const src = elemen.querySelector('img').src;
+                imgTarget.src = src;
+                imgTarget.style.display = 'block';
+                videoTarget.style.display = 'none';
+            } else if (tipe === 'video') {
+                const src = elemen.querySelector('video source').src;
+                videoTarget.src = src;
+                videoTarget.style.display = 'block';
+                imgTarget.style.display = 'none';
+                videoTarget.play().catch(() => {});
+            }
+            lightbox.classList.add('aktif');
+        }
+
+        function tutupLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            document.getElementById('lightboxVideo').pause();
+            lightbox.classList.remove('aktif');
+        }
+
+        /* VIRTUAL KEYBOARD CORE LOGIC */
+        function bukaKeyboard(inputId) {
+            inputTargetAktif = inputId;
+            document.querySelectorAll('.wrapper-input-ketik').forEach(el => el.classList.remove('aktif-ketik'));
+            document.getElementById(`wrap-${inputId}`).classList.add('aktif-ketik');
+            kbContainer.classList.add('buka');
         }
 
         function tutupKeyboard() {
+            inputTargetAktif = null;
             document.querySelectorAll('.wrapper-input-ketik').forEach(el => el.classList.remove('aktif-ketik'));
-            
-            activeWrapper = null; 
-            isShiftActive = false;
-            kbContainer.classList.remove('buka', 'caps');
-            if(navBar) navBar.style.display = 'flex';
+            kbContainer.classList.remove('buka');
         }
 
-        document.addEventListener('click', (e) => {
-            if (!kbContainer.contains(e.target) && !e.target.closest('.wrapper-input-ketik')) tutupKeyboard();
-        }, { passive: true });
-
-        function pindahKeSection(idTarget) {
-            tutupKeyboard();
-            const el = document.getElementById(idTarget);
-            if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        /* MUSIC SYSTEM */
-        const paramTamu = new URLSearchParams(window.location.search).get('to');
-        if (paramTamu) {
-            document.getElementById('nama-tamu').innerText = paramTamu;
-            const inputNama = document.getElementById('rsvp-nama');
-            if(inputNama) {
-                inputNama.value = paramTamu;
-                updateRenderValue(document.getElementById('wrap-rsvp-nama'));
+        function toggleShift() {
+            isShiftActive = !isShiftActive;
+            if (isShiftActive) {
+                kbContainer.classList.add('caps');
+            } else {
+                kbContainer.classList.remove('caps');
             }
         }
 
-        function updateMusicIcon(isPlaying) {
-            iconUnmute.style.display = isPlaying ? "block" : "none";
-            iconMute.style.display = isPlaying ? "none" : "block";
-            musicBtn.classList.toggle('muted', !isPlaying);
-        }
+        function tekanKey(nilai) {
+            if (!inputTargetAktif) return;
 
-        function playAudio() {
-            if(music) {
-                music.play().then(() => updateMusicIcon(true)).catch(() => {});
+            const hiddenInput = document.getElementById(inputTargetAktif);
+            const renderSpan = document.getElementById(`render-${inputTargetAktif}`);
+            const placeholderSpan = document.getElementById(`placeholder-${inputTargetAktif}`);
+            
+            let textSekarang = hiddenInput.value;
+
+            if (nilai === 'BACKSPACE') {
+                textSekarang = textSekarang.slice(0, -1);
+            } else if (nilai === 'ENTER') {
+                if (inputTargetAktif === 'rsvp-nama') {
+                    bukaKeyboard('rsvp-ucapan');
+                } else {
+                    tutupKeyboard();
+                }
+                return;
+            } else if (nilai === ' ') {
+                textSekarang += ' ';
+            } else {
+                textSekarang += isShiftActive ? nilai.toUpperCase() : nilai.toLowerCase();
+            }
+
+            hiddenInput.value = textSekarang;
+            renderSpan.innerText = textSekarang;
+
+            if (textSekarang.length > 0) {
+                placeholderSpan.style.display = 'none';
+            } else {
+                placeholderSpan.style.display = 'inline';
             }
         }
 
-        function pemicuMusikAwal() { 
-            document.getElementById('notifOverlay').classList.add('hide'); 
-            playAudio(); 
-        }
-
-        function toggleMusic() {
-            if (!music) return;
-            if (music.paused) playAudio();
-            else { music.pause(); updateMusicIcon(false); }
-        }
-
-        /* BUKA UNDANGAN & ANIMATION OBSERVER */
-        function bukaUndangan() {
-            document.getElementById('cover').classList.add('fade-out');
-            navBar.classList.add('aktif');
-            document.body.classList.add('undangan-terbuka');
-            playAudio();
-            
-            setTimeout(() => {
-                const itemObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('item-muncul');
-                        }
-                    });
-                }, { 
-                    threshold: 0.1,
-                    rootMargin: "0px 0px -20px 0px"
-                });
-
-                document.querySelectorAll('.anim-item').forEach(item => itemObserver.observe(item));
-            }, 100);
-        }
-
-        /* COUNTDOWN LOGIC */
-        const tanggalTarget = new Date("July 1, 2026 10:00:00").getTime();
-        const elHari = document.getElementById("hari");
-        const elJam = document.getElementById("jam");
-        const elMenit = document.getElementById("menit");
-        const elDetik = document.getElementById("detik");
-
-        setInterval(() => {
-            const selisih = tanggalTarget - Date.now();
-            if (selisih <= 0) return;
-            if(elHari) elHari.innerText = String(Math.floor(selisih / 86400000)).padStart(2, '0');
-            if(elJam) elJam.innerText = String(Math.floor((selisih % 86400000) / 3600000)).padStart(2, '0');
-            if(elMenit) elMenit.innerText = String(Math.floor((selisih % 3600000) / 60000)).padStart(2, '0');
-            if(elDetik) elDetik.innerText = String(Math.floor((selisih % 60000) / 1000)).padStart(2, '0');
-        }, 1000);
-
-        /* LIGHTBOX SYSTEM */
-        const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightboxImg'), lbVid = document.getElementById('lightboxVideo');
-        
-        function tutupLightbox() { 
-            lb.classList.remove('aktif'); 
-            setTimeout(() => { lbVid.pause(); lbImg.style.display = lbVid.style.display = 'none'; }, 300); 
-        }
-
-        function bukaLightbox(tipe, el) {
-            lbImg.style.display = lbVid.style.display = 'none'; lbVid.pause();
-            let target = tipe === 'image' ? (lbImg.src = el.querySelector('img').src, lbImg) : (lbVid.src = el.querySelector('video source').src, lbVid);
-            target.style.display = 'block'; 
-            requestAnimationFrame(() => { lb.classList.add('aktif'); if(tipe === 'video') lbVid.play(); });
-        }
-
-        /* POLAROID STACK INTERACTION */
-        const polContainer = document.getElementById('polaroidContainer');
-        let isAnim = false;
-        if(polContainer) {
-            polContainer.addEventListener('click', () => {
-                if(isAnim) return; 
-                isAnim = true;
-                
-                let pols = Array.from(polContainer.querySelectorAll('.kartu-polaroid'));
-                let topCard = pols.reduce((max, p) => parseInt(p.style.zIndex || 0) > parseInt(max.style.zIndex || 0) ? p : max, pols[0]);
-                
-                topCard.classList.add('slip-away');
-                
-                setTimeout(() => {
-                    pols.forEach(p => {
-                        let curZ = parseInt(p.style.zIndex || 0);
-                        if (p === topCard) {
-                            p.style.zIndex = 1;
-                        } else {
-                            p.style.zIndex = curZ + 1;
-                        }
-                    });
-                    
-                    topCard.classList.remove('slip-away');
-                    isAnim = false;
-                }, 400);
+        /* DIGITAL CASHOUT METHOD */
+        function salinRekening(idElement, btn) {
+            const text = document.getElementById(idElement).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const textAwal = btn.innerText;
+                btn.innerText = "Tersalin!";
+                setTimeout(() => { btn.innerText = textAwal; }, 2000);
+            }).catch(() => {
+                tampilkanModal('peringatan', 'Gagal', 'Gagal menyalin otomatis.');
             });
         }
 
-        /* FETCH & SUBMIT RSVP */
-        function renderDaftarUcapan(data) {
-            if (!listUcapanKontainer) return;
-            
-            if (!data || data.length === 0) {
-                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan doa restu.</div>';
-                if(totalUcapanElem) totalUcapanElem.innerText = '0 Ucapan';
+        /* COUNTDOWN LOGIC W/ TARGET JULY 1, 2026 */
+        const targetDate = new Date("July 1, 2026 09:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const selisih = targetDate - now;
+
+            if (selisih <= 0) {
+                document.getElementById('hari').innerText = "00";
+                document.getElementById('jam').innerText = "00";
+                document.getElementById('menit').innerText = "00";
+                document.getElementById('detik').innerText = "00";
                 return;
             }
 
-            if(totalUcapanElem) totalUcapanElem.innerText = `${data.length} Ucapan`;
-            
-            let html = '';
-            data.forEach(item => {
-                const statusHadir = item.status === 'Hadir';
-                const badgeClass = statusHadir ? 'hadir' : 'tidak-hadir';
-                const statusText = statusHadir ? 'Hadir' : 'Berhalangan';
-                
-                html += `
+            const d = Math.floor(selisih / (1000 * 60 * 60 * 24));
+            const h = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((selisih % (1000 * 60)) / 1000);
+
+            document.getElementById('hari').innerText = String(d).padStart(2, '0');
+            document.getElementById('jam').innerText = String(h).padStart(2, '0');
+            document.getElementById('menit').innerText = String(m).padStart(2, '0');
+            document.getElementById('detik').innerText = String(s).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* ENGINE AJAX RSVP INTEGRASI GOOGLE SHEETS */
+        function renderUcapanHTML(dataArr) {
+            if (!dataArr || dataArr.length === 0) {
+                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan doa restu.</div>';
+                totalUcapanElem.innerText = "0 Ucapan";
+                return;
+            }
+
+            let htmlString = '';
+            let totalValid = 0;
+
+            dataArr.forEach(item => {
+                if (!item.nama) return;
+                totalValid++;
+                const badgeClass = item.status === 'Hadir' ? 'hadir' : 'tidak-hadir';
+                htmlString += `
                     <div class="item-kartu-ucapan">
                         <div class="baris-nama-ucapan">
                             <span class="nama-pengirim">${escapeHTML(item.nama)}</span>
-                            <span class="badge-status ${badgeClass}">${statusText}</span>
+                            <span class="badge-status ${badgeClass}">${escapeHTML(item.status)}</span>
                         </div>
-                        <div class="teks-pesan-ucapan">${escapeHTML(item.ucapan)}</div>
+                        <p class="teks-pesan-ucapan">${escapeHTML(item.ucapan || '-')}</p>
                     </div>
                 `;
             });
-            listUcapanKontainer.innerHTML = html;
+
+            listUcapanKontainer.innerHTML = htmlString;
+            totalUcapanElem.innerText = `${totalValid} Ucapan`;
         }
 
         function muatUcapan() {
-            fetch(scriptURL)
+            fetch(`${scriptURL}?action=read`)
                 .then(res => res.json())
                 .then(data => {
                     dataUcapanLokal = data;
-                    renderDaftarUcapan(dataUcapanLokal);
+                    renderUcapanHTML(dataUcapanLokal);
                 })
                 .catch(() => {
-                    if (listUcapanKontainer) {
-                        listUcapanKontainer.innerHTML = '<div class="status-kosong">Gagal memuat ucapan doa restu.</div>';
-                    }
+                    listUcapanKontainer.innerHTML = '<div class="status-kosong">Gagal memuat daftar doa restu.</div>';
                 });
         }
 
-        if (rsvpForm) {
-            rsvpForm.addEventListener('submit', e => {
-                e.preventDefault();
-                tutupKeyboard();
+        rsvpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            tutupKeyboard();
 
-                const inputNama = document.getElementById('rsvp-nama').value.trim();
-                const inputUcapan = document.getElementById('rsvp-ucapan').value.trim();
-                const radioStatus = document.querySelector('input[name="rsvp-status-radio"]:checked');
+            const namaValue = document.getElementById('rsvp-nama').value.trim();
+            const ucapanValue = document.getElementById('rsvp-ucapan').value.trim();
+            const statusRadio = document.querySelector('input[name="rsvp-status-radio"]:checked');
 
-                if (!inputNama || !radioStatus || !inputUcapan) {
-                    tampilkanModal('peringatan', 'Form Belum Lengkap', 'Mohon lengkapi seluruh kolom nama, konfirmasi kehadiran, dan ucapan Anda.');
-                    return;
-                }
+            if (!namaValue) {
+                tampilkanModal('peringatan', 'Validasi Gagal', 'Mohon isikan nama lengkap Anda terlebih dahulu.');
+                return;
+            }
+            if (!statusRadio) {
+                tampilkanModal('peringatan', 'Validasi Gagal', 'Silakan pilih opsi konfirmasi kehadiran.');
+                return;
+            }
 
-                btnKirim.disabled = true;
-                btnKirim.innerText = 'MENGIRIM...';
+            btnKirim.disabled = true;
+            btnKirim.innerText = "MENGIRIM...";
 
-                const formData = new FormData();
-                formData.append('nama', inputNama);
-                formData.append('status', radioStatus.value);
-                formData.append('ucapan', inputUcapan);
+            const formData = new FormData();
+            formData.append('nama', namaValue);
+            formData.append('status', statusRadio.value);
+            formData.append('ucapan', ucapanValue);
 
-                fetch(scriptURL, { method: 'POST', body: formData })
-                    .then(res => res.json())
-                    .then(response => {
-                        btnKirim.disabled = false;
-                        btnKirim.innerText = 'KIRIM KONFIRMASI';
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.result === 'success') {
+                        tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi kehadiran dan doa restu Anda telah berhasil tersimpan.');
+                        
+                        // Injeksi data baru secara lokal secara realtime tanpa hard-reload
+                        dataUcapanLokal.unshift({
+                            nama: namaValue,
+                            status: statusRadio.value,
+                            ucapan: ucapanValue
+                        });
+                        renderUcapanHTML(dataUcapanLokal);
 
-                        if (response.result === 'success') {
-                            tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi kehadiran dan doa restu Anda telah berhasil tersimpan.');
-                            
-                            // Reset Form
-                            document.getElementById('rsvp-nama').value = '';
-                            document.getElementById('rsvp-ucapan').value = '';
-                            radioStatus.checked = false;
-                            updateRenderValue(document.getElementById('wrap-rsvp-nama'));
-                            updateRenderValue(document.getElementById('wrap-rsvp-ucapan'));
-
-                            // Refresh Ucapan
-                            muatUcapan();
-                        } else {
-                            tampilkanModal('peringatan', 'Gagal', 'Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
-                        }
-                    })
-                    .catch(() => {
-                        btnKirim.disabled = false;
-                        btnKirim.innerText = 'KIRIM KONFIRMASI';
-                        tampilkanModal('peringatan', 'Gangguan Koneksi', 'Gagal terhubung ke server. Periksa koneksi internet Anda.');
-                    });
-            });
-        }
-
-        // Muat ucapan saat DOM siap
-        document.addEventListener('DOMContentLoaded', muatUcapan);
+                        // Reset Form fields
+                        document.getElementById('rsvp-nama').value = '';
+                        document.getElementById('rsvp-ucapan').value = '';
+                        document.getElementById('render-rsvp-nama').innerText = '';
+                        document.getElementById('render-rsvp-ucapan').innerText = '';
+                        document.getElementById('placeholder-rsvp-nama').style.display = 'inline';
+                        document.getElementById('placeholder-rsvp-ucapan').style.display = 'inline';
+                        const checkedRadio = document.querySelector('input[name="rsvp-status-radio"]:checked');
+                        if (checkedRadio) checkedRadio.checked = false;
+                    } else {
+                        tampilkanModal('peringatan', 'Gagal', 'Terjadi kesalahan sistem: ' + response.message);
+                    }
+                })
+                .catch(() => {
+                    tampilkanModal('peringatan', 'Eror Jaringan', 'Gagal terhubung ke server. Periksa koneksi internet Anda.');
+                })
+                .finally(() => {
+                    btnKirim.disabled = false;
+                    btnKirim.innerText = "KIRIM KONFIRMASI";
+                });
+        });
     </script>
 </body>
 </html>
