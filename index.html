@@ -39,7 +39,7 @@
             text-rendering: optimizeLegibility;
         } 
 
-        /* PRELOADER SCREEN */
+        /* PRELOADER SCREEN MUTLAK */
         #preloader {
             position: fixed;
             top: 0;
@@ -52,23 +52,24 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: auto;
         }
 
         #preloader.selesai {
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;
+            pointer-events: none !important;
         }
 
         .loader-spinner {
-            width: 42px;
-            height: 42px;
-            border: 3px solid rgba(184, 142, 76, 0.2);
+            width: 46px;
+            height: 46px;
+            border: 3px solid rgba(184, 142, 76, 0.15);
             border-top: 3px solid #b88e4c;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         @keyframes spin {
@@ -78,17 +79,19 @@
 
         .loader-text {
             font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #705321;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             font-weight: 600;
         }
 
         .loader-progress {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #8c6d33;
-            margin-top: 6px;
+            margin-top: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         
         /* OPTIMASI SEKSI & BACKGROUND */
@@ -1201,7 +1204,7 @@
         const btnKirim = document.getElementById('btn-kirim-rsvp');
         const totalUcapanElem = document.getElementById('totalUcapan');
 
-        /* DAFTAR SEMUA ASET UNTUK PRELOAD SIMULTAN LENGKAP */
+        /* DAFTAR LENGKAP SEMUA ASET LOKAL LENGKAP */
         const daftarAsetGambar = [
             'cover.png', 'foto-cover.png',
             'bg-pembuka1.png', 'kalimatpembuka1.png', 'itempembuka12.png', 'kalimatpembuka12.png', 'pengantinpria.png', 'itempembuka1_1.png',
@@ -1214,53 +1217,69 @@
         ];
 
         let asetSelesai = 0;
-        const totalAset = daftarAsetGambar.length + 2; // Gambar + Audio + Video
+        let windowLoaded = false;
+        const totalAset = daftarAsetGambar.length + 2; // Total Aset Gambar + Audio + Video
+        let currentPercent = 0;
+        let targetPercent = 0;
 
-        function updateProgress() {
-            asetSelesai++;
-            const persen = Math.min(Math.round((asetSelesai / totalAset) * 100), 100);
-            if(loaderProgress) loaderProgress.innerText = `Memuat elemen... ${persen}%`;
+        // Smooth counter animation untuk persentase loading
+        function updateProgressCounter() {
+            if (currentPercent < targetPercent) {
+                currentPercent++;
+                if (loaderProgress) loaderProgress.innerText = `Memuat elemen... ${currentPercent}%`;
+            }
             
-            if (asetSelesai >= totalAset) {
+            if (currentPercent < 100) {
+                requestAnimationFrame(updateProgressCounter);
+            } else if (currentPercent >= 100 && windowLoaded) {
                 setTimeout(() => {
-                    if(preloader) preloader.classList.add('selesai');
-                }, 300);
+                    if (preloader) preloader.classList.add('selesai');
+                }, 400);
             }
         }
 
-        /* 1. PRELOAD GAMBAR */
+        function hitungKemajuan() {
+            asetSelesai++;
+            targetPercent = Math.min(Math.round((asetSelesai / totalAset) * 100), 100);
+            updateProgressCounter();
+        }
+
+        /* 1. PRELOADER GAMBAR SIMULTAN */
         daftarAsetGambar.forEach(src => {
             const img = new Image();
-            img.onload = updateProgress;
-            img.onerror = updateProgress;
+            img.onload = hitungKemajuan;
+            img.onerror = hitungKemajuan;
             img.src = src;
         });
 
-        /* 2. PRELOAD AUDIO */
+        /* 2. PRELOADER AUDIO */
         if (music) {
-            music.oncanplaythrough = updateProgress;
-            music.onerror = updateProgress;
+            music.oncanplaythrough = hitungKemajuan;
+            music.onerror = hitungKemajuan;
             music.load();
         } else {
-            updateProgress();
+            hitungKemajuan();
         }
 
-        /* 3. PRELOAD VIDEO GALERI */
+        /* 3. PRELOADER VIDEO GALERI */
         const vidMomen = document.getElementById('videoMomen');
         if (vidMomen) {
-            vidMomen.oncanplaythrough = updateProgress;
-            vidMomen.onerror = updateProgress;
+            vidMomen.oncanplaythrough = hitungKemajuan;
+            vidMomen.onerror = hitungKemajuan;
             vidMomen.load();
         } else {
-            updateProgress();
+            hitungKemajuan();
         }
 
-        /* TIMEOUT SAFEGUARD */
-        setTimeout(() => {
-            if (preloader && !preloader.classList.contains('selesai')) {
-                preloader.classList.add('selesai');
+        /* KUNCI SAMPAI 100% SERTA WINDOW.ONLOAD SELESAI */
+        window.addEventListener('load', () => {
+            windowLoaded = true;
+            if (targetPercent >= 100 && currentPercent >= 100) {
+                setTimeout(() => {
+                    if (preloader) preloader.classList.add('selesai');
+                }, 400);
             }
-        }, 6000);
+        });
 
         const escapeHTML = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -1583,7 +1602,7 @@
             });
         }
 
-        // Muat ucapan saat halaman siap
+        // Muat ucapan saat DOM siap
         document.addEventListener('DOMContentLoaded', muatUcapan);
     </script>
 </body>
