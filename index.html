@@ -52,7 +52,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), visibility 1s cubic-bezier(0.22, 1, 0.36, 1);
             pointer-events: auto;
         }
 
@@ -131,16 +131,6 @@
         #rsvp { background-image: url('bg-kehadiran.png'); }
         #gift { background-image: url('bg-gift.png'); background-color: #f6f1e5; }
 
-        #penutup { 
-            background-image: url('bg-penutup.png'); 
-            background-color: #f3edd7; 
-            display: flex;
-            justify-content: center; 
-            align-items: center;
-            height: 100svh;
-            position: relative;
-        }
-
         /* BOX DOFF */
         .box-doff-mewah {
             width: 100%;
@@ -170,7 +160,7 @@
             z-index: 2000; 
             width: 100%; 
             height: 100svh; 
-            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease, visibility 0.8s ease; 
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease, visibility 1.2s ease; 
             will-change: transform, opacity;
             transform: translate3d(0, 0, 0);
         }
@@ -259,19 +249,6 @@
             letter-spacing: 0.2px;
             word-wrap: break-word;
             overflow-wrap: break-word;
-        }
-
-        /* ORNAMEN PENUTUP */
-        .ornamen-penutup-tunggal {
-            position: absolute;
-            top: 20%;
-            left: 0%;
-            transform: translate3d(-50%, -50%, 0);
-            width: 150%;
-            max-width: 370px;
-            height: auto;
-            object-fit: contain;
-            display: block;
         }
 
         /* INPUT & EFEK GARIS KETIK */
@@ -569,15 +546,24 @@
         }
         .key-btn.enter-key:active { background: #705321; }
 
+        /* CAPS CONTROL STYLES */
         .custom-keyboard.caps .letter-key .char-lower { display: none; }
         .custom-keyboard.caps .letter-key .char-upper { display: inline; }
         .custom-keyboard:not(.caps) .letter-key .char-lower { display: inline; }
         .custom-keyboard:not(.caps) .letter-key .char-upper { display: none; }
 
-        .custom-keyboard.caps #shift-btn {
+        /* Shift Sekali (Once) */
+        .custom-keyboard.caps-once #shift-btn {
             background: #b88e4c !important;
             color: #ffffff !important;
             box-shadow: 0 3px 0 #705321 !important;
+        }
+
+        /* Shift Dua Kali (Lock) */
+        .custom-keyboard.caps-lock #shift-btn {
+            background: #705321 !important;
+            color: #fff8eb !important;
+            box-shadow: 0 3px 0 #3b2b10 !important;
         }
 
         /* LIGHTBOX */
@@ -655,41 +641,41 @@
             white-space: nowrap;
         }
 
-        /* ANIMASI */
+        /* ANIMASI DIPERLAMBAT & SMOOTH */
         .anim-item {
             opacity: 0;
             will-change: transform, opacity;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            transition: opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .anim-item.from-top { transform: translate3d(0, -20px, 0); }
-        .anim-item.from-bottom { transform: translate3d(0, 20px, 0); }
-        .anim-item.from-left { transform: translate3d(-20px, 0, 0); }
-        .anim-item.from-right { transform: translate3d(20px, 0, 0); }
-        .anim-item.zoom-in { transform: scale(0.94); }
-        .anim-item.zoom-out { transform: scale(1.03); }
-        .anim-item.rotate-in { transform: rotate(-3deg) scale(0.96); }
+        .anim-item.from-top { transform: translate3d(0, -35px, 0); }
+        .anim-item.from-bottom { transform: translate3d(0, 35px, 0); }
+        .anim-item.from-left { transform: translate3d(-35px, 0, 0); }
+        .anim-item.from-right { transform: translate3d(35px, 0, 0); }
+        .anim-item.zoom-in { transform: scale(0.90); }
+        .anim-item.zoom-out { transform: scale(1.08); }
+        .anim-item.rotate-in { transform: rotate(-5deg) scale(0.92); }
 
-        #item-ayat.from-top { transform: translate3d(-50%, -20px, 0); }
-        #item-pembatas.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.94); }
-        #item-salam.from-bottom { transform: translate3d(-50%, 20px, 0); }
-        #item-foto-pria.from-left { transform: translate3d(-20px, 0, 0); }
+        #item-ayat.from-top { transform: translate3d(-50%, -35px, 0); }
+        #item-pembatas.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.90); }
+        #item-salam.from-bottom { transform: translate3d(-50%, 35px, 0); }
+        #item-foto-pria.from-left { transform: translate3d(-35px, 0, 0); }
 
-        .tumpukan-polaroid.rotate-in { transform: translate3d(-50%, 20px, 0) rotate(-3deg); }
+        .tumpukan-polaroid.rotate-in { transform: translate3d(-50%, 35px, 0) rotate(-5deg); }
 
-        .el-save-date.from-top { transform: translate3d(-50%, -20px, 0); }
-        .el-kalender-inti.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.94); }
-        .el-bunga-kalender.from-bottom { transform: translate3d(-50%, 20px, 0); }
-        .wrapper-countdown-premium.from-bottom { transform: translate3d(-50%, 20px, 0); }
+        .el-save-date.from-top { transform: translate3d(-50%, -35px, 0); }
+        .el-kalender-inti.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.90); }
+        .el-bunga-kalender.from-bottom { transform: translate3d(-50%, 35px, 0); }
+        .wrapper-countdown-premium.from-bottom { transform: translate3d(-50%, 35px, 0); }
         
-        .el-akad.from-top { transform: translate3d(-50%, -20px, 0); }
-        .el-bulan.from-top { transform: translate3d(-50%, -15px, 0); }
-        .el-tgl-angka.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.94); }
-        .el-jam-info.from-bottom { transform: translate3d(-50%, 20px, 0); }
-        .wrapper-lokasi-premium.from-bottom { transform: translate3d(-50%, 20px, 0); }
+        .el-akad.from-top { transform: translate3d(-50%, -35px, 0); }
+        .el-bulan.from-top { transform: translate3d(-50%, -25px, 0); }
+        .el-tgl-angka.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.90); }
+        .el-jam-info.from-bottom { transform: translate3d(-50%, 35px, 0); }
+        .wrapper-lokasi-premium.from-bottom { transform: translate3d(-50%, 35px, 0); }
 
         .anim-item.item-muncul {
             opacity: 1 !important;
@@ -738,7 +724,7 @@
             border-radius: 2px; 
             box-shadow: 0 8px 20px rgba(42, 34, 21, 0.1); 
             border: none !important; 
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease; 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease; 
             will-change: transform, opacity; 
         }
 
@@ -1106,11 +1092,6 @@
         </div>
     </section>
 
-    <!-- SECTION PENUTUP -->
-    <section id="penutup">
-        <img src="item-penutup.png" alt="Ornaments Penutup" class="ornamen-penutup-tunggal anim-item zoom-in">
-    </section>
-
     <!-- VIRTUAL KEYBOARD -->
     <div id="virtual-keyboard" class="custom-keyboard">
         <div class="key-header-done">
@@ -1153,7 +1134,7 @@
             <button type="button" class="key-btn letter-key" onclick="tekanKey('l')"><span class="char-lower">l</span><span class="char-upper">L</span></button>
         </div>
         <div class="keyboard-row">
-            <button type="button" class="key-btn special-key" id="shift-btn" onclick="toggleShift()" style="flex: 1.4;">⇧</button>
+            <button type="button" class="key-btn special-key" id="shift-btn" onclick="handleShiftClick()" style="flex: 1.4;">⇧</button>
             <button type="button" class="key-btn letter-key" onclick="tekanKey('z')"><span class="char-lower">z</span><span class="char-upper">Z</span></button>
             <button type="button" class="key-btn letter-key" onclick="tekanKey('x')"><span class="char-lower">x</span><span class="char-upper">X</span></button>
             <button type="button" class="key-btn letter-key" onclick="tekanKey('c')"><span class="char-lower">c</span><span class="char-upper">C</span></button>
@@ -1183,10 +1164,13 @@
 
     <!-- SCRIPT UTAMA -->
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxJ3c2ISp0_ASoeOU8-MduW97XGWRUgLYWsfv9YkBKrpdqDmqWmJc8JqmVHeoaMjjVj/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyKOzjMfESdNQ3XXq8uZYW4RwPiGvIy9vACHIbeCvsKAyIXeH-IJVhTNTHhT11BtZOa/exec';
         let dataUcapanLokal = [];
         let inputTargetAktif = null;
-        let isShiftActive = false;
+
+        /* SHIFT MECHANISM STATE: 0 = OFF, 1 = ONCE (KAPITAL AWAL), 2 = LOCK (KAPITAL ONLY) */
+        let shiftMode = 0;
+        let lastShiftClickTime = 0;
 
         /* CACHING DOM */
         const preloader = document.getElementById('preloader');
@@ -1214,7 +1198,7 @@
             'bg-galeri.png', 'gambar-galeri1.png', 'gambar-galeri2.png', 'gambar-galeri3.png', 'gambar-galeri4.png',
             'countdown-kalender.png', 'item-kalender.png', 'kalender.png', 'item-kalender2.png',
             'lokasi-jam.png', 'item-lokasi1.png', 'item-lokasi2.png', 'item-lokasi3.png', 'item-lokasi4.png', 'item-lokasi5.png', 'item-lokasi6.png',
-            'bg-kehadiran.png', 'bg-gift.png', 'bg-penutup.png', 'item-penutup.png',
+            'bg-kehadiran.png', 'bg-gift.png',
             'navigasi1.png', 'navigasi2.png', 'navigasi3.png', 'navigasi4.png', 'navigasi5.png', 'navigasi6.png'
         ];
 
@@ -1339,6 +1323,14 @@
             const nama = urlParams.get('to');
             if (nama) {
                 document.getElementById('nama-tamu').innerText = nama;
+                const hiddenNamaInput = document.getElementById('rsvp-nama');
+                const renderNamaSpan = document.getElementById('render-rsvp-nama');
+                const placeholderNamaSpan = document.getElementById('placeholder-rsvp-nama');
+                if (hiddenNamaInput && renderNamaSpan && placeholderNamaSpan) {
+                    hiddenNamaInput.value = nama;
+                    renderNamaSpan.innerText = nama;
+                    placeholderNamaSpan.style.display = 'none';
+                }
             }
         }
 
@@ -1416,6 +1408,10 @@
             document.querySelectorAll('.wrapper-input-ketik').forEach(el => el.classList.remove('aktif-ketik'));
             document.getElementById(`wrap-${inputId}`).classList.add('aktif-ketik');
             kbContainer.classList.add('buka');
+            
+            // Default: Shift aktif sekali untuk karakter awal
+            shiftMode = 1;
+            updateShiftUI();
         }
 
         function tutupKeyboard() {
@@ -1424,12 +1420,39 @@
             kbContainer.classList.remove('buka');
         }
 
-        function toggleShift() {
-            isShiftActive = !isShiftActive;
-            if (isShiftActive) {
-                kbContainer.classList.add('caps');
+        /* MEKANISME SHIFT DUA MODE (SEKALI = KAPITAL AWAL, DUA KALI = LOCK) */
+        function handleShiftClick() {
+            const currentTime = new Date().getTime();
+            const timeDiff = currentTime - lastShiftClickTime;
+
+            if (timeDiff < 300) {
+                // Double tap -> Shift Lock Mode (Kapital Penuh)
+                shiftMode = 2;
             } else {
-                kbContainer.classList.remove('caps');
+                // Single tap -> Toggle antara Mode 1 (Sekali) dan Mode 0 (Mati)
+                if (shiftMode === 0) {
+                    shiftMode = 1;
+                } else {
+                    shiftMode = 0;
+                }
+            }
+
+            lastShiftClickTime = currentTime;
+            updateShiftUI();
+        }
+
+        function updateShiftUI() {
+            const shiftBtn = document.getElementById('shift-btn');
+            kbContainer.classList.remove('caps', 'caps-once', 'caps-lock');
+
+            if (shiftMode === 1) {
+                kbContainer.classList.add('caps', 'caps-once');
+                shiftBtn.innerText = '⇧';
+            } else if (shiftMode === 2) {
+                kbContainer.classList.add('caps', 'caps-lock');
+                shiftBtn.innerText = '⇪';
+            } else {
+                shiftBtn.innerText = '⇧';
             }
         }
 
@@ -1447,14 +1470,27 @@
             } else if (nilai === 'ENTER') {
                 if (inputTargetAktif === 'rsvp-nama') {
                     bukaKeyboard('rsvp-ucapan');
+                    return;
                 } else {
                     tutupKeyboard();
+                    return;
                 }
-                return;
-            } else if (nilai === ' ') {
-                textSekarang += ' ';
             } else {
-                textSekarang += isShiftActive ? nilai.toUpperCase() : nilai.toLowerCase();
+                let charToAppend = nilai;
+                if (nilai.length === 1 && nilai.match(/[a-z]/i)) {
+                    if (shiftMode > 0) {
+                        charToAppend = nilai.toUpperCase();
+                    } else {
+                        charToAppend = nilai.toLowerCase();
+                    }
+
+                    // Jika dalam mode Shift Sekali (Mode 1), kembalikan ke Mode Off (Mode 0) setelah 1 karakter
+                    if (shiftMode === 1) {
+                        shiftMode = 0;
+                        updateShiftUI();
+                    }
+                }
+                textSekarang += charToAppend;
             }
 
             hiddenInput.value = textSekarang;
@@ -1467,145 +1503,153 @@
             }
         }
 
-        /* DIGITAL CASHOUT METHOD */
-        function salinRekening(idElement, btn) {
-            const text = document.getElementById(idElement).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const textAwal = btn.innerText;
-                btn.innerText = "Tersalin!";
-                setTimeout(() => { btn.innerText = textAwal; }, 2000);
+        /* COUNTDOWN TIMER */
+        const tanggalPernikahan = new Date('2026-07-01T08:00:00').getTime();
+
+        function perbaruiHitungMundur() {
+            const sekarang = new Date().getTime();
+            const selisih = tanggalPernikahan - sekarang;
+
+            if (selisih > 0) {
+                const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
+                const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
+                const detik = Math.floor((selisih % (1000 * 60)) / 1000);
+
+                document.getElementById('hari').innerText = String(hari).padStart(2, '0');
+                document.getElementById('jam').innerText = String(jam).padStart(2, '0');
+                document.getElementById('menit').innerText = String(menit).padStart(2, '0');
+                document.getElementById('detik').innerText = String(detik).padStart(2, '0');
+            } else {
+                document.getElementById('hari').innerText = '00';
+                document.getElementById('jam').innerText = '00';
+                document.getElementById('menit').innerText = '00';
+                document.getElementById('detik').innerText = '00';
+            }
+        }
+        setInterval(perbaruiHitungMundur, 1000);
+        perbaruiHitungMundur();
+
+        /* COPY REKENING */
+        function salinRekening(elementId, btnElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const textAwal = btnElement.innerText;
+                btnElement.innerText = 'TERSALIN!';
+                btnElement.style.background = '#2a2215';
+                setTimeout(() => {
+                    btnElement.innerText = textAwal;
+                    btnElement.style.background = 'linear-gradient(135deg, #b88e4c 0%, #705321 100%)';
+                }, 2000);
             }).catch(() => {
-                tampilkanModal('peringatan', 'Gagal', 'Gagal menyalin otomatis.');
+                tampilkanModal('peringatan', 'Gagal', 'Gagal menyalin nomor rekening.');
             });
         }
 
-        /* COUNTDOWN LOGIC W/ TARGET JULY 1, 2026 */
-        const targetDate = new Date("July 1, 2026 09:00:00").getTime();
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const selisih = targetDate - now;
-
-            if (selisih <= 0) {
-                document.getElementById('hari').innerText = "00";
-                document.getElementById('jam').innerText = "00";
-                document.getElementById('menit').innerText = "00";
-                document.getElementById('detik').innerText = "00";
-                return;
-            }
-
-            const d = Math.floor(selisih / (1000 * 60 * 60 * 24));
-            const h = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((selisih % (1000 * 60)) / 1000);
-
-            document.getElementById('hari').innerText = String(d).padStart(2, '0');
-            document.getElementById('jam').innerText = String(h).padStart(2, '0');
-            document.getElementById('menit').innerText = String(m).padStart(2, '0');
-            document.getElementById('detik').innerText = String(s).padStart(2, '0');
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        /* ENGINE AJAX RSVP INTEGRASI GOOGLE SHEETS */
-        function renderUcapanHTML(dataArr) {
-            if (!dataArr || dataArr.length === 0) {
-                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan doa restu.</div>';
-                totalUcapanElem.innerText = "0 Ucapan";
-                return;
-            }
-
-            let htmlString = '';
-            let totalValid = 0;
-
-            dataArr.forEach(item => {
-                if (!item.nama) return;
-                totalValid++;
-                const badgeClass = item.status === 'Hadir' ? 'hadir' : 'tidak-hadir';
-                htmlString += `
-                    <div class="item-kartu-ucapan">
-                        <div class="baris-nama-ucapan">
-                            <span class="nama-pengirim">${escapeHTML(item.nama)}</span>
-                            <span class="badge-status ${badgeClass}">${escapeHTML(item.status)}</span>
-                        </div>
-                        <p class="teks-pesan-ucapan">${escapeHTML(item.ucapan || '-')}</p>
-                    </div>
-                `;
-            });
-
-            listUcapanKontainer.innerHTML = htmlString;
-            totalUcapanElem.innerText = `${totalValid} Ucapan`;
-        }
-
+        /* INTEGRASI GOOGLE SHEETS (RSVP & UCAPAN) */
         function muatUcapan() {
-            fetch(`${scriptURL}?action=read`)
-                .then(res => res.json())
+            fetch(scriptURL)
+                .then(response => response.json())
                 .then(data => {
                     dataUcapanLokal = data;
-                    renderUcapanHTML(dataUcapanLokal);
+                    tampilkanDaftarUcapan(data);
                 })
                 .catch(() => {
-                    listUcapanKontainer.innerHTML = '<div class="status-kosong">Gagal memuat daftar doa restu.</div>';
+                    listUcapanKontainer.innerHTML = '<div class="status-kosong">Gagal memuat ucapan doa restu.</div>';
                 });
         }
 
-        rsvpForm.addEventListener('submit', function(e) {
+        function tampilkanDaftarUcapan(data) {
+            if (!data || data.length === 0) {
+                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan doa restu. Jadi yang pertama memberikan ucapan!</div>';
+                totalUcapanElem.innerText = '0 Ucapan';
+                return;
+            }
+
+            totalUcapanElem.innerText = `${data.length} Ucapan`;
+            listUcapanKontainer.innerHTML = '';
+
+            // Tampilkan dari yang paling baru
+            data.slice().reverse().forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item-kartu-ucapan';
+
+                const statusClass = item.status === 'Hadir' ? 'hadir' : 'tidak-hadir';
+                const statusText = item.status === 'Hadir' ? 'Hadir' : 'Berhalangan';
+
+                itemDiv.innerHTML = `
+                    <div class="baris-nama-ucapan">
+                        <span class="nama-pengirim">${escapeHTML(item.nama)}</span>
+                        <span class="badge-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <div class="teks-pesan-ucapan">${escapeHTML(item.ucapan)}</div>
+                `;
+                listUcapanKontainer.appendChild(itemDiv);
+            });
+        }
+
+        /* FORM SUBMIT RSVP */
+        rsvpForm.addEventListener('submit', e => {
             e.preventDefault();
             tutupKeyboard();
 
-            const namaValue = document.getElementById('rsvp-nama').value.trim();
-            const ucapanValue = document.getElementById('rsvp-ucapan').value.trim();
+            const namaVal = document.getElementById('rsvp-nama').value.trim();
+            const ucapanVal = document.getElementById('rsvp-ucapan').value.trim();
             const statusRadio = document.querySelector('input[name="rsvp-status-radio"]:checked');
 
-            if (!namaValue) {
-                tampilkanModal('peringatan', 'Validasi Gagal', 'Mohon isikan nama lengkap Anda terlebih dahulu.');
+            if (!namaVal) {
+                tampilkanModal('peringatan', 'Perhatian', 'Mohon isi nama lengkap Anda.');
                 return;
             }
+
             if (!statusRadio) {
-                tampilkanModal('peringatan', 'Validasi Gagal', 'Silakan pilih opsi konfirmasi kehadiran.');
+                tampilkanModal('peringatan', 'Perhatian', 'Mohon pilih konfirmasi kehadiran Anda.');
+                return;
+            }
+
+            if (!ucapanVal) {
+                tampilkanModal('peringatan', 'Perhatian', 'Mohon tuliskan ucapan & doa restu Anda.');
                 return;
             }
 
             btnKirim.disabled = true;
-            btnKirim.innerText = "MENGIRIM...";
+            btnKirim.innerText = 'MEMPROSES...';
 
             const formData = new FormData();
-            formData.append('nama', namaValue);
+            formData.append('nama', namaVal);
             formData.append('status', statusRadio.value);
-            formData.append('ucapan', ucapanValue);
+            formData.append('ucapan', ucapanVal);
 
             fetch(scriptURL, { method: 'POST', body: formData })
-                .then(res => res.json())
-                .then(response => {
-                    if (response.result === 'success') {
-                        tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi kehadiran dan doa restu Anda telah berhasil tersimpan.');
-                        
-                        // Injeksi data baru secara lokal secara realtime tanpa hard-reload
-                        dataUcapanLokal.unshift({
-                            nama: namaValue,
-                            status: statusRadio.value,
-                            ucapan: ucapanValue
-                        });
-                        renderUcapanHTML(dataUcapanLokal);
+                .then(response => response.json())
+                .then(res => {
+                    btnKirim.disabled = false;
+                    btnKirim.innerText = 'KIRIM KONFIRMASI';
 
-                        // Reset Form fields
-                        document.getElementById('rsvp-nama').value = '';
+                    if (res.result === 'success') {
+                        tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi kehadiran dan doa restu Anda telah berhasil tersimpan.');
+
+                        // Reset Form Input
                         document.getElementById('rsvp-ucapan').value = '';
-                        document.getElementById('render-rsvp-nama').innerText = '';
                         document.getElementById('render-rsvp-ucapan').innerText = '';
-                        document.getElementById('placeholder-rsvp-nama').style.display = 'inline';
                         document.getElementById('placeholder-rsvp-ucapan').style.display = 'inline';
-                        const checkedRadio = document.querySelector('input[name="rsvp-status-radio"]:checked');
-                        if (checkedRadio) checkedRadio.checked = false;
+                        if (statusRadio) statusRadio.checked = false;
+
+                        // Tambahkan secara realtime ke list
+                        dataUcapanLokal.push({
+                            nama: namaVal,
+                            status: statusRadio.value,
+                            ucapan: ucapanVal
+                        });
+                        tampilkanDaftarUcapan(dataUcapanLokal);
                     } else {
-                        tampilkanModal('peringatan', 'Gagal', 'Terjadi kesalahan sistem: ' + response.message);
+                        tampilkanModal('peringatan', 'Gagal', 'Gagal menyimpan data. Silakan coba lagi.');
                     }
                 })
                 .catch(() => {
-                    tampilkanModal('peringatan', 'Eror Jaringan', 'Gagal terhubung ke server. Periksa koneksi internet Anda.');
-                })
-                .finally(() => {
                     btnKirim.disabled = false;
-                    btnKirim.innerText = "KIRIM KONFIRMASI";
+                    btnKirim.innerText = 'KIRIM KONFIRMASI';
+                    tampilkanModal('peringatan', 'Kesalahan Sistem', 'Terjadi kesalahan jaringan. Silakan coba beberapa saat lagi.');
                 });
         });
     </script>
