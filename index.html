@@ -8,107 +8,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     
-    <!-- LINK PRELOAD UNTUK ASET KRUSIAL -->
     <link rel="preload" as="image" href="bg-pembuka1.png">
     <link rel="preload" as="image" href="bg-pembuka2.png">
     <link rel="preload" as="image" href="cover.png">
     <link rel="preload" as="image" href="foto-cover.png">
 
     <style>
-        /* RESET & BASE STYLES */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent; 
-        }
-        
-        html { 
-            scroll-behavior: smooth; 
-            height: 100%; 
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; height: 100%; }
         body { 
-            background-color: #fcfaf2; 
-            font-family: 'Montserrat', sans-serif; 
-            color: #383024; 
-            overflow-x: hidden; 
-            padding-bottom: 60px; 
-            min-height: 100%;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
+            background-color: #fcfaf2; font-family: 'Montserrat', sans-serif; color: #383024; 
+            overflow-x: hidden; padding-bottom: 60px; min-height: 100%;
+            -webkit-font-smoothing: antialiased; text-rendering: optimizeSpeed;
         } 
 
-        /* PRELOADER SCREEN MUTLAK */
         #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100svh;
-            background: #fcfaf2;
-            z-index: 999999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), visibility 1s cubic-bezier(0.22, 1, 0.36, 1);
-            pointer-events: auto;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100svh; background: #fcfaf2;
+            z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease; pointer-events: auto;
         }
-
-        #preloader.selesai {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none !important;
-        }
+        #preloader.selesai { opacity: 0; visibility: hidden; pointer-events: none !important; }
 
         .loader-spinner {
-            width: 46px;
-            height: 46px;
-            border: 3px solid rgba(184, 142, 76, 0.15);
-            border-top: 3px solid #b88e4c;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 18px;
+            width: 40px; height: 40px; border: 3px solid rgba(184, 142, 76, 0.15);
+            border-top: 3px solid #b88e4c; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 16px;
         }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loader-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            color: #705321;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        .loader-progress {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            color: #8c6d33;
-            margin-top: 8px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+        .loader-text { font-family: 'Playfair Display', serif; font-size: 1rem; color: #705321; letter-spacing: 1.5px; font-weight: 600; }
+        .loader-progress { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #8c6d33; margin-top: 8px; font-weight: 600; }
         
-        /* OPTIMASI SEKSI & BACKGROUND */
         section { 
-            width: 100%; 
-            min-height: 100svh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            position: relative; 
-            background-size: 100% 100% !important;
-            background-position: center top !important; 
-            background-repeat: no-repeat !important; 
-            overflow: hidden;
-            contain: content;
-            transform: translateZ(0);
+            width: 100%; min-height: 100svh; display: flex; flex-direction: column; align-items: center; 
+            text-align: center; position: relative; background-size: 100% 100% !important;
+            background-position: center top !important; background-repeat: no-repeat !important; 
+            overflow: hidden; contain: content; transform: translateZ(0);
         }
         
         #pembuka1 { background-image: url('bg-pembuka1.png'); background-color: #faf7ed; height: 100svh; }
@@ -118,706 +52,221 @@
         #acara { background-image: url('lokasi-jam.png'); background-color: #e5ddc5; height: 100svh; }
         
         #rsvp, #gift { 
-            background-color: #faf7ed; 
-            min-height: 100svh;
-            height: auto;
-            padding: 50px 16px 100px 16px !important;
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center !important; 
+            background-color: #faf7ed; min-height: 100svh; height: auto; padding: 50px 16px 100px 16px !important;
+            display: flex; flex-direction: column; justify-content: center; align-items: center !important; 
         }
-
         #rsvp { background-image: url('bg-kehadiran.png'); }
         #gift { background-image: url('bg-gift.png'); background-color: #f6f1e5; }
 
-        /* BOX DOFF */
         .box-doff-mewah {
-            width: 100%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 28px;
-            padding: 24px 16px;
-            border: none !important;
-            box-shadow: 0 20px 45px rgba(42, 34, 21, 0.07);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            overflow: hidden;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.92); border-radius: 20px;
+            padding: 20px 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex;
+            flex-direction: column; align-items: center; gap: 14px; overflow: hidden; word-break: break-word;
         }
         
-        /* COVER SECTION */
         section.cover-khusus { 
-            background-image: url('cover.png') !important; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            z-index: 2000; 
-            width: 100%; 
-            height: 100svh; 
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease, visibility 1.2s ease; 
-            will-change: transform, opacity;
-            transform: translate3d(0, 0, 0);
+            background-image: url('cover.png') !important; position: fixed; top: 0; left: 0; z-index: 2000; 
+            width: 100%; height: 100svh; transition: transform 0.6s ease, opacity 0.6s ease, visibility 0.6s ease; 
+            will-change: transform, opacity; transform: translate3d(0, 0, 0);
         }
-
-        section.cover-khusus.fade-out { 
-            opacity: 0; 
-            transform: translate3d(0, -100%, 0); 
-            visibility: hidden; 
-        }
+        section.cover-khusus.fade-out { opacity: 0; transform: translate3d(0, -100%, 0); visibility: hidden; }
 
         .container-cover { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 380px; position: absolute; bottom: 6vh; left: 50%; transform: translate3d(-50%, 0, 0); padding: 0 20px; z-index: 10; }
-        
-        .box-krem-tulisan { 
-            width: 100%; 
-            background-color: rgba(255, 253, 247, 0.95); 
-            padding: 20px 16px; 
-            border-radius: 24px; 
-            border: none !important; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
-            backdrop-filter: blur(8px);
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
+        .box-krem-tulisan { width: 100%; background-color: rgba(255, 253, 247, 0.95); padding: 20px 16px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
-        .tombol-buka-khusus { background: linear-gradient(135deg, #b88e4c 0%, #705321 100%); color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 13px 34px; border-radius: 25px; border: none; cursor: pointer; box-shadow: 0 6px 18px rgba(112, 83, 33, 0.25); letter-spacing: 2px; transition: transform 0.2s ease; white-space: nowrap; }
+        .tombol-buka-khusus { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 12px 30px; border-radius: 25px; border: none; cursor: pointer; letter-spacing: 1.5px; }
         .tombol-buka-khusus:active { transform: scale(0.96); }
 
-        /* GALERI */
-        .container-galeri-transparan { 
-            background: rgba(255, 255, 255, 0.55); 
-            padding: 16px; 
-            border-radius: 28px; 
-            max-width: 420px; 
-            width: 100%; 
-            border: none !important; 
-            box-shadow: 0 15px 35px rgba(42, 34, 21, 0.06); 
-            display: flex; 
-            flex-direction: column; 
-            gap: 14px; 
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
+        .container-galeri-transparan { background: rgba(255, 255, 255, 0.88); padding: 16px; border-radius: 20px; max-width: 420px; width: 100%; display: flex; flex-direction: column; gap: 12px; }
+        .galeri-susunan-indie { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
+        .bingkai-foto-premium { width: 100%; background: #fff; border-radius: 12px; overflow: hidden; cursor: pointer; }
+        .bingkai-foto-premium img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+        .wrapper-video-premium { width: 100%; border-radius: 12px; overflow: hidden; background: #fff; position: relative; aspect-ratio: 16 / 9; }
+        .wrapper-video-premium iframe { width: 100%; height: 100%; border: none; display: block; }
 
-        .galeri-susunan-indie { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; }
-        .bingkai-foto-premium { width: 100%; background: #ffffff; border-radius: 16px; border: none !important; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04); overflow: hidden; cursor: pointer; }
-        .bingkai-foto-premium img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 16px; display: block; }
-        .wrapper-video-premium { width: 100%; border-radius: 16px; overflow: hidden; background: #ffffff; border: none !important; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05); cursor: pointer; }
-        .wrapper-video-premium video { width: 100%; height: auto; display: block; object-fit: contain; border-radius: 16px; }
+        .luxury-header-wrapper { margin-bottom: 4px; width: 100%; text-align: center; }
+        .luxury-title { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 4.5vw, 1.35rem); font-weight: 700; color: #2a2215; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; }
+        .gold-divider-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, #b88e4c, transparent); margin: 0 auto 10px auto; }
+        .rsvp-desc { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.8rem; color: #594931; line-height: 1.4; }
 
-        /* HEADER */
-        .luxury-header-wrapper { 
-            margin-bottom: 4px; 
-            position: relative; 
-            width: 100%; 
-            text-align: center;
-            overflow: hidden;
-            padding: 0 8px;
-        }
-
-        .luxury-title { 
-            font-family: 'Playfair Display', serif; 
-            font-size: clamp(1.1rem, 4.5vw, 1.35rem); 
-            font-weight: 700; 
-            color: #2a2215; 
-            letter-spacing: 1px; 
-            margin-bottom: 8px; 
-            line-height: 1.3; 
-            text-transform: uppercase; 
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-
-        .gold-divider-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, #b88e4c, transparent); margin: 0 auto 12px auto; }
-        
-        .rsvp-desc { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic; 
-            font-size: clamp(0.75rem, 3.2vw, 0.85rem); 
-            color: #594931; 
-            line-height: 1.5; 
-            padding: 0 4px; 
-            font-weight: 400; 
-            letter-spacing: 0.2px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-
-        /* INPUT & EFEK GARIS KETIK */
         .wrapper-input-ketik { 
-            position: relative; 
-            width: 100%; 
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 16px;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
-            transition: all 0.25s ease;
-            cursor: pointer;
-            padding: 12px 14px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            min-height: 46px;
+            position: relative; width: 100%; background: rgba(255, 255, 255, 0.95); border-radius: 12px;
+            border: 2px solid transparent; transition: border-color 0.2s ease; cursor: pointer;
+            padding: 10px 12px; display: flex; align-items: flex-start; justify-content: flex-start; flex-wrap: wrap; min-height: 44px;
         }
+        .wrapper-input-ketik.aktif-ketik { background-color: #fff !important; border-color: #b88e4c !important; }
+        .v-input-text-render { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #2a2215; font-weight: 500; white-space: pre-wrap; word-break: break-word; display: inline; }
+        .v-input-placeholder { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #8a7b63; display: inline; user-select: none; }
 
-        .wrapper-input-ketik:focus-within,
-        .wrapper-input-ketik.aktif-ketik {
-            background-color: #ffffff !important;
-            border-color: #b88e4c !important;
-            box-shadow: 0 6px 20px rgba(184, 142, 76, 0.25); 
-        }
-
-        .v-input-text-render {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.82rem;
-            color: #2a2215;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            white-space: pre-wrap;
-            word-break: break-word;
-            display: inline;
-        }
-
-        .v-input-placeholder {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.82rem;
-            color: #8a7b63;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-            display: inline;
-            user-select: none;
-        }
-
-        /* KURSOR BLINKING */
-        .kursor-ketik-fake {
-            display: none;
-            width: 2px;
-            height: 1.1em;
-            background-color: #b88e4c;
-            animation: kedipKursor 0.8s infinite;
-            pointer-events: none;
-            vertical-align: middle;
-            margin-left: 1px;
-            margin-right: 1px;
-        }
-
-        .wrapper-input-ketik.aktif-ketik .kursor-ketik-fake {
-            display: inline-block;
-        }
-
-        @keyframes kedipKursor {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        .kursor-ketik-fake { display: none; width: 2px; height: 1.1em; background-color: #b88e4c; animation: kedipKursor 0.8s infinite; vertical-align: middle; margin: 0 1px; }
+        .wrapper-input-ketik.aktif-ketik .kursor-ketik-fake { display: inline-block; }
+        @keyframes kedipKursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         .opsi-kehadiran-box { cursor: pointer; position: relative; width: 100%; }
         .opsi-kehadiran-box input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
         
         .kartu-pilihan {
-            border: none !important; 
-            background: rgba(255, 255, 255, 0.85); 
-            padding: 12px 6px; 
-            border-radius: 14px; 
-            text-align: center; 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: clamp(0.6rem, 2.5vw, 0.7rem); 
-            font-weight: 600; 
-            color: #594931; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            letter-spacing: 0.5px;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-            word-break: break-word;
+            background: rgba(255, 255, 255, 0.9); padding: 10px 4px; border-radius: 10px; text-align: center;
+            font-family: 'Montserrat', sans-serif; font-size: clamp(0.6rem, 2.5vw, 0.7rem); font-weight: 600;
+            color: #594931; display: flex; align-items: center; justify-content: center; letter-spacing: 0.5px;
         }
+        .opsi-kehadiran-box input[type="radio"]:checked + .kartu-pilihan { background: linear-gradient(135deg, #b88e4c, #705321) !important; color: #fff !important; }
 
-        .opsi-kehadiran-box input[type="radio"]:checked + .kartu-pilihan {
-            background: linear-gradient(135deg, #b88e4c 0%, #705321 100%) !important;
-            color: #ffffff !important; 
-            box-shadow: 0 6px 18px rgba(112, 83, 33, 0.25);
-        }
+        .form-rsvp-wrapper { width: 100%; display: flex; flex-direction: column; gap: 10px; }
 
-        .form-rsvp-wrapper { width: 100%; display: flex; flex-direction: column; gap: 12px; }
-
-        /* DAFTAR UCAPAN */
-        .wrapper-daftar-ucapan { 
-            text-align: left; 
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 18px;
-            padding: 14px 12px;
-            border: none !important;
-            margin-top: 4px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
-            overflow: hidden;
-        }
-
-        .judul-daftar-ucapan { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 0.95rem; 
-            font-weight: 700; 
-            color: #2a2215; 
-            margin-bottom: 10px; 
-            padding-bottom: 6px; 
-            letter-spacing: 0.5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .kotak-list-ucapan { 
-            max-height: 180px;
-            overflow-y: auto; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-            padding-right: 4px; 
-            -webkit-overflow-scrolling: touch; 
-        }
-
-        .status-kosong { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.78rem; color: #78684d; padding: 14px 0; }
+        .wrapper-daftar-ucapan { text-align: left; width: 100%; display: flex; flex-direction: column; background: rgba(255, 255, 255, 0.85); border-radius: 14px; padding: 12px; margin-top: 4px; }
+        .judul-daftar-ucapan { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: #2a2215; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .kotak-list-ucapan { max-height: 160px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; -webkit-overflow-scrolling: touch; }
+        .status-kosong { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.75rem; color: #78684d; padding: 10px 0; }
         
-        .item-kartu-ucapan { 
-            background: rgba(255, 255, 255, 0.95); 
-            border-radius: 14px; 
-            padding: 10px 12px; 
-            border: none !important;
-            border-left: 4px solid #b88e4c !important; 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); 
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
+        .item-kartu-ucapan { background: rgba(255, 255, 255, 0.95); border-radius: 10px; padding: 8px 10px; border-left: 3px solid #b88e4c !important; word-break: break-word; }
+        .baris-nama-ucapan { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; gap: 6px; }
+        .nama-pengirim { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.78rem; color: #2a2215; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        .baris-nama-ucapan { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; gap: 8px; }
-        
-        .nama-pengirim { 
-            font-family: 'Playfair Display', serif; 
-            font-weight: 700; 
-            font-size: 0.8rem; 
-            color: #2a2215; 
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .badge-status { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; padding: 3px 8px; border-radius: 12px; letter-spacing: 0.5px; text-transform: uppercase; flex-shrink: 0; }
+        .badge-status { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; padding: 2px 6px; border-radius: 8px; text-transform: uppercase; }
         .badge-status.hadir { background: #eaf5eb; color: #235427; }
         .badge-status.tidak-hadir { background: #fbebeb; color: #823232; }
-        
-        .teks-pesan-ucapan { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 0.72rem; 
-            color: #4a3e2c; 
-            line-height: 1.45; 
-            white-space: pre-wrap; 
-            font-weight: 400; 
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
+        .teks-pesan-ucapan { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: #4a3e2c; line-height: 1.35; white-space: pre-wrap; }
 
-        /* GIFT CARD */
-        .gift-wrapper-mewah { width: 100%; display: flex; flex-direction: column; gap: 14px; }
-        
-        .kartu-rekening-mewah {
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 20px;
-            padding: 16px 14px;
-            border: none !important;
-            box-shadow: 0 10px 25px rgba(42, 34, 21, 0.04);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            backdrop-filter: blur(10px);
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-
-        .baris-bank-top { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .logo-bank-mewah { height: 20px; max-width: 80px; object-fit: contain; filter: contrast(105%); }
-        .label-no-rek { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; color: #827258; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 2px; }
-        .angka-rekening-mewah { font-family: 'Montserrat', sans-serif; font-size: clamp(0.95rem, 4vw, 1.1rem); font-weight: 700; color: #2a2215; letter-spacing: 1.2px; margin-bottom: 2px; word-break: break-all; }
-        .nama-rekening-mewah { font-family: 'Playfair Display', serif; font-size: 0.82rem; font-weight: 600; font-style: italic; color: #8c6d33; margin-bottom: 12px; }
+        .gift-wrapper-mewah { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+        .kartu-rekening-mewah { background: rgba(255, 255, 255, 0.9); border-radius: 14px; padding: 14px 12px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+        .baris-bank-top { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .logo-bank-mewah { height: 18px; max-width: 70px; object-fit: contain; }
+        .label-no-rek { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 600; color: #827258; text-transform: uppercase; letter-spacing: 1px; }
+        .angka-rekening-mewah { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; color: #2a2215; letter-spacing: 1px; }
+        .nama-rekening-mewah { font-family: 'Playfair Display', serif; font-size: 0.78rem; font-weight: 600; font-style: italic; color: #8c6d33; margin-bottom: 8px; }
 
         .btn-salin-mewah {
-            align-self: flex-end;
-            background: linear-gradient(135deg, #b88e4c 0%, #705321 100%);
-            color: #ffffff;
-            border: none !important;
-            padding: 7px 18px;
-            border-radius: 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            box-shadow: 0 4px 12px rgba(112, 83, 33, 0.2);
-            white-space: nowrap;
+            align-self: flex-end; background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; border: none;
+            padding: 6px 14px; border-radius: 16px; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase; cursor: pointer; white-space: nowrap;
         }
+        .btn-salin-mewah:active { transform: scale(0.95); }
 
-        .btn-salin-mewah:active { transform: scale(0.95); opacity: 0.9; }
-
-        /* VIRTUAL KEYBOARD */
         .custom-keyboard {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(180deg, #f7f3e6 0%, #eae3d0 100%);
-            border-top: 1px solid rgba(184, 142, 76, 0.2);
-            padding: 8px 4px calc(10px + env(safe-area-inset-bottom, 0px)) 4px;
-            display: flex; flex-direction: column; gap: 6px; z-index: 100005;
-            transform: translate3d(0, 100%, 0); 
-            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform;
-            box-shadow: 0 -12px 35px rgba(42, 34, 21, 0.15); 
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
+            position: fixed; bottom: 0; left: 0; right: 0; background: #eae3d0; border-top: 1px solid rgba(184, 142, 76, 0.2);
+            padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px)) 2px; display: flex; flex-direction: column; gap: 4px;
+            z-index: 100005; transform: translate3d(0, 100%, 0); transition: transform 0.25s ease-out; will-change: transform; touch-action: manipulation;
         }
-
         .custom-keyboard.buka { transform: translate3d(0, 0, 0); }
-        
-        .key-header-done { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 2px 10px 6px 10px; 
-            border-bottom: 1px solid rgba(139, 119, 72, 0.15); 
-        }
-        
-        .key-header-title { 
-            font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; 
-            color: #705321; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; 
-        }
-        
-        .done-btn { 
-            background: linear-gradient(135deg, #b88e4c 0%, #705321 100%); 
-            color: #ffffff; border: none; padding: 5px 16px; border-radius: 14px; 
-            font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; 
-            cursor: pointer; white-space: nowrap; box-shadow: 0 3px 8px rgba(112, 83, 33, 0.25);
-            transition: transform 0.1s;
-        }
-        .done-btn:active { transform: scale(0.95); }
+        .key-header-done { display: flex; justify-content: space-between; align-items: center; padding: 2px 8px; }
+        .key-header-title { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; color: #705321; text-transform: uppercase; }
+        .done-btn { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; border: none; padding: 4px 12px; border-radius: 10px; font-size: 0.68rem; font-weight: 700; cursor: pointer; }
 
-        .keyboard-row { display: flex; justify-content: center; gap: 3px; width: 100%; }
-
+        .keyboard-row { display: flex; justify-content: center; gap: 2px; width: 100%; }
         .key-btn {
-            flex: 1; height: 44px; 
-            background: #ffffff;
-            border: none; border-radius: 8px;
-            font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600; color: #2a2215;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; 
-            box-shadow: 0 3px 0 #d1c8b4, 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: all 0.05s ease;
-            touch-action: manipulation;
+            flex: 1; height: 40px; background: #fff; border: none; border-radius: 6px;
+            font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600; color: #2a2215;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 0 #d1c8b4;
         }
+        .key-btn:active { background: #f0eae0; }
+        .key-btn.special-key { background: #dcd0b8; color: #4a3e26; font-size: 0.8rem; font-weight: 700; }
+        .key-btn.space-key { flex: 4.5; font-size: 0.75rem; color: #8c7a58; }
+        .key-btn.enter-key { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; font-weight: 700; }
 
-        .key-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 #d1c8b4, 0 2px 4px rgba(0, 0, 0, 0.05);
-            background: #f0eae0;
-        }
-
-        .key-btn.special-key { 
-            background: #e2d7c0; color: #4a3e26; font-size: 0.85rem; font-weight: 700; 
-            box-shadow: 0 3px 0 #bcaf94;
-        }
-        .key-btn.special-key:active { background: #d5c8ae; }
-
-        .key-btn.space-key { flex: 4.8; font-size: 0.78rem; font-weight: 600; color: #8c7a58; letter-spacing: 1px; }
-
-        .key-btn.enter-key { 
-            background: linear-gradient(135deg, #b88e4c 0%, #705321 100%); 
-            color: #ffffff; border: none; font-weight: 700;
-            box-shadow: 0 3px 0 #523c16, 0 4px 10px rgba(112, 83, 33, 0.3);
-        }
-        .key-btn.enter-key:active { background: #705321; }
-
-        /* CAPS CONTROL STYLES */
         .custom-keyboard.caps .letter-key .char-lower { display: none; }
         .custom-keyboard.caps .letter-key .char-upper { display: inline; }
         .custom-keyboard:not(.caps) .letter-key .char-lower { display: inline; }
         .custom-keyboard:not(.caps) .letter-key .char-upper { display: none; }
+        .custom-keyboard.caps-once #shift-btn, .custom-keyboard.caps-lock #shift-btn { background: #705321 !important; color: #fff !important; }
 
-        /* Shift Sekali (Once) */
-        .custom-keyboard.caps-once #shift-btn {
-            background: #b88e4c !important;
-            color: #ffffff !important;
-            box-shadow: 0 3px 0 #705321 !important;
-        }
-
-        /* Shift Dua Kali (Lock) */
-        .custom-keyboard.caps-lock #shift-btn {
-            background: #705321 !important;
-            color: #fff8eb !important;
-            box-shadow: 0 3px 0 #3b2b10 !important;
-        }
-
-        /* LIGHTBOX */
         .lightbox-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100svh; 
-            background: rgba(15, 14, 12, 0.96); z-index: 100000; 
-            display: flex; justify-content: center; align-items: center; 
-            opacity: 0; visibility: hidden; 
-            transition: opacity 0.3s ease, visibility 0.3s ease; 
-            touch-action: none; pointer-events: none; 
-            will-change: opacity, visibility;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100svh; background: rgba(15, 14, 12, 0.92); z-index: 100000;
+            display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.25s ease;
         }
-        .lightbox-overlay.aktif { opacity: 1; visibility: visible; pointer-events: auto; }
-        .lightbox-wrapper { position: relative; max-width: 90%; max-height: 80vh; display: flex; justify-content: center; align-items: center; }
-        .lightbox-media { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: none; }
-        .lightbox-close { position: absolute; top: 25px; right: 25px; background: rgba(255, 255, 255, 0.2); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100002; }
+        .lightbox-overlay.aktif { opacity: 1; visibility: visible; }
+        .lightbox-wrapper { position: relative; width: 90%; max-width: 800px; max-height: 80vh; display: flex; justify-content: center; align-items: center; }
+        .lightbox-media { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 6px; display: none; }
+        .lightbox-iframe { width: 100%; aspect-ratio: 16 / 9; border: none; border-radius: 6px; display: none; }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.2); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-        /* MODAL POPUP */
         .custom-modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100svh;
-            background: rgba(20, 18, 14, 0.65);
-            z-index: 100010;
-            display: flex; justify-content: center; align-items: center;
-            padding: 20px;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            will-change: opacity, visibility;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100svh; background: rgba(20, 18, 14, 0.6); z-index: 100010;
+            display: flex; justify-content: center; align-items: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.25s ease;
         }
-
         .custom-modal-overlay.aktif { opacity: 1; visibility: visible; }
+        .custom-modal-card { background: #fff; border-radius: 18px; padding: 20px; width: 100%; max-width: 300px; text-align: center; }
+        .modal-icon-wrapper { width: 38px; height: 38px; border-radius: 50%; margin: 0 auto 10px auto; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600; }
+        .modal-icon-wrapper.sukses { background: #f0f7f0; color: #2d5a30; }
+        .modal-icon-wrapper.peringatan { background: #fdf0f0; color: #8a3333; }
+        .modal-judul { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #2a2215; margin-bottom: 6px; }
+        .modal-pesan { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; color: #594931; line-height: 1.4; margin-bottom: 16px; }
+        .modal-btn-action { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; border: none; padding: 10px; border-radius: 18px; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; width: 100%; }
 
-        .custom-modal-card {
-            background: #ffffff;
-            border: none !important;
-            border-radius: 22px;
-            padding: 24px 20px;
-            width: 100%; max-width: 320px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
-            transform: translate3d(0, 20px, 0) scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-            will-change: transform;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
+        .anim-item { opacity: 0; will-change: transform, opacity; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .anim-item.from-top { transform: translate3d(0, -20px, 0); }
+        .anim-item.from-bottom { transform: translate3d(0, 20px, 0); }
+        .anim-item.from-left { transform: translate3d(-20px, 0, 0); }
+        .anim-item.from-right { transform: translate3d(20px, 0, 0); }
+        .anim-item.zoom-in { transform: scale(0.95); }
+        .anim-item.zoom-out { transform: scale(1.03); }
+        .anim-item.rotate-in { transform: translate3d(-50%, 20px, 0); }
 
-        .custom-modal-overlay.aktif .custom-modal-card { transform: translate3d(0, 0, 0) scale(1); }
+        #item-ayat.from-top, .el-save-date.from-top, .el-akad.from-top { transform: translate3d(-50%, -20px, 0); }
+        #item-pembatas.zoom-in, .el-kalender-inti.zoom-in, .el-tgl-angka.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.95); }
+        #item-salam.from-bottom, .el-bunga-kalender.from-bottom, .wrapper-countdown-premium.from-bottom, .el-jam-info.from-bottom, .wrapper-lokasi-premium.from-bottom { transform: translate3d(-50%, 20px, 0); }
+        .el-bulan.from-top { transform: translate3d(-50%, -15px, 0); }
 
-        .modal-icon-wrapper {
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            margin: 0 auto 14px auto;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .modal-icon-wrapper.sukses { background: #f0f7f0; color: #2d5a30; border: none; }
-        .modal-icon-wrapper.peringatan { background: #fdf0f0; color: #8a3333; border: none; }
-
-        .modal-judul { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: #2a2215; margin-bottom: 8px; }
-        .modal-pesan { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: #594931; line-height: 1.5; margin-bottom: 20px; white-space: pre-line; }
-
-        .modal-btn-action {
-            background: linear-gradient(135deg, #b88e4c 0%, #705321 100%);
-            color: #ffffff; border: none;
-            padding: 11px 20px; border-radius: 22px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem; font-weight: 600;
-            letter-spacing: 1.2px; text-transform: uppercase;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 4px 14px rgba(112, 83, 33, 0.2);
-            transition: background 0.2s ease;
-            white-space: nowrap;
-        }
-
-        /* ANIMASI DIPERLAMBAT & SMOOTH */
-        .anim-item {
-            opacity: 0;
-            will-change: transform, opacity;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .anim-item.from-top { transform: translate3d(0, -35px, 0); }
-        .anim-item.from-bottom { transform: translate3d(0, 35px, 0); }
-        .anim-item.from-left { transform: translate3d(-35px, 0, 0); }
-        .anim-item.from-right { transform: translate3d(35px, 0, 0); }
-        .anim-item.zoom-in { transform: scale(0.90); }
-        .anim-item.zoom-out { transform: scale(1.08); }
-        .anim-item.rotate-in { transform: rotate(-5deg) scale(0.92); }
-
-        #item-ayat.from-top { transform: translate3d(-50%, -35px, 0); }
-        #item-pembatas.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.90); }
-        #item-salam.from-bottom { transform: translate3d(-50%, 35px, 0); }
-        #item-foto-pria.from-left { transform: translate3d(-35px, 0, 0); }
-
-        .tumpukan-polaroid.rotate-in { transform: translate3d(-50%, 35px, 0) rotate(-5deg); }
-
-        .el-save-date.from-top { transform: translate3d(-50%, -35px, 0); }
-        .el-kalender-inti.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.90); }
-        .el-bunga-kalender.from-bottom { transform: translate3d(-50%, 35px, 0); }
-        .wrapper-countdown-premium.from-bottom { transform: translate3d(-50%, 35px, 0); }
-        
-        .el-akad.from-top { transform: translate3d(-50%, -35px, 0); }
-        .el-bulan.from-top { transform: translate3d(-50%, -25px, 0); }
-        .el-tgl-angka.zoom-in { transform: translate3d(-50%, 0, 0) scale(0.90); }
-        .el-jam-info.from-bottom { transform: translate3d(-50%, 35px, 0); }
-        .wrapper-lokasi-premium.from-bottom { transform: translate3d(-50%, 35px, 0); }
-
-        .anim-item.item-muncul {
-            opacity: 1 !important;
-            transform: translate3d(0, 0, 0) scale(1) rotate(0deg) !important;
-        }
-
-        #item-ayat.item-muncul, 
-        #item-pembatas.item-muncul, 
-        #item-salam.item-muncul, 
-        .tumpukan-polaroid.item-muncul, 
-        .el-save-date.item-muncul, 
-        .el-kalender-inti.item-muncul, 
-        .el-bunga-kalender.item-muncul, 
-        .wrapper-countdown-premium.item-muncul, 
-        .el-akad.item-muncul, 
-        .el-bulan.item-muncul, 
-        .el-tgl-angka.item-muncul, 
-        .el-jam-info.item-muncul, 
-        .wrapper-lokasi-premium.item-muncul { 
-            transform: translate3d(-50%, 0, 0) scale(1) rotate(0deg) !important; 
-        }
+        .anim-item.item-muncul { opacity: 1 !important; transform: translate3d(0, 0, 0) scale(1) rotate(0deg) !important; }
+        #item-ayat.item-muncul, #item-pembatas.item-muncul, #item-salam.item-muncul, .tumpukan-polaroid.item-muncul, .el-save-date.item-muncul, .el-kalender-inti.item-muncul, .el-bunga-kalender.item-muncul, .wrapper-countdown-premium.item-muncul, .el-akad.item-muncul, .el-bulan.item-muncul, .el-tgl-angka.item-muncul, .el-jam-info.item-muncul, .wrapper-lokasi-premium.item-muncul { transform: translate3d(-50%, 0, 0) scale(1) rotate(0deg) !important; }
 
         #item-ayat { position: absolute; width: 95%; max-width: 450px; top: 2%; left: 50%; }
         #item-pembatas { position: absolute; width: 60%; max-width: 220px; top: 16%; left: 50%; }
-        #item-salam { 
-            position: absolute; width: 76%; max-width: 340px; top: 34%; left: 50%; 
-            background: rgba(255, 255, 255, 0.7); 
-            border: none !important; 
-            border-radius: 16px; padding: 6px 12px; 
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-        }
+        #item-salam { position: absolute; width: 76%; max-width: 340px; top: 34%; left: 50%; background: rgba(255, 255, 255, 0.7); border-radius: 12px; padding: 6px 12px; }
         #item-salam img { width: 100%; height: auto; display: block; mix-blend-mode: multiply; }
 
         #item-foto-pria { position: absolute; width: 200vw; max-width: 250px; aspect-ratio: 1/1; overflow: hidden; top: 50%; left: 0%; }
         #item-ampersand { position: absolute; width: 70px; top: 88.6%; left: 25%; }
         #item-foto-wanita { position: absolute; width: 200vw; max-width: 250px; aspect-ratio: 1/1; overflow: hidden; top: 0%; left: 0%; }
         
-        .tumpukan-polaroid { 
-            position: absolute; width: 50%; max-width: 220px; height: 30vh; top: 60%; left: 50%; z-index: 10; cursor: pointer; 
-        }
-        
+        .tumpukan-polaroid { position: absolute; width: 50%; max-width: 200px; height: 28vh; top: 60%; left: 50%; z-index: 10; cursor: pointer; }
         .kartu-polaroid { 
-            position: absolute; width: 100%; height: 100%; 
-            background: #ffffff; 
-            padding: 8px 8px 24px 8px; 
-            border-radius: 2px; 
-            box-shadow: 0 8px 20px rgba(42, 34, 21, 0.1); 
-            border: none !important; 
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease; 
-            will-change: transform, opacity; 
+            position: absolute; width: 100%; height: 100%; background: #fff; padding: 6px 6px 20px 6px; 
+            border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: transform 0.4s ease, opacity 0.3s ease; will-change: transform, opacity; 
         }
-
         .kartu-polaroid img, #item-foto-pria img, #item-foto-wanita img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         
-        body.undangan-terbuka .tumpukan-polaroid.item-muncul .polaroid-1 { transform: translate3d(-35px, -5px, 0) rotate(-12deg); }
-        body.undangan-terbuka .tumpukan-polaroid.item-muncul .polaroid-2 { transform: translate3d(35px, -5px, 0) rotate(12deg); }
-        body.undangan-terbuka .tumpukan-polaroid.item-muncul .polaroid-3 { transform: translate3d(0, -12px, 0) rotate(0deg); }
-        .kartu-polaroid.slip-away { transform: translate3d(140%, -30px, 0) rotate(35deg) !important; opacity: 0; }
+        .polaroid-1 { transform: translate3d(-35px, 10px, 0) rotate(-12deg); z-index: 1; }
+        .polaroid-2 { transform: translate3d(35px, 6px, 0) rotate(12deg); z-index: 2; }
+        .polaroid-3 { transform: translate3d(0, -8px, 0) rotate(-1deg); z-index: 3; }
+        .kartu-polaroid.slip-away { transform: translate3d(90px, -20px, 0) rotate(18deg) scale(0.9) !important; opacity: 0; }
 
-        /* NOTIFIKASI PEMBUKA */
         .notif-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100svh; 
-            background: rgba(18, 16, 13, 0.7);
-            z-index: 99999; display: flex; justify-content: center; align-items: flex-start; 
-            padding: 16px 16px 24px 16px; 
-            transition: opacity 0.35s ease, visibility 0.35s ease; 
-            will-change: opacity, visibility; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100svh; background: rgba(18, 16, 13, 0.65);
+            z-index: 99999; display: flex; justify-content: center; align-items: flex-start; padding: 16px;
+            transition: opacity 0.3s ease, visibility 0.3s ease; 
         }
-
         .notif-overlay.hide { opacity: 0; visibility: hidden; pointer-events: none !important; }
-
-        .notif-box { 
-            background: #ffffff; border: none !important; border-radius: 24px; 
-            padding: 20px; width: 100%; max-width: 350px; font-family: 'Montserrat', sans-serif; 
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
-            position: relative; margin-top: env(safe-area-inset-top, 20px);
-            word-wrap: break-word; overflow-wrap: break-word;
-        }
-
-        .notif-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .notif-box { background: #fff; border-radius: 18px; padding: 18px; width: 100%; max-width: 330px; font-family: 'Montserrat', sans-serif; margin-top: env(safe-area-inset-top, 16px); }
+        .notif-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
         .notif-badge-app { display: flex; align-items: center; gap: 6px; }
         .notif-icon-dot { width: 6px; height: 6px; background: #b88e4c; border-radius: 50%; }
-        .notif-app-name { font-size: 0.62rem; font-weight: 600; color: #705321; letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap; }
-        .notif-time { font-size: 0.6rem; color: #827258; font-weight: 400; white-space: nowrap; }
-        .notif-title { font-size: 1.05rem; font-weight: 700; color: #2a2215; margin-bottom: 6px; font-family: 'Playfair Display', serif; text-align: left; }
-        .notif-desc { font-size: 0.78rem; line-height: 1.5; color: #594931; margin-bottom: 20px; text-align: left; }
+        .notif-app-name { font-size: 0.6rem; font-weight: 600; color: #705321; letter-spacing: 1px; text-transform: uppercase; }
+        .notif-time { font-size: 0.58rem; color: #827258; }
+        .notif-title { font-size: 1rem; font-weight: 700; color: #2a2215; margin-bottom: 4px; font-family: 'Playfair Display', serif; text-align: left; }
+        .notif-desc { font-size: 0.75rem; line-height: 1.4; color: #594931; margin-bottom: 16px; text-align: left; }
+        .notif-btn { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; border: none; padding: 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; width: 100%; }
 
-        .notif-btn { 
-            background: linear-gradient(135deg, #b88e4c 0%, #705321 100%); color: #ffffff; border: none; 
-            padding: 12px 18px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; 
-            letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; width: 100%; 
-            box-shadow: 0 4px 14px rgba(112, 83, 33, 0.2);
-            transition: background 0.2s ease; white-space: nowrap;
-        }
-
-        /* MUSIC CONTROL */
         .music-control { 
-            position: fixed; top: 18px; right: 18px; z-index: 1500; 
-            background: rgba(255, 255, 255, 0.95); border: none !important; 
-            border-radius: 50%; cursor: pointer; width: 44px; height: 44px; 
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 20px rgba(42, 34, 21, 0.12);
-            transition: background-color 0.3s ease;
+            position: fixed; top: 16px; right: 16px; z-index: 1500; background: rgba(255, 255, 255, 0.9);
+            border: none; border-radius: 50%; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
-        .music-control svg { width: 20px; height: 20px; fill: #705321; transition: fill 0.3s ease; }
+        .music-control svg { width: 18px; height: 18px; fill: #705321; }
         .music-control.muted { background: rgba(245, 243, 238, 0.9); }
         .music-control.muted svg { fill: #a39988; }
         
-        /* BOTTOM NAV */
         .bottom-nav { 
-            position: fixed; bottom: 0; left: 0; right: 0; 
-            background: rgba(253, 251, 242, 0.96); border-top: none !important; 
-            padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px)) 0; 
-            display: flex; justify-content: space-around; z-index: 9999; opacity: 0; 
-            transform: translate3d(0, 100%, 0); transition: opacity 0.35s ease, transform 0.35s ease; 
-            will-change: transform, opacity;
-            box-shadow: 0 -8px 25px rgba(42, 34, 21, 0.06);
+            position: fixed; bottom: 0; left: 0; right: 0; background: rgba(253, 251, 242, 0.96); padding: 6px 0 calc(6px + env(safe-area-inset-bottom, 0px)) 0; 
+            display: flex; justify-content: space-around; z-index: 9999; opacity: 0; transform: translate3d(0, 100%, 0); transition: opacity 0.3s ease, transform 0.3s ease; 
         }
         .bottom-nav.aktif { opacity: 1; transform: translate3d(0, 0, 0); }
-        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; flex: 1; cursor: pointer; }
-        .nav-item img { width: 20px; height: 20px; object-fit: contain; }
-        .nav-label { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 600; color: #705321; margin-top: 3px; white-space: nowrap; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; flex: 1; cursor: pointer; }
+        .nav-item img { width: 18px; height: 18px; object-fit: contain; }
+        .nav-label { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 600; color: #705321; margin-top: 2px; }
 
         button[type="submit"] { 
-            background: linear-gradient(135deg, #b88e4c 0%, #705321 100%); 
-            color: #ffffff; 
-            padding: 13px; 
-            border: none !important; 
-            border-radius: 16px; 
-            font-weight: 700; 
-            font-size: 0.72rem; 
-            cursor: pointer; 
-            width: 100%; 
-            font-family: 'Montserrat', sans-serif; 
-            letter-spacing: 1.2px; 
-            text-transform: uppercase; 
-            box-shadow: 0 6px 18px rgba(112, 83, 33, 0.25);
-            transition: transform 0.2s ease;
-            white-space: nowrap; 
+            background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; padding: 11px; border: none; border-radius: 12px; font-weight: 700; font-size: 0.7rem; cursor: pointer; width: 100%; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; 
         }
-
         button[type="submit"]:active { transform: scale(0.98); }
 
         .foto-konten-cover { position: absolute; top: 17%; left: 48%; transform: translate3d(-50%, 0, 0); width: 120%; max-width: 400px; aspect-ratio: 1 / 1; object-fit: cover; }
@@ -834,29 +283,19 @@
         .el-quote1 { position: absolute; width: 75%; max-width: 300px; top: 28.5%; left: 12.5%; }
         .el-quote2 { position: absolute; width: 80%; max-width: 300px; top: 54%; left: 10%; }
 
-        /* HITUNG MUDUR */
-        .wrapper-countdown-premium { position: absolute; top: 70%; left: 50%; width: 88%; max-width: 340px; display: flex; flex-direction: column; align-items: center; gap: 12px; pointer-events: auto; z-index: 999; }
-        
-        .hitung-mudur-box { 
-            display: flex; justify-content: space-around; align-items: center; width: 100%; 
-            background: rgba(255, 255, 255, 0.92); 
-            border: none !important; 
-            border-radius: 18px; padding: 12px 8px; 
-            box-shadow: 0 8px 22px rgba(42, 34, 21, 0.05);
-        }
+        .wrapper-countdown-premium { position: absolute; top: 70%; left: 50%; width: 88%; max-width: 340px; display: flex; flex-direction: column; align-items: center; gap: 10px; pointer-events: auto; z-index: 999; }
+        .hitung-mudur-box { display: flex; justify-content: space-around; align-items: center; width: 100%; background: rgba(255, 255, 255, 0.92); border-radius: 14px; padding: 10px 6px; }
+        .waktu-blok { display: flex; flex-direction: column; align-items: center; min-width: 40px; }
+        .angka-waktu { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 4.5vw, 1.6rem); font-weight: 700; color: #705321; line-height: 1; }
+        .label-waktu { font-family: 'Montserrat', sans-serif; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; color: #827258; margin-top: 2px; font-weight: 600; }
+        .pemisah-titik { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: rgba(112, 83, 33, 0.4); margin-bottom: 6px; }
 
-        .waktu-blok { display: flex; flex-direction: column; align-items: center; min-width: 45px; }
-        .angka-waktu { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 5vw, 1.8rem); font-weight: 700; color: #705321; line-height: 1; }
-        .label-waktu { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1px; color: #827258; margin-top: 4px; font-weight: 600; white-space: nowrap; }
-        .pemisah-titik { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: rgba(112, 83, 33, 0.4); margin-bottom: 8px; }
-
-        .tombol-simpan-mewah, .tombol-lokasi-mewah { background: linear-gradient(135deg, #b88e4c 0%, #705321 100%); color: white; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; padding: 12px 24px; border-radius: 25px; border: none !important; box-shadow: 0 6px 18px rgba(112, 83, 33, 0.25); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+        .tombol-simpan-mewah, .tombol-lokasi-mewah { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; padding: 10px 20px; border-radius: 20px; text-decoration: none; display: inline-flex; align-items: center; white-space: nowrap; }
         .wrapper-lokasi-premium { position: absolute; top: 55%; left: 50%; width: 80%; max-width: 280px; display: flex; justify-content: center; pointer-events: auto; z-index: 999; }
     </style>
 </head>
 <body>
 
-    <!-- PRELOADER -->
     <div id="preloader">
         <div class="loader-spinner"></div>
         <div class="loader-text">Mahesa & Erika</div>
@@ -865,35 +304,23 @@
 
     <audio id="bg-music" src="ed-sheeran-perfect.mp3" loop preload="auto"></audio>
     
-    <!-- BUTTON MUSIC FLOATING -->
     <button class="music-control" id="music-btn" aria-label="Pengaturan Musik" onclick="toggleMusic()">
-        <svg id="icon-unmute" viewBox="0 0 24 24">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-        </svg>
-        <svg id="icon-mute" viewBox="0 0 24 24" style="display: none;">
-            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-        </svg>
+        <svg id="icon-unmute" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <svg id="icon-mute" viewBox="0 0 24 24" style="display: none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
     </button>
 
-    <!-- NOTIFIKASI PEMBUKA -->
     <div class="notif-overlay" id="notifOverlay">
         <div class="notif-box">
             <div class="notif-header-bar">
-                <div class="notif-badge-app">
-                    <span class="notif-icon-dot"></span>
-                    <span class="notif-app-name">Pemberitahuan</span>
-                </div>
+                <div class="notif-badge-app"><span class="notif-icon-dot"></span><span class="notif-app-name">Pemberitahuan</span></div>
                 <span class="notif-time">Baru saja</span>
             </div>
             <div class="notif-title">Petunjuk Penggunaan</div>
-            <div class="notif-desc">
-                Agar tampilan optimal, pastikan jaringan internet stabil dan aktifkan suara perangkat Anda.
-            </div>
+            <div class="notif-desc">Agar tampilan optimal, pastikan jaringan internet stabil dan aktifkan suara perangkat Anda.</div>
             <button class="notif-btn" onclick="pemicuMusikAwal()">LANJUTKAN</button>
         </div>
     </div>
 
-    <!-- CUSTOM MODAL POPUP -->
     <div id="customModal" class="custom-modal-overlay" onclick="tutupModal()">
         <div class="custom-modal-card" onclick="event.stopPropagation()">
             <div id="modalIcon" class="modal-icon-wrapper sukses">✓</div>
@@ -903,29 +330,26 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox-overlay" onclick="tutupLightbox()">
         <button class="lightbox-close" onclick="tutupLightbox()">×</button>
         <div class="lightbox-wrapper">
             <img id="lightboxImg" class="lightbox-media" src="" alt="Zoom Foto" onclick="event.stopPropagation()">
-            <video id="lightboxVideo" class="lightbox-media" controls playsinline loop onclick="event.stopPropagation()"></video>
+            <iframe id="lightboxVideo" class="lightbox-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen onclick="event.stopPropagation()"></iframe>
         </div>
     </div>
 
-    <!-- COVER SECTION -->
     <section id="cover" class="cover-khusus">
         <img src="foto-cover.png" alt="Foto Cover Mempelai" class="foto-konten-cover" loading="eager">
         <div class="container-cover">
             <div class="box-krem-tulisan">
-                <span style="font-family: 'Playfair Display', serif; font-style: italic; color: #8c6d33; font-size: 0.85rem; margin-bottom: 2px;">Kepada Yth. Bapak/Ibu/Saudara/i</span>
-                <h2 id="nama-tamu" style="font-family: 'Playfair Display', serif; color: #2a2215; font-size: clamp(1.1rem, 4vw, 1.4rem); font-weight: 700; margin: 6px 0; word-wrap: break-word;">[Nama Tamu]</h2>
-                <p style="font-family: 'Montserrat', sans-serif; font-size: 0.72rem; color: #594931; line-height: 1.5; margin-bottom: 14px; text-align:center;">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir dan berbagi kebahagiaan bersama kami.</p>
+                <span style="font-family: 'Playfair Display', serif; font-style: italic; color: #8c6d33; font-size: 0.8rem; margin-bottom: 2px;">Kepada Yth. Bapak/Ibu/Saudara/i</span>
+                <h2 id="nama-tamu" style="font-family: 'Playfair Display', serif; color: #2a2215; font-size: clamp(1.1rem, 4vw, 1.4rem); font-weight: 700; margin: 4px 0;">[Nama Tamu]</h2>
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: #594931; line-height: 1.4; margin-bottom: 12px; text-align:center;">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir dan berbagi kebahagiaan bersama kami.</p>
                 <button class="tombol-buka-khusus" onclick="bukaUndangan()">BUKA UNDANGAN</button>
             </div>
         </div>
     </section>
     
-    <!-- SECTION 1: PEMBUKA & MEMPELAI PRIA -->
     <section id="pembuka1">
         <img src="kalimatpembuka1.png" alt="Ayat Suci" id="item-ayat" class="anim-item from-top">
         <img src="itempembuka12.png" alt="Pembatas Hiasan" id="item-pembatas" class="anim-item zoom-in">
@@ -934,17 +358,15 @@
         <img src="itempembuka1_1.png" alt="Dan" id="item-ampersand" class="anim-item zoom-out">
     </section>
     
-    <!-- SECTION 2: MEMPELAI WANITA + POLAROID -->
     <section id="pembuka2">
         <div id="item-foto-wanita" class="anim-item from-right"><img src="pengantinwanita.png" alt="Mempelai Wanita"></div>
         <div class="tumpukan-polaroid anim-item rotate-in" id="polaroidContainer">
-            <div class="kartu-polaroid polaroid-3" style="z-index: 3;"><img src="gambar-pembuka1.png" alt="Momen Indah 1"></div>
-            <div class="kartu-polaroid polaroid-1" style="z-index: 2;"><img src="gambar-pembuka2.png" alt="Momen Indah 2"></div>
-            <div class="kartu-polaroid polaroid-2" style="z-index: 1;"><img src="gambar-pembuka3.png" alt="Momen Indah 3"></div>
+            <div class="kartu-polaroid polaroid-1"><img src="gambar-pembuka1.png" alt="Momen Indah 1"></div>
+            <div class="kartu-polaroid polaroid-2"><img src="gambar-pembuka2.png" alt="Momen Indah 2"></div>
+            <div class="kartu-polaroid polaroid-3"><img src="gambar-pembuka3.png" alt="Momen Indah 3"></div>
         </div>
     </section>
     
-    <!-- GALERI -->
     <section id="galeri">
         <div class="container-galeri-transparan anim-item zoom-in">
             <div class="galeri-susunan-indie">
@@ -953,13 +375,12 @@
                 <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="gambar-galeri3.png" alt="Dokumentasi 3"></div>
                 <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="gambar-galeri4.png" alt="Dokumentasi 4"></div>
             </div>
-            <div class="wrapper-video-premium anim-item zoom-out" onclick="bukaLightbox('video', this)">
-                <video id="videoMomen" autoplay muted playsinline loop preload="auto"><source src="video-galeri.mp4" type="video/mp4"></video>
+            <div class="wrapper-video-premium anim-item zoom-out">
+                <iframe id="videoMomen" src="https://www.youtube.com/embed/Ge8Wd5dGkxk?autoplay=1&mute=1&enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </section>
 
-    <!-- COUNTDOWN -->
     <section id="countdown">
         <div class="relatif-penuh">
             <img src="item-kalender.png" alt="Save The Date" class="el-save-date anim-item from-top">
@@ -977,7 +398,6 @@
         </div>
     </section>
 
-    <!-- ACARA & LOKASI -->
     <section id="acara">
         <div class="relatif-penuh">
             <img src="item-lokasi1.png" alt="Teks Akad Nikah" class="el-akad anim-item from-top">
@@ -992,7 +412,6 @@
         </div>
     </section>
 
-    <!-- SECTION RSVP -->
     <section id="rsvp">
         <div class="box-doff-mewah anim-item zoom-in">
             <div class="luxury-header-wrapper">
@@ -1010,7 +429,7 @@
                 </div>
 
                 <div style="text-align: left; width: 100%;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;">
                         <label class="opsi-kehadiran-box">
                             <input type="radio" name="rsvp-status-radio" value="Hadir" required>
                             <div class="kartu-pilihan">BERKENAN HADIR</div>
@@ -1022,7 +441,7 @@
                     </div>
                 </div>
 
-                <div class="wrapper-input-ketik" id="wrap-rsvp-ucapan" style="min-height: 80px;" onclick="bukaKeyboard('rsvp-ucapan')">
+                <div class="wrapper-input-ketik" id="wrap-rsvp-ucapan" style="min-height: 70px;" onclick="bukaKeyboard('rsvp-ucapan')">
                     <span class="v-input-text-render" id="render-rsvp-ucapan"></span>
                     <span class="kursor-ketik-fake"></span>
                     <span class="v-input-placeholder" id="placeholder-rsvp-ucapan">Tuliskan ucapan & doa restu...</span>
@@ -1035,7 +454,7 @@
             <div class="wrapper-daftar-ucapan">
                 <div class="judul-daftar-ucapan">
                     <span>Doa Restu Tamu</span>
-                    <span style="font-size: 0.68rem; font-family: 'Montserrat'; font-weight: 600; color: #705321;" id="totalUcapan">0 Ucapan</span>
+                    <span style="font-size: 0.65rem; font-family: 'Montserrat'; font-weight: 600; color: #705321;" id="totalUcapan">0 Ucapan</span>
                 </div>
                 <div class="kotak-list-ucapan" id="listUcapanKontainer">
                     <div class="status-kosong">Memuat ucapan doa restu...</div>
@@ -1044,45 +463,33 @@
         </div>
     </section>
 
-    <!-- SECTION DIGITAL GIFT -->
     <section id="gift">
         <div class="box-doff-mewah anim-item zoom-in">
             <div class="luxury-header-wrapper">
                 <h2 class="luxury-title">Tanda Kasih</h2>
                 <div class="gold-divider-line"></div>
-                <p class="rsvp-desc">
-                    Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih secara digital, dapat melalui:
-                </p>
+                <p class="rsvp-desc">Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih secara digital, dapat melalui:</p>
             </div>
 
             <div class="gift-wrapper-mewah">
-                <!-- BCA -->
                 <div class="kartu-rekening-mewah">
-                    <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="Bank BCA" class="logo-bank-mewah">
-                    </div>
+                    <div class="baris-bank-top"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="Bank BCA" class="logo-bank-mewah"></div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-bca">1234567890</div>
                     <div class="nama-rekening-mewah">a.n. Mahesa / Erika</div>
                     <button class="btn-salin-mewah" onclick="salinRekening('rek-bca', this)">Salin Nomor</button>
                 </div>
 
-                <!-- MANDIRI -->
                 <div class="kartu-rekening-mewah">
-                    <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Bank Mandiri" class="logo-bank-mewah">
-                    </div>
+                    <div class="baris-bank-top"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Bank Mandiri" class="logo-bank-mewah"></div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-mandiri">9876543210123</div>
                     <div class="nama-rekening-mewah">a.n. Erika Permata</div>
                     <button class="btn-salin-mewah" onclick="salinRekening('rek-mandiri', this)">Salin Nomor</button>
                 </div>
 
-                <!-- BRI -->
                 <div class="kartu-rekening-mewah">
-                    <div class="baris-bank-top">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="logo-bank-mewah">
-                    </div>
+                    <div class="baris-bank-top"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="logo-bank-mewah"></div>
                     <span class="label-no-rek">Nomor Rekening</span>
                     <div class="angka-rekening-mewah" id="rek-bri">001122334455667</div>
                     <div class="nama-rekening-mewah">a.n. Mahesa Putra</div>
@@ -1092,7 +499,6 @@
         </div>
     </section>
 
-    <!-- VIRTUAL KEYBOARD -->
     <div id="virtual-keyboard" class="custom-keyboard">
         <div class="key-header-done">
             <span class="key-header-title">Papan Ketik</span>
@@ -1122,7 +528,7 @@
             <button type="button" class="key-btn letter-key" onclick="tekanKey('o')"><span class="char-lower">o</span><span class="char-upper">O</span></button>
             <button type="button" class="key-btn letter-key" onclick="tekanKey('p')"><span class="char-lower">p</span><span class="char-upper">P</span></button>
         </div>
-        <div class="keyboard-row" style="padding: 0 10px;">
+        <div class="keyboard-row" style="padding: 0 8px;">
             <button type="button" class="key-btn letter-key" onclick="tekanKey('a')"><span class="char-lower">a</span><span class="char-upper">A</span></button>
             <button type="button" class="key-btn letter-key" onclick="tekanKey('s')"><span class="char-lower">s</span><span class="char-upper">S</span></button>
             <button type="button" class="key-btn letter-key" onclick="tekanKey('d')"><span class="char-lower">d</span><span class="char-upper">D</span></button>
@@ -1152,7 +558,6 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAV -->
     <nav id="navigation-bar" class="bottom-nav">
         <div onclick="pindahKeSection('pembuka1')" class="nav-item"><img src="navigasi1.png" alt="Mempelai"><div class="nav-label">Mempelai</div></div>
         <div onclick="pindahKeSection('galeri')" class="nav-item"><img src="navigasi2.png" alt="Galeri"><div class="nav-label">Galeri</div></div>
@@ -1162,131 +567,71 @@
         <div onclick="pindahKeSection('gift')" class="nav-item"><img src="navigasi6.png" alt="Gift"><div class="nav-label">Gift</div></div>
     </nav>
 
-    <!-- SCRIPT UTAMA -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyKOzjMfESdNQ3XXq8uZYW4RwPiGvIy9vACHIbeCvsKAyIXeH-IJVhTNTHhT11BtZOa/exec';
-        let dataUcapanLokal = [];
-        let inputTargetAktif = null;
+        let dataUcapanLokal = [], inputTargetAktif = null, shiftMode = 0, lastShiftClickTime = 0;
 
-        /* SHIFT MECHANISM STATE: 0 = OFF, 1 = ONCE (KAPITAL AWAL), 2 = LOCK (KAPITAL ONLY) */
-        let shiftMode = 0;
-        let lastShiftClickTime = 0;
+        const preloader = document.getElementById('preloader'),
+              loaderProgress = document.getElementById('loader-progress'),
+              customModal = document.getElementById('customModal'),
+              modalIcon = document.getElementById('modalIcon'),
+              modalTitle = document.getElementById('modalTitle'),
+              modalMessage = document.getElementById('modalMessage'),
+              music = document.getElementById('bg-music'),
+              musicBtn = document.getElementById('music-btn'),
+              iconUnmute = document.getElementById('icon-unmute'),
+              iconMute = document.getElementById('icon-mute'),
+              kbContainer = document.getElementById('virtual-keyboard'),
+              navBar = document.getElementById('navigation-bar'),
+              rsvpForm = document.getElementById('rsvp-form'),
+              listUcapanKontainer = document.getElementById('listUcapanKontainer'),
+              btnKirim = document.getElementById('btn-kirim-rsvp'),
+              totalUcapanElem = document.getElementById('totalUcapan');
 
-        /* CACHING DOM */
-        const preloader = document.getElementById('preloader');
-        const loaderProgress = document.getElementById('loader-progress');
-        const customModal = document.getElementById('customModal');
-        const modalIcon = document.getElementById('modalIcon');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalMessage = document.getElementById('modalMessage');
-        const music = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-        const iconUnmute = document.getElementById('icon-unmute');
-        const iconMute = document.getElementById('icon-mute');
-        const kbContainer = document.getElementById('virtual-keyboard');
-        const navBar = document.getElementById('navigation-bar');
-        const rsvpForm = document.getElementById('rsvp-form');
-        const listUcapanKontainer = document.getElementById('listUcapanKontainer');
-        const btnKirim = document.getElementById('btn-kirim-rsvp');
-        const totalUcapanElem = document.getElementById('totalUcapan');
-
-        /* DAFTAR LENGKAP SEMUA ASET LOKAL LENGKAP */
         const daftarAsetGambar = [
-            'cover.png', 'foto-cover.png',
-            'bg-pembuka1.png', 'kalimatpembuka1.png', 'itempembuka12.png', 'kalimatpembuka12.png', 'pengantinpria.png', 'itempembuka1_1.png',
-            'bg-pembuka2.png', 'pengantinwanita.png', 'gambar-pembuka1.png', 'gambar-pembuka2.png', 'gambar-pembuka3.png',
-            'bg-galeri.png', 'gambar-galeri1.png', 'gambar-galeri2.png', 'gambar-galeri3.png', 'gambar-galeri4.png',
-            'countdown-kalender.png', 'item-kalender.png', 'kalender.png', 'item-kalender2.png',
-            'lokasi-jam.png', 'item-lokasi1.png', 'item-lokasi2.png', 'item-lokasi3.png', 'item-lokasi4.png', 'item-lokasi5.png', 'item-lokasi6.png',
-            'bg-kehadiran.png', 'bg-gift.png',
-            'navigasi1.png', 'navigasi2.png', 'navigasi3.png', 'navigasi4.png', 'navigasi5.png', 'navigasi6.png'
+            'cover.png', 'foto-cover.png', 'bg-pembuka1.png', 'kalimatpembuka1.png', 'itempembuka12.png', 
+            'kalimatpembuka12.png', 'pengantinpria.png', 'itempembuka1_1.png', 'bg-pembuka2.png', 'pengantinwanita.png', 
+            'gambar-pembuka1.png', 'gambar-pembuka2.png', 'gambar-pembuka3.png', 'bg-galeri.png', 'gambar-galeri1.png', 
+            'gambar-galeri2.png', 'gambar-galeri3.png', 'gambar-galeri4.png', 'countdown-kalender.png', 'item-kalender.png', 
+            'kalender.png', 'item-kalender2.png', 'lokasi-jam.png', 'item-lokasi1.png', 'item-lokasi2.png', 'item-lokasi3.png', 
+            'item-lokasi4.png', 'item-lokasi5.png', 'item-lokasi6.png', 'bg-kehadiran.png', 'bg-gift.png', 'navigasi1.png', 
+            'navigasi2.png', 'navigasi3.png', 'navigasi4.png', 'navigasi5.png', 'navigasi6.png'
         ];
 
-        let asetSelesai = 0;
-        let windowLoaded = false;
-        const totalAset = daftarAsetGambar.length + 2; // Total Aset Gambar + Audio + Video
-        let currentPercent = 0;
-        let targetPercent = 0;
-
-        function updateProgressCounter() {
-            if (currentPercent < targetPercent) {
-                currentPercent++;
-                if (loaderProgress) loaderProgress.innerText = `Memuat elemen... ${currentPercent}%`;
-            }
-            
-            if (currentPercent < 100) {
-                requestAnimationFrame(updateProgressCounter);
-            } else if (currentPercent >= 100 && windowLoaded) {
-                setTimeout(() => {
-                    if (preloader) preloader.classList.add('selesai');
-                }, 400);
-            }
-        }
+        let asetSelesai = 0, totalAset = daftarAsetGambar.length;
 
         function hitungKemajuan() {
             asetSelesai++;
-            targetPercent = Math.min(Math.round((asetSelesai / totalAset) * 100), 100);
-            updateProgressCounter();
+            let pct = Math.min(Math.round((asetSelesai / totalAset) * 100), 100);
+            if (loaderProgress) loaderProgress.innerText = `Memuat elemen... ${pct}%`;
+            if (pct >= 100) {
+                setTimeout(() => { if (preloader) preloader.classList.add('selesai'); }, 300);
+            }
         }
 
-        /* 1. PRELOADER GAMBAR SIMULTAN */
         daftarAsetGambar.forEach(src => {
             const img = new Image();
-            img.onload = hitungKemajuan;
-            img.onerror = hitungKemajuan;
+            img.onload = img.onerror = hitungKemajuan;
             img.src = src;
         });
 
-        /* 2. PRELOADER AUDIO */
-        if (music) {
-            music.oncanplaythrough = hitungKemajuan;
-            music.onerror = hitungKemajuan;
-            music.load();
-        } else {
-            hitungKemajuan();
-        }
-
-        /* 3. PRELOADER VIDEO GALERI */
-        const vidMomen = document.getElementById('videoMomen');
-        if (vidMomen) {
-            vidMomen.oncanplaythrough = hitungKemajuan;
-            vidMomen.onerror = hitungKemajuan;
-            vidMomen.load();
-        } else {
-            hitungKemajuan();
-        }
-
         window.addEventListener('load', () => {
-            windowLoaded = true;
-            if (targetPercent >= 100 && currentPercent >= 100) {
-                setTimeout(() => {
-                    if (preloader) preloader.classList.add('selesai');
-                }, 400);
-            }
             parseNamaTamu();
             muatUcapan();
         });
 
-        const escapeHTML = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const escapeHTML = str => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
         function tampilkanModal(tipe, judul, pesan) {
             modalTitle.innerText = judul;
             modalMessage.innerText = pesan;
-            if (tipe === 'sukses') {
-                modalIcon.className = "modal-icon-wrapper sukses";
-                modalIcon.innerText = "✓";
-            } else {
-                modalIcon.className = "modal-icon-wrapper peringatan";
-                modalIcon.innerText = "!";
-            }
+            modalIcon.className = `modal-icon-wrapper ${tipe === 'sukses' ? 'sukses' : 'peringatan'}`;
+            modalIcon.innerText = tipe === 'sukses' ? '✓' : '!';
             customModal.classList.add('aktif');
         }
 
-        function tutupModal() {
-            customModal.classList.remove('aktif');
-        }
+        function tutupModal() { customModal.classList.remove('aktif'); }
 
-        /* MUSIC LOGIC */
         function toggleMusic() {
             if (music.paused) {
                 music.play().catch(() => {});
@@ -1309,107 +654,91 @@
             iconMute.style.display = 'none';
         }
 
-        /* OPEN INVITATION COVER */
         function bukaUndangan() {
             document.getElementById('cover').classList.add('fade-out');
-            document.body.classList.add('undangan-terbuka');
             navBar.classList.add('aktif');
             inisialisasiScrollAnimation();
         }
 
-        /* PARSE NAMA TAMU DARI URL */
         function parseNamaTamu() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const nama = urlParams.get('to');
+            const nama = new URLSearchParams(window.location.search).get('to');
             if (nama) {
                 document.getElementById('nama-tamu').innerText = nama;
-                const hiddenNamaInput = document.getElementById('rsvp-nama');
-                const renderNamaSpan = document.getElementById('render-rsvp-nama');
-                const placeholderNamaSpan = document.getElementById('placeholder-rsvp-nama');
-                if (hiddenNamaInput && renderNamaSpan && placeholderNamaSpan) {
-                    hiddenNamaInput.value = nama;
-                    renderNamaSpan.innerText = nama;
-                    placeholderNamaSpan.style.display = 'none';
-                }
+                document.getElementById('rsvp-nama').value = nama;
+                document.getElementById('render-rsvp-nama').innerText = nama;
+                document.getElementById('placeholder-rsvp-nama').style.display = 'none';
             }
         }
 
-        /* NAVIGATION CONTROL */
         function pindahKeSection(id) {
             tutupKeyboard();
             const target = document.getElementById(id);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
         }
 
-        /* SCROLL ANIMATION (INTERSECTION OBSERVER) */
         function inisialisasiScrollAnimation() {
-            const items = document.querySelectorAll('.anim-item');
-            const observerOptions = { threshold: 0.12, rootMargin: "0px 0px -40px 0px" };
-            
-            const observer = new IntersectionObserver((entries) => {
+            const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('item-muncul');
-                    }
+                    entry.target.classList.toggle('item-muncul', entry.isIntersecting);
                 });
-            }, observerOptions);
+            }, { threshold: 0.05 });
 
-            items.forEach(item => observer.observe(item));
+            document.querySelectorAll('.anim-item').forEach(item => observer.observe(item));
         }
 
-        /* POLAROID INTERACTION */
         const polaroidContainer = document.getElementById('polaroidContainer');
+        let isTransitioning = false;
         if (polaroidContainer) {
             polaroidContainer.addEventListener('click', function() {
-                const polaroids = this.querySelectorAll('.kartu-polaroid');
+                if (isTransitioning) return;
+                const polaroids = Array.from(this.querySelectorAll('.kartu-polaroid'));
                 if (polaroids.length > 0) {
+                    isTransitioning = true;
                     const topPolaroid = polaroids[polaroids.length - 1];
                     topPolaroid.classList.add('slip-away');
+
                     setTimeout(() => {
                         this.prepend(topPolaroid);
                         topPolaroid.classList.remove('slip-away');
-                    }, 500);
+                        const currentCards = Array.from(this.querySelectorAll('.kartu-polaroid'));
+                        const urutanKelas = ['polaroid-1', 'polaroid-2', 'polaroid-3'];
+                        currentCards.forEach((card, idx) => {
+                            card.className = `kartu-polaroid ${urutanKelas[idx] || ''}`;
+                        });
+                        isTransitioning = false;
+                    }, 400);
                 }
             });
         }
 
-        /* LIGHTBOX BOX SYSTEM */
         function bukaLightbox(tipe, elemen) {
-            const lightbox = document.getElementById('lightbox');
-            const imgTarget = document.getElementById('lightboxImg');
-            const videoTarget = document.getElementById('lightboxVideo');
+            const lightbox = document.getElementById('lightbox'),
+                  imgTarget = document.getElementById('lightboxImg'),
+                  videoTarget = document.getElementById('lightboxVideo');
 
             if (tipe === 'image') {
-                const src = elemen.querySelector('img').src;
-                imgTarget.src = src;
+                imgTarget.src = elemen.querySelector('img').src;
                 imgTarget.style.display = 'block';
                 videoTarget.style.display = 'none';
-            } else if (tipe === 'video') {
-                const src = elemen.querySelector('video source').src;
-                videoTarget.src = src;
+                videoTarget.src = "";
+            } else {
+                videoTarget.src = "https://www.youtube.com/embed/Ge8Wd5dGkxk?autoplay=1";
                 videoTarget.style.display = 'block';
                 imgTarget.style.display = 'none';
-                videoTarget.play().catch(() => {});
             }
             lightbox.classList.add('aktif');
         }
 
         function tutupLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            document.getElementById('lightboxVideo').pause();
-            lightbox.classList.remove('aktif');
+            document.getElementById('lightboxVideo').src = "";
+            document.getElementById('lightbox').classList.remove('aktif');
         }
 
-        /* VIRTUAL KEYBOARD CORE LOGIC */
         function bukaKeyboard(inputId) {
             inputTargetAktif = inputId;
             document.querySelectorAll('.wrapper-input-ketik').forEach(el => el.classList.remove('aktif-ketik'));
             document.getElementById(`wrap-${inputId}`).classList.add('aktif-ketik');
             kbContainer.classList.add('buka');
-            
-            // Default: Shift aktif sekali untuk karakter awal
             shiftMode = 1;
             updateShiftUI();
         }
@@ -1420,31 +749,16 @@
             kbContainer.classList.remove('buka');
         }
 
-        /* MEKANISME SHIFT DUA MODE (SEKALI = KAPITAL AWAL, DUA KALI = LOCK) */
         function handleShiftClick() {
-            const currentTime = new Date().getTime();
-            const timeDiff = currentTime - lastShiftClickTime;
-
-            if (timeDiff < 300) {
-                // Double tap -> Shift Lock Mode (Kapital Penuh)
-                shiftMode = 2;
-            } else {
-                // Single tap -> Toggle antara Mode 1 (Sekali) dan Mode 0 (Mati)
-                if (shiftMode === 0) {
-                    shiftMode = 1;
-                } else {
-                    shiftMode = 0;
-                }
-            }
-
-            lastShiftClickTime = currentTime;
+            const now = Date.now();
+            shiftMode = (now - lastShiftClickTime < 300) ? 2 : (shiftMode === 0 ? 1 : 0);
+            lastShiftClickTime = now;
             updateShiftUI();
         }
 
         function updateShiftUI() {
             const shiftBtn = document.getElementById('shift-btn');
             kbContainer.classList.remove('caps', 'caps-once', 'caps-lock');
-
             if (shiftMode === 1) {
                 kbContainer.classList.add('caps', 'caps-once');
                 shiftBtn.innerText = '⇧';
@@ -1459,128 +773,79 @@
         function tekanKey(nilai) {
             if (!inputTargetAktif) return;
 
-            const hiddenInput = document.getElementById(inputTargetAktif);
-            const renderSpan = document.getElementById(`render-${inputTargetAktif}`);
-            const placeholderSpan = document.getElementById(`placeholder-${inputTargetAktif}`);
+            const hiddenInput = document.getElementById(inputTargetAktif),
+                  renderSpan = document.getElementById(`render-${inputTargetAktif}`),
+                  placeholderSpan = document.getElementById(`placeholder-${inputTargetAktif}`);
             
             let textSekarang = hiddenInput.value;
 
             if (nilai === 'BACKSPACE') {
                 textSekarang = textSekarang.slice(0, -1);
             } else if (nilai === 'ENTER') {
-                if (inputTargetAktif === 'rsvp-nama') {
-                    bukaKeyboard('rsvp-ucapan');
-                    return;
-                } else {
-                    tutupKeyboard();
-                    return;
-                }
+                if (inputTargetAktif === 'rsvp-nama') bukaKeyboard('rsvp-ucapan');
+                else tutupKeyboard();
+                return;
             } else {
                 let charToAppend = nilai;
-                if (nilai.length === 1 && nilai.match(/[a-z]/i)) {
-                    if (shiftMode > 0) {
-                        charToAppend = nilai.toUpperCase();
-                    } else {
-                        charToAppend = nilai.toLowerCase();
-                    }
-
-                    // Jika dalam mode Shift Sekali (Mode 1), kembalikan ke Mode Off (Mode 0) setelah 1 karakter
-                    if (shiftMode === 1) {
-                        shiftMode = 0;
-                        updateShiftUI();
-                    }
+                if (nilai.length === 1 && /[a-z]/i.test(nilai)) {
+                    charToAppend = shiftMode > 0 ? nilai.toUpperCase() : nilai.toLowerCase();
+                    if (shiftMode === 1) { shiftMode = 0; updateShiftUI(); }
                 }
                 textSekarang += charToAppend;
             }
 
             hiddenInput.value = textSekarang;
             renderSpan.innerText = textSekarang;
-
-            if (textSekarang.length > 0) {
-                placeholderSpan.style.display = 'none';
-            } else {
-                placeholderSpan.style.display = 'inline';
-            }
+            placeholderSpan.style.display = textSekarang.length > 0 ? 'none' : 'inline';
         }
 
-        /* COUNTDOWN TIMER */
         const tanggalPernikahan = new Date('2026-07-01T08:00:00').getTime();
-
         function perbaruiHitungMundur() {
-            const sekarang = new Date().getTime();
-            const selisih = tanggalPernikahan - sekarang;
-
+            const selisih = tanggalPernikahan - Date.now();
             if (selisih > 0) {
-                const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
-                const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-                const detik = Math.floor((selisih % (1000 * 60)) / 1000);
-
-                document.getElementById('hari').innerText = String(hari).padStart(2, '0');
-                document.getElementById('jam').innerText = String(jam).padStart(2, '0');
-                document.getElementById('menit').innerText = String(menit).padStart(2, '0');
-                document.getElementById('detik').innerText = String(detik).padStart(2, '0');
-            } else {
-                document.getElementById('hari').innerText = '00';
-                document.getElementById('jam').innerText = '00';
-                document.getElementById('menit').innerText = '00';
-                document.getElementById('detik').innerText = '00';
+                document.getElementById('hari').innerText = String(Math.floor(selisih / 86400000)).padStart(2, '0');
+                document.getElementById('jam').innerText = String(Math.floor((selisih % 86400000) / 3600000)).padStart(2, '0');
+                document.getElementById('menit').innerText = String(Math.floor((selisih % 3600000) / 60000)).padStart(2, '0');
+                document.getElementById('detik').innerText = String(Math.floor((selisih % 60000) / 1000)).padStart(2, '0');
             }
         }
         setInterval(perbaruiHitungMundur, 1000);
         perbaruiHitungMundur();
 
-        /* COPY REKENING */
         function salinRekening(elementId, btnElement) {
-            const textToCopy = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
+            navigator.clipboard.writeText(document.getElementById(elementId).innerText).then(() => {
                 const textAwal = btnElement.innerText;
                 btnElement.innerText = 'TERSALIN!';
                 btnElement.style.background = '#2a2215';
                 setTimeout(() => {
                     btnElement.innerText = textAwal;
-                    btnElement.style.background = 'linear-gradient(135deg, #b88e4c 0%, #705321 100%)';
+                    btnElement.style.background = 'linear-gradient(135deg, #b88e4c, #705321)';
                 }, 2000);
-            }).catch(() => {
-                tampilkanModal('peringatan', 'Gagal', 'Gagal menyalin nomor rekening.');
-            });
+            }).catch(() => tampilkanModal('peringatan', 'Gagal', 'Gagal menyalin nomor rekening.'));
         }
 
-        /* INTEGRASI GOOGLE SHEETS (RSVP & UCAPAN) */
         function muatUcapan() {
             fetch(scriptURL)
-                .then(response => response.json())
-                .then(data => {
-                    dataUcapanLokal = data;
-                    tampilkanDaftarUcapan(data);
-                })
-                .catch(() => {
-                    listUcapanKontainer.innerHTML = '<div class="status-kosong">Gagal memuat ucapan doa restu.</div>';
-                });
+                .then(r => r.json())
+                .then(data => { dataUcapanLokal = data; tampilkanDaftarUcapan(data); })
+                .catch(() => listUcapanKontainer.innerHTML = '<div class="status-kosong">Gagal memuat ucapan.</div>');
         }
 
         function tampilkanDaftarUcapan(data) {
             if (!data || data.length === 0) {
-                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan doa restu. Jadi yang pertama memberikan ucapan!</div>';
+                listUcapanKontainer.innerHTML = '<div class="status-kosong">Belum ada ucapan doa restu.</div>';
                 totalUcapanElem.innerText = '0 Ucapan';
                 return;
             }
-
             totalUcapanElem.innerText = `${data.length} Ucapan`;
             listUcapanKontainer.innerHTML = '';
-
-            // Tampilkan dari yang paling baru
             data.slice().reverse().forEach(item => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'item-kartu-ucapan';
-
-                const statusClass = item.status === 'Hadir' ? 'hadir' : 'tidak-hadir';
-                const statusText = item.status === 'Hadir' ? 'Hadir' : 'Berhalangan';
-
                 itemDiv.innerHTML = `
                     <div class="baris-nama-ucapan">
                         <span class="nama-pengirim">${escapeHTML(item.nama)}</span>
-                        <span class="badge-status ${statusClass}">${statusText}</span>
+                        <span class="badge-status ${item.status === 'Hadir' ? 'hadir' : 'tidak-hadir'}">${item.status === 'Hadir' ? 'Hadir' : 'Berhalangan'}</span>
                     </div>
                     <div class="teks-pesan-ucapan">${escapeHTML(item.ucapan)}</div>
                 `;
@@ -1588,27 +853,16 @@
             });
         }
 
-        /* FORM SUBMIT RSVP */
         rsvpForm.addEventListener('submit', e => {
             e.preventDefault();
             tutupKeyboard();
 
-            const namaVal = document.getElementById('rsvp-nama').value.trim();
-            const ucapanVal = document.getElementById('rsvp-ucapan').value.trim();
-            const statusRadio = document.querySelector('input[name="rsvp-status-radio"]:checked');
+            const namaVal = document.getElementById('rsvp-nama').value.trim(),
+                  ucapanVal = document.getElementById('rsvp-ucapan').value.trim(),
+                  statusRadio = document.querySelector('input[name="rsvp-status-radio"]:checked');
 
-            if (!namaVal) {
-                tampilkanModal('peringatan', 'Perhatian', 'Mohon isi nama lengkap Anda.');
-                return;
-            }
-
-            if (!statusRadio) {
-                tampilkanModal('peringatan', 'Perhatian', 'Mohon pilih konfirmasi kehadiran Anda.');
-                return;
-            }
-
-            if (!ucapanVal) {
-                tampilkanModal('peringatan', 'Perhatian', 'Mohon tuliskan ucapan & doa restu Anda.');
+            if (!namaVal || !statusRadio || !ucapanVal) {
+                tampilkanModal('peringatan', 'Perhatian', 'Mohon lengkapi seluruh formulir konfirmasi.');
                 return;
             }
 
@@ -1621,35 +875,28 @@
             formData.append('ucapan', ucapanVal);
 
             fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => response.json())
+                .then(r => r.json())
                 .then(res => {
                     btnKirim.disabled = false;
                     btnKirim.innerText = 'KIRIM KONFIRMASI';
 
                     if (res.result === 'success') {
-                        tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi kehadiran dan doa restu Anda telah berhasil tersimpan.');
-
-                        // Reset Form Input
+                        tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi & doa restu Anda telah tersimpan.');
                         document.getElementById('rsvp-ucapan').value = '';
                         document.getElementById('render-rsvp-ucapan').innerText = '';
                         document.getElementById('placeholder-rsvp-ucapan').style.display = 'inline';
-                        if (statusRadio) statusRadio.checked = false;
+                        statusRadio.checked = false;
 
-                        // Tambahkan secara realtime ke list
-                        dataUcapanLokal.push({
-                            nama: namaVal,
-                            status: statusRadio.value,
-                            ucapan: ucapanVal
-                        });
+                        dataUcapanLokal.push({ nama: namaVal, status: statusRadio.value, ucapan: ucapanVal });
                         tampilkanDaftarUcapan(dataUcapanLokal);
                     } else {
-                        tampilkanModal('peringatan', 'Gagal', 'Gagal menyimpan data. Silakan coba lagi.');
+                        tampilkanModal('peringatan', 'Gagal', 'Gagal menyimpan data.');
                     }
                 })
                 .catch(() => {
                     btnKirim.disabled = false;
                     btnKirim.innerText = 'KIRIM KONFIRMASI';
-                    tampilkanModal('peringatan', 'Kesalahan Sistem', 'Terjadi kesalahan jaringan. Silakan coba beberapa saat lagi.');
+                    tampilkanModal('peringatan', 'Kesalahan', 'Terjadi kesalahan jaringan.');
                 });
         });
     </script>
