@@ -464,7 +464,7 @@
 
     </div>
 
-    <!-- Script Utama (Preloader Aktif dengan Progress Persentase Nyata & LocalStorage Caching) -->
+    <!-- Script Utama -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyKOzjMfESdNQ3XXq8uZYW4RwPiGvIy9vACHIbeCvsKAyIXeH-IJVhTNTHhT11BtZOa/exec';
         let dataUcapanLokal = [];
@@ -476,16 +476,20 @@
               iconUnmute = el('icon-unmute'), iconMute = el('icon-mute'),
               navBar = el('navigation-bar'), rsvpForm = el('rsvp-form'), listUcapanKontainer = el('listUcapanKontainer');
 
-        // Menggabungkan seluruh aset penting agar preloader benar-benar memuat semuanya sebelum dibuka
-        const daftarAset = [
+        // Aset dari Section Cover sampai Galeri (Wajib termuat penuh sebelum preloader selesai)
+        const asetUtama = [
             'background.png', 'cover-foto.png', 'pengantinpria.png', 'pengantinwanita.png',
             'cover-item-1.png', 'cover-item-2.png', 'pembuka-item-1.png', 'pembuka-item-2.png', 
             'pembuka-item-3.png', 'pembuka-item-4.png', 'pembuka-item-5.png', 'pembuka-item-6.png', 
             'pembuka-item-7.png', 'pembuka-item-8.png', 'galeri-item-1.png', 'galeri-polaroid-1.png', 
             'galeri-polaroid-2.png', 'galeri-polaroid-3.png', 'galeri-gambar-1.png', 'galeri-gambar-2.png', 
-            'galeri-gambar-3.png', 'galeri-gambar-4.png', 'kalender-item-1.png', 'kalender-item-2.png', 
-            'kalender-item-3.png', 'kalender-item-4.png', 'kalender-item-5.png', 'lokasi-item-1.png', 
-            'lokasi-item-2.png', 'lokasi-item-3.png', 'lokasi-item-4.png', 'lokasi-item-5.png', 
+            'galeri-gambar-3.png', 'galeri-gambar-4.png'
+        ];
+
+        // Aset section bawah (Acara, Lokasi, Countdown, Gift, Navigasi) dimuat santai di background
+        const asetPendukung = [
+            'kalender-item-1.png', 'kalender-item-2.png', 'kalender-item-3.png', 'kalender-item-4.png', 'kalender-item-5.png', 
+            'lokasi-item-1.png', 'lokasi-item-2.png', 'lokasi-item-3.png', 'lokasi-item-4.png', 'lokasi-item-5.png', 
             'lokasi-item-6.png', 'lokasi-item-7.png', 'navigasi1.png', 'navigasi2.png', 'navigasi3.png', 
             'navigasi4.png', 'navigasi5.png', 'navigasi6.png'
         ];
@@ -497,44 +501,37 @@
             preloaderSelesai = true;
             if (loaderProgress) loaderProgress.innerText = 'Siap!';
             setTimeout(() => preloader.classList.add('selesai'), 300);
+            
+            const loadBgAssets = () => { asetPendukung.forEach(src => { new Image().src = src; }); };
+            if ('requestIdleCallback' in window) { requestIdleCallback(loadBgAssets); } else { setTimeout(loadBgAssets, 300); }
         }
 
-        // Pengaman waktu maksimal 4 detik agar preloader tidak tersendat jika ada kendala jaringan
-        const safetyTimeout = setTimeout(matikanPreloader, 4000);
+        // Sistem Preloader Real-Time Tracking (Cover s.d Galeri)
+        let loadedCount = 0;
+        const totalAssets = asetUtama.length;
 
-        // Sistem Preloader Berjalan dengan Penghitung Persentase Real-Time
-        let dimuatCount = 0;
-        const totalAset = daftarAset.length;
-
-        function muatSemuaAset() {
-            if (totalAset === 0) {
-                clearTimeout(safetyTimeout);
+        function hitungProsesMuat() {
+            loadedCount++;
+            const percent = Math.floor((loadedCount / totalAssets) * 100);
+            if (loaderProgress) loaderProgress.innerText = `Memuat undangan... ${percent}%`;
+            if (loadedCount >= totalAssets) {
                 matikanPreloader();
-                return;
             }
-
-            daftarAset.forEach(src => {
-                const img = new Image();
-                const selesaiSatu = () => {
-                    dimuatCount++;
-                    const persen = Math.round((dimuatCount / totalAset) * 100);
-                    if (loaderProgress && !preloaderSelesai) {
-                        loaderProgress.innerText = `Memuat undangan... ${persen}%`;
-                    }
-                    if (dimuatCount >= totalAset) {
-                        clearTimeout(safetyTimeout);
-                        matikanPreloader();
-                    }
-                };
-                img.onload = selesaiSatu;
-                img.onerror = selesaiSatu; // Tetap lanjut walau satu file gagal
-                img.src = src;
-            });
         }
 
-        muatSemuaAset();
+        // Eksekusi pemuatan aset utama dengan timeout pengaman (maksimal 3.5 detik jika ada kendala jaringan)
+        const safetyTimeout = setTimeout(matikanPreloader, 3500);
 
-        // Memuat Ucapan via LocalStorage Caching untuk Kecepatan Instan
+        asetUtama.forEach(src => {
+            const img = new Image();
+            img.onload = img.onerror = () => {
+                clearTimeout(safetyTimeout);
+                hitungProsesMuat();
+            };
+            img.src = src;
+        });
+
+        // Memuat ucapan dengan LocalStorage Caching agar instan
         function muatDataUcapan() {
             const cachedData = localStorage.getItem('didan_elga_ucapan_cache');
             if (cachedData) {
@@ -554,9 +551,7 @@
                     }
                 })
                 .catch(() => {
-                    if (!cachedData) {
-                        tampilkanDaftarUcapan([]);
-                    }
+                    if (!cachedData) tampilkanDaftarUcapan([]);
                 });
         }
 
@@ -713,7 +708,6 @@
             }
 
             tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi & doa restu Anda telah tersimpan.');
-            
             dataUcapanLokal.push({ nama: namaVal, status: statusRadio.value, ucapan: ucapanVal });
             localStorage.setItem('didan_elga_ucapan_cache', JSON.stringify(dataUcapanLokal));
             tampilkanDaftarUcapan(dataUcapanLokal);
