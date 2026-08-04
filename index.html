@@ -56,11 +56,11 @@
         .bg-cover-img, .section-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 0; pointer-events: none; }
         .section-bg { object-fit: cover; }
 
-        .konten-kanvas-absolut { position: absolute; top: 4%; bottom: 4%; left: 4%; right: 4%; display: flex; flex-direction: column; align-items: center; justify-content: stretch; z-index: 10; }
+        .konten-kanvas-absolut { position: absolute; top: 4%; bottom: 4%; left: 4%; right: 4%; display: flex; flex-direction: column; align-items: center; justify-content: stretch; z-index: 10; overflow: visible !important; }
         #gift .konten-kanvas-absolut { justify-content: center !important; }
         #gift .box-doff-mewah { height: auto !important; }
 
-        .box-doff-mewah, .container-galeri-transparan { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .box-doff-mewah, .container-galeri-transparan { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; overflow: visible !important; }
         .box-doff-mewah { background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 16px 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%; display: flex; flex-direction: column; gap: 10px; }
         .container-galeri-transparan { background: rgba(255, 255, 255, 0.88); border-radius: 20px; padding: 8px 8px; gap: 5px; width: 90%; max-width: 330px; margin: 0 auto; }
 
@@ -75,7 +75,7 @@
         .box-krem-tulisan { width: 100%; background-color: rgba(255, 255, 255, 0.95); padding: 20px 16px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .tombol-buka-khusus { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 12px 30px; border-radius: 25px; border: none; cursor: pointer; letter-spacing: 1.5px; }
         
-        .galeri-susunan-indie { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; }
+        .galeri-susunan-indie { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%; overflow: visible !important; }
         .bingkai-foto-premium { width: 100%; background: #fff; border-radius: 10px; overflow: hidden; cursor: pointer; }
         .bingkai-foto-premium img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
         .wrapper-video-premium { width: 100%; border-radius: 10px; overflow: hidden; background: #fff; position: relative; aspect-ratio: 16 / 9; }
@@ -94,7 +94,7 @@
         .opsi-kehadiran-box input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
         .kartu-pilihan { background: #ffffff; padding: 9px 6px; border-radius: 8px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: #594931; border: 1.5px solid #d4be94; width: 100%; }
         .opsi-kehadiran-box input[type="radio"]:checked + .kartu-pilihan { background: linear-gradient(135deg, #b88e4c, #705321) !important; color: #fff !important; border-color: #705321 !important; }
-        .form-rsvp-wrapper { width: 100%; display: flex; flex-direction: column; gap: 7px; }
+        .form-rsvp-wrapper { width: 100%; display: flex; flex-direction: column; gap: 7px; overflow: visible !important; }
 
         .wrapper-daftar-ucapan { width: 100%; flex: 1; display: flex; flex-direction: column; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #d4be94; border-radius: 12px; padding: 8px; min-height: 0; }
         .judul-daftar-ucapan { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 700; color: #2a2215; margin-bottom: 4px; text-align: left; }
@@ -109,7 +109,7 @@
         .badge-status.tidak-hadir { background: #fbebeb; color: #823232; }
         .teks-pesan-ucapan { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: #4a3e2c; line-height: 1.3; white-space: pre-wrap; text-align: left; }
 
-        .gift-wrapper-mewah { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+        .gift-wrapper-mewah { width: 100%; display: flex; flex-direction: column; gap: 6px; overflow: visible !important; }
         .kartu-rekening-mewah { background: linear-gradient(135deg, #ffffff 0%, #fff7e4 100%); border: 1.5px solid #d4be94; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; width: 100%; box-shadow: 0 4px 10px rgba(184, 142, 76, 0.05); gap: 2px; }
         .baris-bank-top { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
         .logo-bank-mewah { height: 16px; max-width: 75px; object-fit: contain; }
@@ -126,14 +126,14 @@
         button[type="submit"] { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; padding: 9px; border: none; border-radius: 10px; font-weight: 700; font-size: 0.68rem; cursor: pointer; width: 100%; font-family: 'Montserrat', sans-serif; }
 
         .foto-konten-cover { position: absolute; top: 15.5%; left: 48%; transform: translateX(-50%); width: 115%; height: auto; object-fit: contain; z-index: 2; }
-        .wrapper-countdown-premium { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .wrapper-countdown-premium { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 8px; overflow: visible !important; }
         .hitung-mudur-box { display: flex; justify-content: space-around; align-items: center; width: 100%; background: rgba(255, 255, 255, 0.92); border-radius: 12px; padding: 8px 4px; }
         .waktu-blok { display: flex; flex-direction: column; align-items: center; min-width: 38px; }
         .angka-waktu { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 4vw, 1.45rem); font-weight: 700; color: #705321; line-height: 1; }
         .label-waktu { font-family: 'Montserrat', sans-serif; font-size: 0.48rem; text-transform: uppercase; color: #827258; margin-top: 1px; font-weight: 600; }
         .pemisah-titik { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: rgba(112, 83, 33, 0.4); margin-bottom: 4px; }
         .tombol-simpan-mewah, .tombol-lokasi-mewah { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; padding: 8px 18px; border-radius: 20px; text-decoration: none; display: inline-flex; justify-content: center; width: 100%; }
-        .wrapper-lokasi-premium { position: absolute; display: flex; justify-content: center; }
+        .wrapper-lokasi-premium { position: absolute; display: flex; justify-content: center; overflow: visible !important; }
         .item-bebas { position: absolute; object-fit: contain; pointer-events: none; }
 
         .container-mempelai-tengah {
@@ -142,6 +142,7 @@
             border: 1.5px solid #b88e4c; border-radius: 20px 45px 20px 45px; padding: 8px 6px;
             display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 15;
             gap: 0.2em; font-size: calc(14px * var(--skala-mempelai)); max-height: 54%; box-sizing: border-box;
+            overflow: visible !important;
         }
         @media (min-width: 481px) { .container-mempelai-tengah { font-size: calc(16.5px * var(--skala-mempelai)); } }
 
@@ -159,7 +160,7 @@
         .pos-p1-dan { position: absolute; width: var(--size-p1-dan); top: var(--pos-p1-dan); left: 0; right: 0; margin: 0 auto; z-index: 15; }
 
         .pos-p2-mempelai { position: absolute; width: 84%; top: var(--pos-p2-mempelai); left: 0; right: 0; margin: 0 auto; z-index: 15; }
-        .tumpukan-polaroid { position: absolute; width: 40%; top: var(--pos-p2-polaroid); left: 0; right: 0; margin: 0 auto; z-index: 20; cursor: pointer; }
+        .tumpukan-polaroid { position: absolute; width: 40%; top: var(--pos-p2-polaroid); left: 0; right: 0; margin: 0 auto; z-index: 20; cursor: pointer; overflow: visible !important; }
 
         .kartu-polaroid { position: absolute; width: 100%; background: #fff; padding: 6px 6px 22px 6px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, opacity 0.3s ease; }
         .kartu-polaroid img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; pointer-events: none; }
@@ -168,16 +169,16 @@
         .polaroid-3 { transform: translate(0, -4px) rotate(-1deg); z-index: 3; }
         .kartu-polaroid.slip-away { transform: translate(110px, -20px) rotate(20deg) scale(0.9) !important; opacity: 0; }
 
-        /* Animasi Super Ringan Berbasis GPU */
-        .anim-item { opacity: 0; will-change: transform, opacity; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .anim-item.from-top { transform: translateY(-30px); }
-        .anim-item.from-bottom { transform: translateY(30px); }
-        .anim-item.from-left { transform: translateX(-30px); }
-        .anim-item.from-right { transform: translateX(30px); }
-        .anim-item.zoom-in { transform: scale(0.85); }
-        .anim-item.zoom-out { transform: scale(1.15); }
-        .anim-item.rotate-in { transform: translateY(20px) rotate(-5deg); }
-        .anim-item.fade-in { transform: scale(0.95); }
+        /* Animasi Lembut, Halus, dan Diperlambat dengan GPU Acceleration */
+        .anim-item { opacity: 0; will-change: transform, opacity; transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1); }
+        .anim-item.from-top { transform: translateY(-25px); }
+        .anim-item.from-bottom { transform: translateY(25px); }
+        .anim-item.from-left { transform: translateX(-25px); }
+        .anim-item.from-right { transform: translateX(25px); }
+        .anim-item.zoom-in { transform: scale(0.9); }
+        .anim-item.zoom-out { transform: scale(1.1); }
+        .anim-item.rotate-in { transform: translateY(15px) rotate(-4deg); }
+        .anim-item.fade-in { transform: scale(0.97); }
         .anim-item.item-muncul { opacity: 1 !important; transform: translate(0) scale(1) rotate(0deg) !important; }
 
         .notif-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 11, 9, 0.65); z-index: 99999; display: flex; justify-content: center; align-items: flex-start; padding: 16px; transition: opacity 0.3s ease, visibility 0.3s ease; }
@@ -291,11 +292,11 @@
                 <img src="pembuka-item-2.png" alt="Salam Pembuka" loading="lazy" style="width: 100%; height: auto; display: block; mix-blend-mode: multiply;">
             </div>
             <div class="container-mempelai-tengah anim-item from-bottom pos-p1-mempelai" style="z-index: 15;">
-                <div class="bingkai-foto-oval" onclick="bukaLightbox('image', this)"><img src="pengantinpria.png" alt="Didan Erdeansyah Pratama" loading="lazy"></div>
-                <h2 class="nama-mempelai-bio">Didan Erdeansyah P.</h2>
-                <div class="garis-pembatas-bio"></div>
-                <p class="label-putra-putri">Putra Pertama dari Pasangan:</p>
-                <p class="nama-orangtua-bio">Bapak Rahmat Hidayat<br>&amp;<br>Ibu Sri Utami</p>
+                <div class="bingkai-foto-oval anim-item zoom-in" onclick="bukaLightbox('image', this)"><img src="pengantinpria.png" alt="Didan Erdeansyah Pratama" loading="lazy"></div>
+                <h2 class="nama-mempelai-bio anim-item from-top">Didan Erdeansyah P.</h2>
+                <div class="garis-pembatas-bio anim-item zoom-in"></div>
+                <p class="label-putra-putri anim-item fade-in">Putra Pertama dari Pasangan:</p>
+                <p class="nama-orangtua-bio anim-item from-bottom">Bapak Rahmat Hidayat<br>&amp;<br>Ibu Sri Utami</p>
             </div>
             <img src="pembuka-item-4.png" alt="Dan" class="anim-item zoom-out pos-p1-dan" loading="lazy" style="z-index: 15;">
         </section>
@@ -305,11 +306,11 @@
             <img src="galeri-item-1.png" alt="Galeri Item 1" class="item-bebas anim-item fade-in" loading="lazy" style="width: 274%; top: 46%; right: -86%; z-index: 1;">
             <img src="pembuka-item-8.png" alt="Pembuka Item 8" class="item-bebas anim-item zoom-in" loading="lazy" style="width: 152%; top: 38%; left: -26.8%; z-index: 10;">
             <div class="container-mempelai-tengah anim-item from-bottom pos-p2-mempelai" style="z-index: 15;">
-                <div class="bingkai-foto-oval" onclick="bukaLightbox('image', this)"><img src="pengantinwanita.png" alt="Elga Anggunia" loading="lazy"></div>
-                <h2 class="nama-mempelai-bio">Elga Anggunia</h2>
-                <div class="garis-pembatas-bio"></div>
-                <p class="label-putra-putri">Putri Kedua dari Pasangan:</p>
-                <p class="nama-orangtua-bio">Bapak Heri Susanto<br>&amp;<br>Ibu Sri Wahyuni</p>
+                <div class="bingkai-foto-oval anim-item zoom-in" onclick="bukaLightbox('image', this)"><img src="pengantinwanita.png" alt="Elga Anggunia" loading="lazy"></div>
+                <h2 class="nama-mempelai-bio anim-item from-top">Elga Anggunia</h2>
+                <div class="garis-pembatas-bio anim-item zoom-in"></div>
+                <p class="label-putra-putri anim-item fade-in">Putri Kedua dari Pasangan:</p>
+                <p class="nama-orangtua-bio anim-item from-bottom">Bapak Heri Susanto<br>&amp;<br>Ibu Sri Wahyuni</p>
             </div>
             <div class="tumpukan-polaroid anim-item rotate-in" id="polaroidContainer" style="z-index: 20;">
                 <div class="kartu-polaroid polaroid-1"><img src="galeri-polaroid-1.png" alt="Momen 1" loading="lazy"></div>
@@ -329,8 +330,8 @@
                         <div class="bingkai-foto-premium anim-item from-left" onclick="bukaLightbox('image', this)"><img src="galeri-gambar-3.png" alt="Dokumentasi 3" loading="lazy"></div>
                         <div class="bingkai-foto-premium anim-item from-right" onclick="bukaLightbox('image', this)"><img src="galeri-gambar-4.png" alt="Dokumentasi 4" loading="lazy"></div>
                     </div>
-                    <div class="wrapper-video-premium anim-item zoom-out">
-                        <iframe id="videoMomen" src="https://www.youtube.com/embed/Ge8Wd5dGkxk?autoplay=1&amp;mute=1&amp;enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="wrapper-video-premium anim-item zoom-out" id="videoContainerWrapper">
+                        <iframe id="videoMomen" data-src="https://www.youtube.com/embed/Ge8Wd5dGkxk?autoplay=1&amp;mute=1&amp;enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -358,13 +359,13 @@
             <img src="kalender-item-4.png" alt="Kalender 4" class="item-bebas anim-item zoom-in" loading="lazy" style="top: 45.5%; left: 9.5%; width: 82%; z-index: 4;">
             <img src="kalender-item-5.png" alt="Kalender 5" class="item-bebas anim-item zoom-in" loading="lazy" style="top: 31%; left: 20%; width: 60%; z-index: 20;">
             <div class="wrapper-countdown-premium anim-item from-bottom" style="width: 80%; top: 78%; left: 10%; z-index: 25;">
-                <div class="hitung-mudur-box">
+                <div class="hitung-mudur-box anim-item zoom-in">
                     <div class="waktu-blok"><div class="angka-waktu" id="hari">00</div><div class="label-waktu">Hari</div></div><div class="pemisah-titik">:</div>
                     <div class="waktu-blok"><div class="angka-waktu" id="jam">00</div><div class="label-waktu">Jam</div></div><div class="pemisah-titik">:</div>
                     <div class="waktu-blok"><div class="angka-waktu" id="menit">00</div><div class="label-waktu">Menit</div></div><div class="pemisah-titik">:</div>
                     <div class="waktu-blok"><div class="angka-waktu" id="detik">00</div><div class="label-waktu">Detik</div></div>
                 </div>
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Pernikahan+Didan+%26+Elga&amp;dates=20270701T030000Z/20270701T060000Z" target="_blank" rel="noopener" class="tombol-simpan-mewah">SIMPAN TANGGAL</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Pernikahan+Didan+%26+Elga&amp;dates=20270701T030000Z/20270701T060000Z" target="_blank" rel="noopener" class="tombol-simpan-mewah anim-item from-bottom">SIMPAN TANGGAL</a>
             </div>
         </section>
 
@@ -463,7 +464,7 @@
 
     </div>
 
-    <!-- Script Utama Tanpa Freeze & Kinerja Maksimal -->
+    <!-- Script Utama -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyKOzjMfESdNQ3XXq8uZYW4RwPiGvIy9vACHIbeCvsKAyIXeH-IJVhTNTHhT11BtZOa/exec';
         let dataUcapanLokal = [];
@@ -580,6 +581,7 @@
             navBar.classList.add('aktif');
             musicBtn.classList.add('muncul');
             inisialisasiScrollAnimation();
+            inisialisasiVideoLazyLoad();
         }
 
         function pindahKeSection(id) {
@@ -596,8 +598,26 @@
                         e.target.classList.remove('item-muncul');
                     }
                 });
-            }, { root: appCanvas, threshold: 0.1, rootMargin: '10px' });
+            }, { root: appCanvas, threshold: 0.05, rootMargin: '20px' });
             document.querySelectorAll('.anim-item').forEach(item => observer.observe(item));
+        }
+
+        function inisialisasiVideoLazyLoad() {
+            const videoFrame = el('videoMomen');
+            const galeriSection = el('galeri');
+            if (!videoFrame || !galeriSection) return;
+
+            const videoObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!videoFrame.src) {
+                            videoFrame.src = videoFrame.getAttribute('data-src');
+                        }
+                    }
+                });
+            }, { root: appCanvas, threshold: 0.1 });
+
+            videoObserver.observe(galeriSection);
         }
 
         const polaroidContainer = el('polaroidContainer');
