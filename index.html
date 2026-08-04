@@ -464,7 +464,7 @@
 
     </div>
 
-    <!-- Script Utama (Dengan LocalStorage Caching untuk Kecepatan Instan) -->
+    <!-- Script Utama (Preloader Aktif dengan Progress Persentase Nyata & LocalStorage Caching) -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyKOzjMfESdNQ3XXq8uZYW4RwPiGvIy9vACHIbeCvsKAyIXeH-IJVhTNTHhT11BtZOa/exec';
         let dataUcapanLokal = [];
@@ -476,8 +476,9 @@
               iconUnmute = el('icon-unmute'), iconMute = el('icon-mute'),
               navBar = el('navigation-bar'), rsvpForm = el('rsvp-form'), listUcapanKontainer = el('listUcapanKontainer');
 
-        const asetUtama = ['background.png', 'cover-foto.png', 'pengantinpria.png', 'pengantinwanita.png'];
-        const asetPendukung = [
+        // Menggabungkan seluruh aset penting agar preloader benar-benar memuat semuanya sebelum dibuka
+        const daftarAset = [
+            'background.png', 'cover-foto.png', 'pengantinpria.png', 'pengantinwanita.png',
             'cover-item-1.png', 'cover-item-2.png', 'pembuka-item-1.png', 'pembuka-item-2.png', 
             'pembuka-item-3.png', 'pembuka-item-4.png', 'pembuka-item-5.png', 'pembuka-item-6.png', 
             'pembuka-item-7.png', 'pembuka-item-8.png', 'galeri-item-1.png', 'galeri-polaroid-1.png', 
@@ -496,22 +497,44 @@
             preloaderSelesai = true;
             if (loaderProgress) loaderProgress.innerText = 'Siap!';
             setTimeout(() => preloader.classList.add('selesai'), 300);
-            
-            const loadBgAssets = () => { asetPendukung.forEach(src => { new Image().src = src; }); };
-            if ('requestIdleCallback' in window) { requestIdleCallback(loadBgAssets); } else { setTimeout(loadBgAssets, 200); }
         }
 
-        setTimeout(matikanPreloader, 2500);
+        // Pengaman waktu maksimal 4 detik agar preloader tidak tersendat jika ada kendala jaringan
+        const safetyTimeout = setTimeout(matikanPreloader, 4000);
 
-        Promise.all(asetUtama.map(src => {
-            return new Promise(resolve => {
+        // Sistem Preloader Berjalan dengan Penghitung Persentase Real-Time
+        let dimuatCount = 0;
+        const totalAset = daftarAset.length;
+
+        function muatSemuaAset() {
+            if (totalAset === 0) {
+                clearTimeout(safetyTimeout);
+                matikanPreloader();
+                return;
+            }
+
+            daftarAset.forEach(src => {
                 const img = new Image();
-                img.onload = img.onerror = resolve;
+                const selesaiSatu = () => {
+                    dimuatCount++;
+                    const persen = Math.round((dimuatCount / totalAset) * 100);
+                    if (loaderProgress && !preloaderSelesai) {
+                        loaderProgress.innerText = `Memuat undangan... ${persen}%`;
+                    }
+                    if (dimuatCount >= totalAset) {
+                        clearTimeout(safetyTimeout);
+                        matikanPreloader();
+                    }
+                };
+                img.onload = selesaiSatu;
+                img.onerror = selesaiSatu; // Tetap lanjut walau satu file gagal
                 img.src = src;
             });
-        })).then(matikanPreloader);
+        }
 
-        // OPTIMISASI UTAMA: Memuat data secara instan dari LocalStorage terlebih dahulu agar tidak ada jeda tunggu server
+        muatSemuaAset();
+
+        // Memuat Ucapan via LocalStorage Caching untuk Kecepatan Instan
         function muatDataUcapan() {
             const cachedData = localStorage.getItem('didan_elga_ucapan_cache');
             if (cachedData) {
@@ -521,18 +544,16 @@
                 } catch (e) {}
             }
 
-            // Ambil data terbaru dari server di background tanpa membuat layar menggantung
             fetch(scriptURL)
                 .then(r => r.json())
                 .then(data => { 
                     if (Array.isArray(data)) {
                         dataUcapanLokal = data;
-                        localStorage.setItem('didan_elga_ucapan_cache', JSON.stringify(data)); // Simpan cache terbaru
+                        localStorage.setItem('didan_elga_ucapan_cache', JSON.stringify(data));
                         tampilkanDaftarUcapan(data);
                     }
                 })
                 .catch(() => {
-                    // Jika gagal fetch dan belum ada cache sama sekali, tampilkan kosong secara bersih
                     if (!cachedData) {
                         tampilkanDaftarUcapan([]);
                     }
@@ -693,7 +714,6 @@
 
             tampilkanModal('sukses', 'Terima Kasih', 'Konfirmasi & doa restu Anda telah tersimpan.');
             
-            // Masukkan data baru ke data lokal dan perbarui cache localStorage secara instan
             dataUcapanLokal.push({ nama: namaVal, status: statusRadio.value, ucapan: ucapanVal });
             localStorage.setItem('didan_elga_ucapan_cache', JSON.stringify(dataUcapanLokal));
             tampilkanDaftarUcapan(dataUcapanLokal);
