@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Undangan Pernikahan - Didan & Elga</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
@@ -32,7 +31,7 @@
             width: 100%; max-width: 420px; height: 100vh; height: 100svh;
             position: relative; background-color: #fff7e4; overflow-y: auto; overflow-x: hidden;
             box-shadow: 0 0 40px rgba(0,0,0,0.6); scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
-            transform: translateZ(0);
+            transform: translateZ(0); will-change: scroll-position;
         }
         body.cover-aktif #app-canvas { overflow: hidden !important; }
 
@@ -49,7 +48,7 @@
         section.cover-khusus {
             position: absolute; top: 0; left: 0; z-index: 2000; width: 100%; height: 100%;
             background-color: #fff7e4 !important; overflow: hidden !important;
-            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease, visibility 0.8s ease;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
             will-change: transform, opacity;
         }
         section.cover-khusus.fade-out { opacity: 0; transform: translate3d(0, -100%, 0); visibility: hidden; pointer-events: none; }
@@ -65,7 +64,7 @@
         .box-doff-mewah { background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 16px 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%; display: flex; flex-direction: column; gap: 10px; }
         .container-galeri-transparan { background: rgba(255, 255, 255, 0.88); border-radius: 20px; padding: 8px 8px; gap: 5px; width: 90%; max-width: 330px; margin: 0 auto; }
 
-        #preloader { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff7e4; z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.4s ease, visibility 0.4s ease; }
+        #preloader { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff7e4; z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.3s ease, visibility 0.3s ease; }
         #preloader.selesai { opacity: 0; visibility: hidden; pointer-events: none !important; }
         .loader-spinner { width: 36px; height: 36px; border: 3px solid rgba(184, 142, 76, 0.15); border-top: 3px solid #b88e4c; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 14px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -88,8 +87,7 @@
         .rsvp-desc { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.7rem; color: #594931; line-height: 1.3; }
         .section-divider-item { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(184, 142, 76, 0.25), transparent); margin: 2px 0; }
 
-        .form-input-mewah { width: 100%; background: #ffffff; border-radius: 10px; border: 1.5px solid #d4be94; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; color: #2a2215; font-weight: 500; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
-        .form-input-mewah:focus { border-color: #b88e4c !important; box-shadow: 0 0 0 3px rgba(184, 142, 76, 0.15); }
+        .form-input-mewah { width: 100%; background: #ffffff; border-radius: 10px; border: 1.5px solid #d4be94; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; color: #2a2215; font-weight: 500; outline: none; }
         textarea.form-input-mewah { resize: none; min-height: 52px; }
 
         .opsi-kehadiran-box { cursor: pointer; position: relative; width: 100%; }
@@ -120,7 +118,7 @@
         .nama-rekening-mewah { font-family: 'Playfair Display', serif; font-size: 0.68rem; font-weight: 600; font-style: italic; color: #8c6d33; }
         .btn-salin-mewah { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; border: none; padding: 7px 16px; border-radius: 18px; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; cursor: pointer; letter-spacing: 0.5px; }
 
-        .bottom-nav { position: sticky; bottom: 0; left: 0; width: 100%; background: #ffffff; padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px)) 0; display: flex; justify-content: space-around; z-index: 9999; opacity: 0; transition: opacity 0.5s ease; border-top: 1.5px solid #d4be94; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); margin-top: auto; }
+        .bottom-nav { position: sticky; bottom: 0; left: 0; width: 100%; background: #ffffff; padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px)) 0; display: flex; justify-content: space-around; z-index: 9999; opacity: 0; transition: opacity 0.4s ease; border-top: 1.5px solid #d4be94; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); margin-top: auto; }
         .bottom-nav.aktif { opacity: 1; }
         .nav-item { display: flex; flex-direction: column; align-items: center; flex: 1; cursor: pointer; }
         .nav-item img { width: 17px; height: 17px; object-fit: contain; }
@@ -163,25 +161,26 @@
         .pos-p2-mempelai { position: absolute; width: 84%; top: var(--pos-p2-mempelai); left: 0; right: 0; margin: 0 auto; z-index: 15; }
         .tumpukan-polaroid { position: absolute; width: 40%; top: var(--pos-p2-polaroid); left: 0; right: 0; margin: 0 auto; z-index: 20; cursor: pointer; }
 
-        .kartu-polaroid { position: absolute; width: 100%; background: #fff; padding: 6px 6px 22px 6px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.4s ease, opacity 0.4s ease; }
+        .kartu-polaroid { position: absolute; width: 100%; background: #fff; padding: 6px 6px 22px 6px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, opacity 0.3s ease; }
         .kartu-polaroid img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; pointer-events: none; }
         .polaroid-1 { transform: translate(-50px, 8px) rotate(-15deg); z-index: 1; }
         .polaroid-2 { transform: translate(50px, 8px) rotate(15deg); z-index: 2; }
         .polaroid-3 { transform: translate(0, -4px) rotate(-1deg); z-index: 3; }
         .kartu-polaroid.slip-away { transform: translate(110px, -20px) rotate(20deg) scale(0.9) !important; opacity: 0; }
 
-        .anim-item { opacity: 0; will-change: transform, opacity; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .anim-item.from-top { transform: translateY(-40px); }
-        .anim-item.from-bottom { transform: translateY(40px); }
-        .anim-item.from-left { transform: translateX(-40px); }
-        .anim-item.from-right { transform: translateX(40px); }
-        .anim-item.zoom-in { transform: scale(0.8); }
-        .anim-item.zoom-out { transform: scale(1.2); }
-        .anim-item.rotate-in { transform: translateY(30px) rotate(-8deg); }
-        .anim-item.fade-in { transform: scale(0.9); }
+        /* Animasi Super Ringan Berbasis GPU */
+        .anim-item { opacity: 0; will-change: transform, opacity; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .anim-item.from-top { transform: translateY(-30px); }
+        .anim-item.from-bottom { transform: translateY(30px); }
+        .anim-item.from-left { transform: translateX(-30px); }
+        .anim-item.from-right { transform: translateX(30px); }
+        .anim-item.zoom-in { transform: scale(0.85); }
+        .anim-item.zoom-out { transform: scale(1.15); }
+        .anim-item.rotate-in { transform: translateY(20px) rotate(-5deg); }
+        .anim-item.fade-in { transform: scale(0.95); }
         .anim-item.item-muncul { opacity: 1 !important; transform: translate(0) scale(1) rotate(0deg) !important; }
 
-        .notif-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 11, 9, 0.65); z-index: 99999; display: flex; justify-content: center; align-items: flex-start; padding: 16px; transition: opacity 0.4s ease, visibility 0.4s ease; }
+        .notif-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 11, 9, 0.65); z-index: 99999; display: flex; justify-content: center; align-items: flex-start; padding: 16px; transition: opacity 0.3s ease, visibility 0.3s ease; }
         .notif-overlay.hide { opacity: 0; visibility: hidden; pointer-events: none !important; }
         .notif-box { background: #fff; border-radius: 18px; padding: 18px; width: 100%; max-width: 330px; font-family: 'Montserrat', sans-serif; margin-top: env(safe-area-inset-top, 16px); text-align: center; }
         .notif-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
@@ -193,7 +192,7 @@
         .notif-desc { font-size: 0.75rem; line-height: 1.4; color: #594931; margin-bottom: 16px; }
         .notif-btn { background: linear-gradient(135deg, #b88e4c, #705321); color: #fff; border: none; padding: 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 600; cursor: pointer; width: 100%; }
 
-        .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 9, 8, 0.96); z-index: 9999999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; }
+        .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 9, 8, 0.96); z-index: 9999999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.25s ease; }
         .lightbox-overlay.aktif { opacity: 1; visibility: visible; }
         .lightbox-wrapper { position: relative; width: 92%; max-width: 600px; max-height: 85vh; display: flex; justify-content: center; align-items: center; }
         .lightbox-media { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 8px; display: none; }
@@ -464,7 +463,7 @@
 
     </div>
 
-    <!-- Script Utama -->
+    <!-- Script Utama Tanpa Freeze & Kinerja Maksimal -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyKOzjMfESdNQ3XXq8uZYW4RwPiGvIy9vACHIbeCvsKAyIXeH-IJVhTNTHhT11BtZOa/exec';
         let dataUcapanLokal = [];
@@ -476,7 +475,6 @@
               iconUnmute = el('icon-unmute'), iconMute = el('icon-mute'),
               navBar = el('navigation-bar'), rsvpForm = el('rsvp-form'), listUcapanKontainer = el('listUcapanKontainer');
 
-        // Aset dari Section Cover sampai Galeri (Wajib termuat penuh sebelum preloader selesai)
         const asetUtama = [
             'background.png', 'cover-foto.png', 'pengantinpria.png', 'pengantinwanita.png',
             'cover-item-1.png', 'cover-item-2.png', 'pembuka-item-1.png', 'pembuka-item-2.png', 
@@ -486,27 +484,15 @@
             'galeri-gambar-3.png', 'galeri-gambar-4.png'
         ];
 
-        // Aset section bawah (Acara, Lokasi, Countdown, Gift, Navigasi) dimuat santai di background
-        const asetPendukung = [
-            'kalender-item-1.png', 'kalender-item-2.png', 'kalender-item-3.png', 'kalender-item-4.png', 'kalender-item-5.png', 
-            'lokasi-item-1.png', 'lokasi-item-2.png', 'lokasi-item-3.png', 'lokasi-item-4.png', 'lokasi-item-5.png', 
-            'lokasi-item-6.png', 'lokasi-item-7.png', 'navigasi1.png', 'navigasi2.png', 'navigasi3.png', 
-            'navigasi4.png', 'navigasi5.png', 'navigasi6.png'
-        ];
-
         let preloaderSelesai = false;
 
         function matikanPreloader() {
             if (preloaderSelesai) return;
             preloaderSelesai = true;
             if (loaderProgress) loaderProgress.innerText = 'Siap!';
-            setTimeout(() => preloader.classList.add('selesai'), 300);
-            
-            const loadBgAssets = () => { asetPendukung.forEach(src => { new Image().src = src; }); };
-            if ('requestIdleCallback' in window) { requestIdleCallback(loadBgAssets); } else { setTimeout(loadBgAssets, 300); }
+            setTimeout(() => preloader.classList.add('selesai'), 200);
         }
 
-        // Sistem Preloader Real-Time Tracking (Cover s.d Galeri)
         let loadedCount = 0;
         const totalAssets = asetUtama.length;
 
@@ -519,8 +505,7 @@
             }
         }
 
-        // Eksekusi pemuatan aset utama dengan timeout pengaman (maksimal 3.5 detik jika ada kendala jaringan)
-        const safetyTimeout = setTimeout(matikanPreloader, 3500);
+        const safetyTimeout = setTimeout(matikanPreloader, 3000);
 
         asetUtama.forEach(src => {
             const img = new Image();
@@ -531,7 +516,6 @@
             img.src = src;
         });
 
-        // Memuat ucapan dengan LocalStorage Caching agar instan
         function muatDataUcapan() {
             const cachedData = localStorage.getItem('didan_elga_ucapan_cache');
             if (cachedData) {
@@ -633,7 +617,7 @@
                             card.className = `kartu-polaroid ${['polaroid-1', 'polaroid-2', 'polaroid-3'][idx] || ''}`;
                         });
                         isTransitioning = false;
-                    }, 350);
+                    }, 300);
                 }
             });
         }
